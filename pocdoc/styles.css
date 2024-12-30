@@ -1,0 +1,419 @@
+body {
+    margin: 0;
+    font-family: 'Mulish', sans-serif;
+    overflow-x: hidden; 
+}
+
+#container {
+    display: flex;
+    height: 100vh;
+}
+
+
+/* Sidebar on the left */
+#sidebar {
+    flex: 0 0 270px; /* Fixed width of 220px */
+    background-color: white; 
+    color: black; 
+    padding: 10px;
+    height: 100vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    border-right: 2px solid #ccc;
+}
+
+
+#sidebar a {
+    color: black; /* Black font color for links */
+    text-decoration: none;
+    padding: 8px;
+    display: block;
+}
+
+#sidebar a:hover {
+    background-color: #f0f0f0; /* Light gray hover effect */
+    color: black;
+}
+
+.separator {
+    border-top: 1px solid #66a3ff; /* Light blue separator line */
+    margin: 15px 0;
+}
+
+/* Main content area */
+#main {
+    flex: 1; /* Take up all remaining space */
+    padding: 20px;
+    overflow-y: auto;
+    transition: margin-right 0.3s ease; /* Only animate the right margin */
+}
+
+
+/* When #info-panel is open, adjust the main content margin */
+#main.shrink {
+    margin-right: 350px;
+}
+
+
+.use-case {
+    margin-bottom: 50px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ccc; /* Separator line between use cases */
+}
+
+.use-case h2 {
+    color: #002d62;
+}
+
+
+#menu-button {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    padding: 10px;
+    background-color: #0059a4;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 1000; /* Ensure button stays above other elements */
+}
+
+#menu-button:hover {
+    background-color: #003f75;
+}
+
+#ask-assistance-button {
+    display: block !important;
+    visibility: visible !important;
+    z-index: 9999 !important;
+    position: relative !important;
+}
+
+#assistance-form {
+    margin-top: 15px;
+}
+
+#assistance-message {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#send-assistance {
+    margin-top: 10px;
+    background-color: #0059a4;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    padding: 8px;
+}
+
+#send-assistance:hover {
+    background-color: #003f75;
+}
+
+.clipboard-button {
+    margin-top: 10px;
+    display: block;
+    padding: 5px;
+    background-color: #0059a4;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+.clipboard-button:hover {
+    background-color: #003f75;
+}
+
+#close-info-panel {
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+}
+
+/* Right info panel */
+#info-panel {
+    position: fixed;
+    right: -350px; /* Start off-screen */
+    top: 0;
+    width: 350px;
+    height: 100vh;
+    background-color: #f4f4f4;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    transition: right 0.3s ease; /* Smooth slide effect */
+}
+
+
+/* Open state of info panel */
+#info-panel.open {
+    right: 0;
+}
+
+#info-panel-header {
+    background-color: #002d62;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#info-panel-content {
+    padding: 15px;
+}
+
+
+#control-section {
+    margin-top: 15px;
+}
+
+#control-section h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+#control-section input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+#control-section button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    background-color: #0059a4;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+#control-section button:hover {
+    background-color: #00457a;
+}
+
+/* Logo Section */
+#logo-section {
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #ffffff; /* Optional: background for logo */
+}
+
+#logo-section img {
+    width: 80%;
+    max-width: 200px; /* Limits logo width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+
+.image-wrapper {
+    display: block;
+    margin-bottom: 15px;
+}
+
+.image-wrapper.small,
+.image-wrapper.medium,
+.image-wrapper.large {
+    margin-bottom: 25px;
+}
+
+.image-wrapper img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.tiny {
+    width: 15%;
+}
+
+.small {
+    width: 25%;
+}
+
+.medium {
+    width: 50%;
+}
+
+.large {
+    width: 100%;
+}
+
+.text-left {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.text-left img {
+    margin-right: 15px;
+    height: auto;
+}
+
+.text-right {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.text-right img {
+    margin-left: 15px;
+    height: auto;
+}
+
+.completed {
+    font-weight:lighter;
+}
+
+.feedback-section {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: none; /* Remove the top border */
+    transition: all 0.3s ease-in-out;
+}
+
+.smilies {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.smilies span {
+    font-size: 40px; /* Increase font size for visibility */
+    cursor: pointer;
+    margin-right: 10px;
+    display: inline-block; /* Ensure they are inline and visible */
+}
+
+.smilies {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.smilies .smiley {
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.smiley {
+    font-size: 40px; /* Set a larger size for visibility */
+    cursor: pointer;
+    display: inline-block; /* Ensure smileys are inline */
+    padding: 10px;
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.smiley:hover {
+    background-color: #f0f0f0; /* Light grey on hover */
+}
+
+.smiley.selected {
+    background-color: #0059a4; /* Light blue to indicate selection */
+}
+
+.smiley.very-bad::before {
+    content: "\1F620"; /* 😠 Angry face */
+}
+
+.smiley.bad::before {
+    content: "\1F641"; /* 🙁 Slightly frowning face */
+}
+
+.smiley.neutral::before {
+    content: "\1F610"; /* 😐 Neutral face */
+}
+
+.smiley.good::before {
+    content: "\1F604"; /* 😄 Smiling face with open mouth */
+}
+
+.smiley.very-good::before {
+    content: "\1F601"; /* 😁 Grinning face with smiling eyes */
+}
+
+.copy-icon {
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/* General table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* Table header styling */
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Table cell styling */
+td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Alternating row colors */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Row hover effect */
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+p code, p span code {
+    display: inline-block;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px; /* Adjusted to match softer corners */
+    padding: 4px 8px; /* Reduced padding for compactness */
+    font-family: monospace;
+    font-size: 14px; /* Font size as per the image */
+    color: #333;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    line-height: 1.5; /* Ensures better vertical alignment */
+    white-space: nowrap; /* Prevents wrapping of code */
+    min-width: 600px; 
+    text-align: left;
+  }
+  
+  p code::before, p code::after {
+    content: ''; /* Ensures no additional quotes or characters */
+  }
+
+
+
+/* Specific styles for unordered lists */
+ul {
+    list-style-type: disc; /* Standard bullet style */
+    margin-left: 20px; /* Indentation */
+    padding: 0; /* No extra padding */
+    font-size: 16px; /* Adjust font size */
+    line-height: 1.6; /* Add spacing for readability */
+}
+
+ul li {
+    margin-bottom: 5px; /* Spacing between items */
+}

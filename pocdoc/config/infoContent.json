@@ -1,0 +1,438 @@
+{
+    "welcome": {
+        "temas_description": "Welcome Message",
+        "text": "TLS Protect Cloud login details",
+        "credentials": [
+            {
+                "url": "https://eval-27804186.venafi.cloud",
+                "username": "administrator",
+                "password": "Ven@fiPassw0rd-9fdb"
+            }
+        ]
+    },
+    "Setup-and-Overview": {
+        "temas_description": "ADCS lab root certificate",
+        "text": "Use the following link to download the root certificate for the lab ADCS certificate authority",
+        "credentials": [
+            {
+                "url": "http://demosite1.collegeboard.mimlab.io/Venafi-TLSPC-ADCS-Root.pem"
+            }
+        ]
+    },
+    "prepare-about-vsat": {
+        "temas_description": "About Vsats",
+        "text": "Link to the documentation section:",
+        "credentials": [
+            {
+                "url": "https://docs.venafi.cloud/vsatellite/c-VSatellite-Management-about/"
+            }
+        ]
+    },
+    "prepare-vsat-firewall": {
+        "temas_description": "Prepare VSatellite Firewall",
+        "text": "Link to the documentation section:",
+        "credentials": [
+            {
+                "url": "https://docs.venafi.cloud/vsatellite/r-VSatellite-deployNew-network-connections-US/"
+            }
+        ]
+    },
+    "prepare-vsat-system": {
+        "temas_description": "Prepare VSat system",
+        "text": "Link to the documentation section:",
+        "credentials": [
+            {
+                "url": "https://docs.venafi.cloud/vsatellite/t-VSatellite-deployNew/"
+            }
+        ]
+    },
+    "Single-Sign-On": {
+        "temas_description": "",
+        "text": "No information available for this section."
+    },
+    "Dashboard": {
+        "temas_description": "Dashboard1",
+        "text": "TLS Protect Cloud login details",
+        "credentials": [
+            {
+                "url": "https://eval-27804186.venafi.cloud",
+                "username": "administrator",
+                "password": "Ven@fiPassw0rd-9fdb"
+            },
+            {
+                "url": "https://docs.venafi.cloud/vaas/dashboard/t-cloud-predict-dashboard/"
+            }
+        ]
+    },
+    "Internet-Discovery": {
+        "temas_description": "Internet Discovery",
+        "text": "TLS Protect Cloud login details",
+        "credentials": [
+            {
+                "url": "https://eval-27804186.venafi.cloud",
+                "username": "administrator",
+                "password": "Ven@fiPassw0rd-9fdb"
+            }
+        ]
+    },
+    "Internal-Discovery": {
+        "temas_description": "",
+        "text": "You need a system Linux/Mac or Windows that can run scanafi in your internal network."
+    },
+    "Dashboard2": {
+        "temas_description": "Internet Discovery",
+        "text": "TLS Protect Cloud login details",
+        "credentials": [
+            {
+                "url": "https://eval-27804186.venafi.cloud",
+                "username": "administrator",
+                "password": "Ven@fiPassw0rd-9fdb"
+            }
+        ]
+    },
+    "Certificate-Location": {
+        "temas_description": "Internet Discovery",
+        "text": "TLS Protect Cloud login details",
+        "credentials": [
+            {
+                "url": "https://eval-27804186.venafi.cloud",
+                "username": "administrator",
+                "password": "Ven@fiPassw0rd-9fdb"
+            }
+        ]
+    },
+    "Expiration-Notification": {
+        "temas_description": "Internet Discovery",
+        "text": "TLS Protect Cloud login details",
+        "credentials": [
+            {
+                "url": "https://eval-27804186.venafi.cloud",
+                "username": "administrator",
+                "password": "Ven@fiPassw0rd-9fdb"
+            }
+        ]
+    },
+    "Reporting-and-Notification-Policies": {
+        "temas_description": "Reporting and Notification Policies",
+        "text": " Logon to your tenant",
+        "credentials": [
+            {
+                "url": "https://docs.venafi.cloud/vaas/certificates/setting-up-certificate-expiration-notifications/?h=expiration",
+                "username": "administrator",
+                "password": "Ven@fiPassw0rd-9fdb"
+            }
+        ]
+    },
+    "Certificate-Validation": {
+        "temas_description": "Internet Discovery",
+        "text": "TLS Protect Cloud login details",
+        "credentials": [
+            {
+                "url": "https://eval-27804186.venafi.cloud",
+                "username": "administrator",
+                "password": "Ven@fiPassw0rd-9fdb"
+            }
+        ]
+    },
+    "Import-certificates-from-Microsoft-CA": {
+        "temas_description": "Internet Discovery",
+        "text": "TLS Protect Cloud login details",
+        "credentials": [
+            {
+                "url": "https://eval-27804186.venafi.cloud",
+                "username": "administrator",
+                "password": "Ven@fiPassw0rd-9fdb"
+            }
+        ]
+    },
+    "Request-a-New-Certificate-Self-Service": {
+        "temas_description": "Internet Discovery",
+        "text": "TLS Protect Cloud login details",
+        "credentials": [
+            {
+                "url": "https://eval-27804186.venafi.cloud",
+                "username": "administrator",
+                "password": "Ven@fiPassw0rd-9fdb"
+            },
+            {
+                "url": "https://docs.venafi.cloud/vaas/application/applications-overview/?h=applications"
+            }
+        ]
+    },
+    "Request-a-New-Certificate-with-Approval-Required": {
+        "temas_description": "Request-a-New-Certificate-with-Approval-Required",
+        "text": "TLS Protect Cloud login details",
+        "credentials": [
+            {
+                "url": "https://eval-27804186.venafi.cloud",
+                "username": "administrator",
+                "password": "Ven@fiPassw0rd-9fdb"
+            }
+        ]
+    },
+    "Auto-Renewal": {
+        "temas_description": "Internet Discovery",
+        "text": "TLS Protect Cloud login details",
+        "credentials": [
+            {
+                "url": "https://eval-27804186.venafi.cloud",
+                "username": "administrator",
+                "password": "Ven@fiPassw0rd-9fdb"
+            },
+            {
+                "url": "https://docs.venafi.cloud/vaas/certificates/auto-renewal/c-overview-auto-renewal/?h=auto+renewal"
+            }
+        ]
+    },
+    "Windows-IIS-Automated-Installation": {
+        "temas_description": "IIS website provisioning details",
+        "text": "Use the following values for testing and provisioning certificates to the IIS webservers. CAPI Store is always Personal.",
+        "credentials": [
+            {
+                "text": [
+                    "Friendly Name: DemoSite1",
+                    "IIS Web Site Name: DemoSite1Cert",
+                    "Binding Hostname: demosite1.collegeboard.mimlab.io"
+                ],
+                "url": "https://demosite1.collegeboard.mimlab.io"
+            },
+            {
+                "text": [
+                    "Friendly Name: DemoSite2",
+                    "IIS Web Site Name: DemoSite2Cert",
+                    "Binding Hostname: demosite2.collegeboard.mimlab.io"
+                ],
+                "url": "https://demosite2.collegeboard.mimlab.io"
+            },
+            {
+                "text": [
+                    "Friendly Name: DemoSite3",
+                    "IIS Web Site Name: DemoSite3Cert",
+                    "Binding Hostname: demosite3.collegeboard.mimlab.io"
+                ],
+                "url": "https://demosite3.collegeboard.mimlab.io"
+            },
+            {
+                "text": [
+                    "Friendly Name: DemoSite4",
+                    "IIS Web Site Name: Demo4ite1Cert",
+                    "Binding Hostname: demosite4.collegeboard.mimlab.io"
+                ],
+                "url": "https://demosite4.collegeboard.mimlab.io"
+            },
+            {
+                "text": [
+                    "Friendly Name: DemoSite5",
+                    "IIS Web Site Name: DemoSite5Cert",
+                    "Binding Hostname: demosite5.collegeboard.mimlab.io"
+                ],
+                "url": "https://demosite5.collegeboard.mimlab.io"
+            },
+            {
+                "text": [
+                    "Friendly Name: DemoSite6",
+                    "IIS Web Site Name: DemoSite6Cert",
+                    "Binding Hostname: demosite6.collegeboard.mimlab.io"
+                ],
+                "url": "https://demosite6.collegeboard.mimlab.io"
+            },
+            {
+                "text": [
+                    "Friendly Name: DemoSite7",
+                    "IIS Web Site Name: DemoSite7Cert",
+                    "Binding Hostname: demosite7.collegeboard.mimlab.io"
+                ],
+                "url": "https://demosite7.collegeboard.mimlab.io"
+            },
+            {
+                "text": [
+                    "Friendly Name: DemoSite8",
+                    "IIS Web Site Name: DemoSite8Cert",
+                    "Binding Hostname: demosite8.collegeboard.mimlab.io"
+                ],
+                "url": "https://demosite8.collegeboard.mimlab.io"
+            },
+            {
+                "text": [
+                    "Friendly Name: DemoSite9",
+                    "IIS Web Site Name: DemoSite9Cert",
+                    "Binding Hostname: demosite9.collegeboard.mimlab.io"
+                ],
+                "url": "https://demosite9.collegeboard.mimlab.io"
+            },
+            {
+                "text": [
+                    "Friendly Name: DemoSite10",
+                    "IIS Web Site Name: DemoSite10Cert",
+                    "Binding Hostname: demosite10.collegeboard.mimlab.io"
+                ],
+                "url": "https://demosite10.collegeboard.mimlab.io"
+            }
+        ]
+    },
+    "Apache-Automated-Installation": {
+        "temas_description": "Apache Automated Installation",
+        "text": "TLS Protect Cloud login details",
+        "credentials": [
+            {
+                "url": "https://eval-27804186.venafi.cloud",
+                "username": "administrator",
+                "password": "Ven@fiPassw0rd-9fdb"
+            },
+            {
+                "text": [
+                    "KeyStore Type: PEM",
+                    "Certificate Path: /etc/ssl/certs/server.crt",
+                    "Certificate Key Path: /etc/ssl/private/server.key",
+                    "Certificate Chain Path: /etc/ssl/certs/server-ca.crt",
+                    "Service Name: apache2"
+                ]
+            },
+            {
+                "url": "https://apachelab-collegeboard.mimlab.io"
+            }
+        ]
+    },
+    "Tomcat-Automated-Installation": {
+        "temas_description": "Tomcat Automated Installation",
+        "text": "TLS Protect Cloud login details",
+        "credentials": [
+            {
+                "url": "https://eval-27804186.venafi.cloud",
+                "username": "administrator",
+                "password": "Ven@fiPassw0rd-9fdb"
+            },
+            {
+                "text": [
+                    "KeyStore Type: JKS",
+                    "Keystore file path: /opt/tomcat/tomcat_keystore.jks",
+                    "Alias: tomcat",
+                    "Service Name: tomcat"
+                ]
+            },
+            {
+                "password": "Ven@fiPassw0rd-9fdb",
+                "url": "https://tomcatlab-collegeboard.mimlab.io:8443"
+            }
+        ]
+    },
+    "NetScaler-Automated-Installation": {
+        "temas_description": "NetScaler Automated Installation",
+        "text": "TLS Protect Cloud login details",
+        "credentials": [
+            {
+                "url": "https://eval-27804186.venafi.cloud",
+                "username": "administrator",
+                "password": "Ven@fiPassw0rd-9fdb"
+            },
+            {
+                "text": [
+                    "Certificate Name: demo01",
+                    "Chain Bundle Name: demo01-chain",
+                    "Endpoint Type: Virtual Server",
+                    "Endpoint Name: demo01"
+                ]
+            },
+            {
+                "username": "nsroot",
+                "password": "Ven@fiPassw0rd",
+                "url": "https://citrixadc-collegeboard.mimlab.io"
+            }
+        ]
+    },
+    "Full-automation-via-CLI-API-VCert": {
+        "temas_description": "Full-automation-via-CLI-API-VCert",
+        "text": "SSH connection details under URL.",
+        "credentials": [
+            {
+                "url": "ssh ubuntu@apachelab-collegeboard.mimlab.io",
+                "password": "Ven@fiPassw0rd-9fdb"
+            }
+        ]
+    },
+    "Default-Logging": {
+        "temas_description": "",
+        "text": "No information available for this section."
+    },
+    "Webhooks-Splunk": {
+        "temas_description": "Webhooks / Splunk",
+        "text": "Webhooks / Splunk",
+        "credentials": [
+            {
+                "url": "https://splunklab-collegeboard.mimlab.io:8000",
+                "username": "admin",
+                "password": "Ven@fiPassw0rd-9fdb"
+            }
+        ]
+    },
+    "Reporting": {
+        "temas_description": "Reporting",
+        "text": "RDP connection under URL",
+        "credentials": [
+            {
+                "url": "demosite1.collegeboard.mimlab.io",
+                "username": "admininistrator@venafi.local",
+                "password": "Ven@fiPassw0rd-9fdb",
+                "text": "Api Key: b8744114-90e7-4da6-ab3a-29174604eafe"
+            }
+        ]
+    },
+    "Documentation": {
+        "temas_description": "",
+        "text": "TLS Protect Cloud Documentation",
+        "credentials": [
+            {
+                "url": "https://docs.venafi.cloud/vaas/about-vaas/"
+            }
+        ]
+    },
+    "API-reference-documentation": {
+        "temas_description": "",
+        "text": "API reference documentation",
+        "credentials": [
+            {
+                "url": "https://developer.venafi.com/tlsprotectcloud/reference/tls-protect-overview"
+            }
+        ]
+    },
+    "SaaS-Overall-System-Status": {
+        "temas_description": "",
+        "text": "TLS Protect Cloud Status",
+        "credentials": [
+            {
+                "url": "https://status.venafi.cloud/"
+            }
+        ]
+    },
+    "Technical-Support": {
+        "temas_description": "",
+        "text": "TLS Protect Cloud login details",
+        "credentials": [
+            {
+                "url": "https://www.gartner.com/reviews/market/public-key-infrastructure-pki-and-certificate-lifecycle-management/vendor/venafi/product/venafi-tls-protect"
+            }
+        ]
+    },
+    "Eco-System-Marketplace": {
+        "temas_description": "",
+        "text": "Marketplace",
+        "credentials": [
+            {
+                "url": "https://marketplace.venafi.com/"
+            }
+        ]
+    },
+    "User-Group-Community-Training": {
+        "temas_description": "",
+        "text": "Community",
+        "credentials": [
+            {
+                "url": "https://community.venafi.com/"
+            }
+        ]
+    },
+    "Appendix": {
+        "temas_description": "",
+        "text": "No information available for this section."
+    }
+}

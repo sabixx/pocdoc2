@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venafi Evaluation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="icons/v.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="container">
+
+        <div id="sidebar">
+            <!-- Logo Section -->
+            <div id="logo-section">
+                <img src="./images/Venafi_CYBR_R_logo_1200x377.png" alt="Venafi Logo">
+            </div>
+            <div id="use-case-menu">
+                <a href="#welcome" onclick="showContent('welcome')" id="link-welcome">Welcome</a>
+                <a href="#Setup-and-Overview" onclick="showContent('Setup-and-Overview')" id="link-Setup-and-Overview">Setup and Overview</a>
+                <h3>Prepare your Environment</h3>
+                <a href="#prepare-about-vsat" onclick="showContent('prepare-about-vsat')" id="link-prepare-about-vsat">About VSatellites</a>
+                <a href="#prepare-vsat-firewall" onclick="showContent('prepare-vsat-firewall')" id="link-prepare-vsat-firewall">VSatellite Firewall Rules</a>
+                <a href="#prepare-vsat-system" onclick="showContent('prepare-vsat-system')" id="link-prepare-vsat-system">VSatellite Installation</a>  
+                <h3>Stop Outages - Step 1</h3>
+                <a href="#Single-Sign-On" onclick="showContent('Single-Sign-On')" id="link-Single-Sign-On">Single Sign-On</a>
+                <a href="#Dashboard" onclick="showContent('Dashboard')" id="link-Dashboard">Dashboard</a>
+                <a href="#Internet-Discovery" onclick="showContent('Internet-Discovery')" id="link-Internet-Discovery">Internet Discovery</a>
+                <a href="#Internal-Discovery" onclick="showContent('Internal-Discovery')" id="link-Internal-Discovery">Internal Discovery</a>
+                <a href="#Dashboard2" onclick="showContent('Dashboard2')" id="link-Dashboard2"">Dashboard</a>
+                <a href="#Certificate-Location" onclick="showContent('Certificate-Location')" id="link-Certificate-Location">Certificate Location</a>
+                <a href="#Expiration-Notification" onclick="showContent('Expiration-Notification')" id="link-Expiration-Notification">Expiration Notification and Reporting (Self-Service)</a>
+                <a href="#Reporting-and-Notification-Policies" onclick="showContent('Reporting-and-Notification-Policies')" id="link-Reporting-and-Notification-Policies">Reporting and Notification Policies</a>
+                <a href="#Certificate-Validation" onclick="showContent('Certificate-Validation')" id="link-Certificate-Validation">Certificate Validation</a>
+                <h3>Automation - Step 2</h3>
+                <a href="#Import-certificates-from-Microsoft-CA" onclick="showContent('Import-certificates-from-Microsoft-CA')" id="link-Import-certificates-from-Microsoft-CA">Import certificates from Microsoft CA</a>
+                <a href="#Request-a-New-Certificate-Self-Service" onclick="showContent('Request-a-New-Certificate-Self-Service')" id="link-Request-a-New-Certificate-Self-Service">Request a New Certificate - Self Service</a>
+                <a href="#Request-a-New-Certificate-with-Approval-Required" onclick="showContent('Request-a-New-Certificate-with-Approval-Required')" id="link-Request-a-New-Certificate-with-Approval-Required">Request a New Certificate with Approval Required</a>
+                <a href="#Auto-Renewal" onclick="showContent('Auto-Renewal')" id="link-Auto-Renewal">Auto Renewal</a>
+                <a href="#Windows-IIS-Automated-Installation" onclick="showContent('Windows-IIS-Automated-Installation')" id="link-Windows-IIS-Automated-Installation">Windows IIS Automated Installation</a>
+                <a href="#Apache-Automated-Installation" onclick="showContent('Apache-Automated-Installation')" id="link-Apache-Automated-Installation">Apache Automated Installation</a>
+                <a href="#Tomcat-Automated-Installation" onclick="showContent('Tomcat-Automated-Installation')" id="link-Tomcat-Automated-Installation">Tomcat Automated Installation</a>
+                <a href="#NetScaler-Automated-Installation" onclick="showContent('NetScaler-Automated-Installation')" id="link-NetScaler-Automated-Installation">NetScaler Automated Installation</a>
+                <a href="#Full-automation-via-CLI-API-VCert" onclick="showContent('Full-automation-via-CLI-API-VCert')" id="link-Full-automation-via-CLI-API-VCert">Full automation via CLI/API - VCert</a>
+                <h3>Audit, Logging, Reporting</h3>
+                <a href="#Default-Logging" onclick="showContent('Default-Logging')" id="link-Default-Logging">Default Logging</a>
+                <a href="#Webhooks-Splunk" onclick="showContent('Webhooks-Splunk')" id="link-Webhooks-Splunk">Webhooks / Splunk</a>
+                <a href="#Reporting" onclick="showContent('Reporting')" id="link-Reporting">Reporting</a> 
+                <h3>Business, Project and Risk</h3>
+                <a href="#Documentation" onclick="showContent('Documentation')" id="link-Documentation">Documentation</a>
+                <a href="#API-reference-documentation" onclick="showContent('API-reference-documentation')" id="link-API-reference-documentation">API reference documentation</a>
+                <a href="#SaaS-Overall-System-Status" onclick="showContent('SaaS-Overall-System-Status')" id="link-SaaS-Overall-System-Status">SaaS Overall System Status</a>
+                <a href="#Technical-Support" onclick="showContent('Technical-Support')" id="link-Technical-Support">Technical Support</a>
+                <a href="#Eco-System-Marketplace" onclick="showContent('Eco-System-Marketplace')" id="link-Eco-System-Marketplace">Eco System / Marketplace</a>
+                <a href="#User-Group-Community-Training" onclick="showContent('User-Group-Community-Training')" id="link-User-Group-Community-Training">User Group / Community / Training</a>
+                <h3>Appendix</h3>
+                <a href="#Appendix" onclick="showContent('Appendix')" id="link-Appendix">Appendix</a>
+
+
+                <div class="separator"></div>
+
+                <div id="control-section">
+                    <h3>Control</h3>
+                    <input type="password" id="api-key-input" placeholder="Enter API key" />
+                    <button onclick="setupSSO()">Setup SSO</button>
+                    <button onclick="deployDemoSystems()">Deploy Demo Systems</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="main">
+            <!-- Main content will go here -->
+            <div id="welcome" class="use-case">
+                <div class="text-left">
+                    <img class="medium" src="./images/Venafi_CYBR_R_logo_1200x377.png">
+                </div>
+                <h2>Welcome to your Venafi Evaluation</h2>
+                <p>This document outlines the Venafi TLS Protect Cloud Proof of Value (POV) use cases and test items using a dedicated cloud-based test lab designed specifically for your organization.</p>
+                <p>On the right, you will find a menu with additional information, including credentials for accessing the use cases.</p>
+                <p>Each use case includes an option for providing feedback. Please take advantage of this feature as we are eager to hear your thoughts. <string>All feedback is carefully reviewed and shared with the corresponding teams.</strong></p>
+                <p>We encourage you to use this feedback mechanism extensively. Your input is invaluable in helping us continue to deliver and improve the best products and services.</p>
+                <p>The login details for the demo tenant are available under the "Additional Information" section.</p>
+                <p>Please follow the sections in order, as some sections build upon the previous ones.</p>
+                <p><b>POV Environment:</b> This includes the SaaS tenant of Venafi TLS Protect (with optional Zero Touch PKI) and your virtual lab.</p>
+                <img class="medium" src="./images/povimage.png">
+            </div>
+
+            <div id="Setup-and-Overview" style="height: 450px;" class="use-case">
+                <h2>Setup and Overview</h2>
+                <p>Internal CA Root Certificate</p>
+                <p>During the testing you will use a Microsoft Certificate Authority (ADCS) in the virtual lab. You will
+                    receive <b>'not trusted'</b> messages from your browser because the lab CA isn't trusted by your
+                    browser.
+                    You can import the root certificate into your browser so that you will stop getting these messages.
+                </p>
+                <p>The root can be downloaded form the Additional Infromation panel.</p>
+                <button id="button-use-case-Setup-and-Overview" type="button">Complete</button>
+            </div>
+
+            <div id="prepare-about-vsat" class="use-case">
+                <h2>Flexible Deployment of VSatellites: Your Infrastructure, Your Choice</h2>
+                <p>Venafi VSatellites are an innovative and essential component of TLS Protect Cloud, Venafi's cloud-native machine identity management service.</p>
+                <p>VSatellites extend the capabilities of your TLS Protect Cloud account beyond publicly accessible networks and hosts, bridging the gap to your on-premises or private cloud networks and machines. This enables you to gain a comprehensive view of your machine identities across your organization, regardless of whether they reside in public or private environments.</p>
+                <p>At its core, a Venafi VSatellite is a self-updating application that serves as a runtime extension of TLS Protect Cloud, designed to operate seamlessly within your private infrastructure.</p>
+                <p>VSatellite is a modern, lightweight, self-contained, Kubernetes-based application runtime that runs on widely used Linux systems.</p>
+                <p>VSatellites can be deployed seamlessly within your internal infrastructure—whether in your on-premises data centers or your cloud environment. The choice is yours, ensuring flexibility and alignment with your operational needs. As part of the Professional Service Foundation Implementation provided by Venafi, a CyberArk company and its trusted implementation partners, you will receive expert guidance on the optimal deployment of VSatellites. Our partners are rigorously trained to follow the same proven procedures and best practices as our own consultants, ensuring a consistent and high-quality experience.</p>
+                <p>Once deployed, VSatellites deliver critical functionality to enhance your environment, including:</p>
+                <p><strong>Internal Network Discovery:</strong> Identify and monitor certificates and keys across your internal network.</p>
+                <p><strong>Certificate Distribution:</strong> Push certificates securely to endpoints across your infrastructure.</p>
+                <p><strong>Sensitive Data Encryption:</strong> Use a Data Encryption Key (DEK) to encrypt sensitive information.</p>
+                <p><strong>Internal CA Integration:</strong> Request certificates directly from your internal Certificate Authority (CA).</p>
+                <p><strong>Custom Connectors:</strong> Run tailored connectors to integrate with unique systems or workflows.</p>
+                <p><img class="medium src="./images/about-vsat.png"></p>
+                <button id="button-use-case-prepare-about-vsat" type="button">Complete</button>
+            </div>
+
+            <div id="prepare-vsat-firewall" class="use-case">
+                <h2>VSatellite Firewall Preparation</h2>
+                <p>VSatellites initiate only outgoing connections. TLS Protect Cloud will not establish any inbound connections to your internal network.</p>
+                <p>If a proxy server is required, please refer to the following guidance: <a href="https://docs.venafi.cloud/vsatellite/t-VSatellite-proxy-server-considerations/" target="_blank" rel="noopener noreferrer">Proxy Server Considerations</a>.</p>
+                <h3>Required Endpoints</h3>
+                <h4>For US Tenants:</h4>
+                <ul>
+                <li>dl.venafi.cloud:443</li>
+                <li>registry.venafi.cloud:443</li>
+                <li>vsat-gw.venafi.cloud:9443</li>
+                <li>vsat-gw.venafi.cloud:443</li>
+                <li>vsat-login.venafi.cloud:443</li>
+                </ul>
+                <h3>Verifying Connectivity to Required Endpoints</h3>
+                <p>To verify connectivity quickly, you can use the <strong>curl</strong> utility to request headers from each endpoint. For example:</p>
+                <p><code>curl -I https://dl.venafi.cloud</code></p>
+                <p><code>curl -I https://vsat-gw.venafi.cloud</code></p>
+                <h4>For EMEA Tenants:</h4>
+                <ul>
+                <li>dl.venafi.cloud:443</li>
+                <li>registry.venafi.cloud:443</li>
+                <li>vsat-gw.venafi.eu:9443</li>
+                <li>vsat-gw.venafi.eu:443</li>
+                <li>vsat-login.venafi.eu:443</li>
+                </ul>
+                <p>Verify connectivity to the EMEA endpoints using the following commands:</p>
+                <p><code>curl -I https://dl.venafi.cloud</code></p>
+                <p><code>curl -I https://vsat-gw.venafi.eu</code></p>
+                <p><b>Note:</b> A successful connection will return a 404 error, confirming that the endpoint is reachable.</p>
+                <p><img class="medium" src="./images/vsat-network-com-noASCS.png"></p>
+                <button id="button-use-case-prepare-vsat-firewall" type="button">Complete</button>
+            </div>
+
+            <div id="prepare-vsat-system" class="use-case">
+                <h2>Prepare the VSatellite System</h2>
+                <p><b>System resources</b></p>
+                <p>  - 4 GB RAM</p>
+                <p>  - 2 CPUs</p>
+                <p>  - 10 GB of free disk space</p>
+                <p></p>
+                <p>If you want to test if the system is ready you can run: </p>
+                <p><code>curl -O https://dl.venafi.cloud/vsatctl</code></p>
+                <p><code>chmod +x vsatctl && sudo ./vsatctl preflight</code></p>
+                <p>Please find the full documentation link in the Canvas under Additional Information.</p>
+                <p></p>
+                <button id="button-use-case-prepare-vsat-system" type="button">Complete This Use Case</button>
+            </div>            
+
+            <div id="Single-Sign-On" class="use-case">
+                <h2>Single-Sign-On</h2>
+                <p>To view how single sign on is configured in Venafi:</p>
+                <p>go to <b>Settings > Platform > Single Sign On.</b></p>
+                <p>From there you can see the OAuth/OIDC settings.</p>
+                <p><br></p>
+                <p>Your virtual lab includes a single sign on system that is pre-configured</p>
+                <button id="button-use-case-Single-Sign-On" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="Dashboard" class="use-case">
+                <h2>Dashboard</h2>
+                <p>When you signed up for Venafi TLS Protect Cloud, the platform automatically scanned and inventoried the TLS certificates associated with publicly accessible endpoints linked to your email domain. This automated discovery process provides immediate visibility into the certificates protecting your organization's public-facing internet presence, ensuring you have a starting point for comprehensive machine identity management.</p>
+                <p>To review the certificates that were automatically discovered, navigate to the <b>Dashboard</b> in the menu bar. The Dashboard presents an organized view of the identified certificates, including key details such as expiration dates, issuing authorities, and associated applications. This information is critical for identifying potential risks, such as expired or misconfigured certificates, and taking proactive action.</p>
+                <p>If you need assistance locating your login credentials, you can find this information in the "Additional Information" section of the canvas. This section is designed to provide quick access to essential resources, ensuring you can seamlessly log in and start exploring the capabilities of TLS Protect Cloud.</p>
+                <p>By leveraging the automated inventory and the insights provided on the Dashboard, you can begin taking control of your machine identities. Whether you need to manage existing certificates or address any gaps identified during the discovery process, TLS Protect Cloud offers the tools and visibility needed to secure your organization effectively.</p>
+                <p><strong>Navigate to the Dashboard and have a look. Do you see any certificates expiring soon? Then come back we're guiding you thur the next steps.</strong></p>
+                <button id="button-use-case-Dashboard" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="Internet-Discovery" class="use-case">
+                <h2>Internet Discovery</h2>
+                <p>Follow these steps to perform additional Internet Discovery using TLS Protect Cloud:</p>
+                <ol>
+                    <li><b>Log in</b> to TLS Protect Cloud.</li>
+                    <li><b>Navigate to Configuration:</b></li>
+                    <div class="image-wrapper tiny">
+                        <img src="./images/menuNetworkDiscovery.png" alt="Configuration Menu">
+                    </div>
+                    <li><b>Select Network Discovery:</b></li>
+                    <li><b>Choose Internet Discovery Service:</b></li>
+                    <div class="image-wrapper small">
+                        <img src="./images/InternetDiscoveryService.png" alt="Internet Discovery Service">
+                    </div>
+                </ol>
+                <p>To discover additional domains, follow these steps:</p>
+                <ol>
+                    <li><b>Enter Additional Domains:</b> Provide the domains you want to add for discovery:</li>
+                    <div class="image-wrapper medium">
+                        <img src="./images/enterAdditionalDomains.png" alt="Enter Additional Domains">
+                    </div>
+                    <li><b>Select Add:</b> Add the entered domain to the discovery list.</li>
+                    <li><b>Confirm Domain Ownership:</b> Verify that you own the added domain:</li>
+                    <div class="image-wrapper small">
+                        <img src="./images/confirmDomain.png" alt="Confirm Domain Ownership">
+                    </div>
+                    <li><b>Click Save:</b> Save your changes to start the discovery process.</li>
+                </ol>
+                <p>Once the domains are configured and saved, Internet Discovery will automatically start identifying and inventorying certificates for the specified domains. This ensures that all your external machine identities are accounted for and managed efficiently.</p>
+                <button id="button-use-case-Internet-Discovery" type="button">Complete This Use Case</button>
+            </div>
+            
+
+            <div id="Internal-Discovery" class="use-case">
+                <h2>Internal Discovery</h2>
+                <p>Venafi TLS Protect Cloud offers two methods for internal discovery: <b>VSatellite</b> and <b>Scanafi</b>. For this Proof of Value (POV), we will utilize <b>Scanafi</b>.</p>
+                <h3>About VSatellite</h3>
+                <p><b>VSatellite</b> is a system that acts as a proxy, enabling secure communication between Venafi Cloud and your on-premises systems. Your virtual lab already includes a preconfigured VSatellite. When transitioning from POV to production, you will deploy and configure your own VSatellite within your environment.</p>
+                <h3>About Scanafi</h3>
+                <p><b>Scanafi</b> is a lightweight and simple method for discovering internal certificates within your environment. It can be run on any system within your network and communicates securely over port 443 to Venafi Cloud to populate your certificate inventory.</p>
+                <h3>How to Run Scanafi</h3>
+                <ol>
+                    <li>Navigate to: <b>Discovery > New > Basic Discovery</b>.</li>
+                    <li>Enter the following details:
+                        <ul>
+                            <li><b>Job Name:</b> Provide a meaningful name for your discovery job.</li>
+                            <li><b>Ports and Address(es):</b> Specify the ports and target addresses for discovery.</li>
+                        </ul>
+                    </li>
+                    <li>Click <b>Create Service</b>.</li>
+                    <li>Select your operating system (Windows, Mac, or Linux) to generate the appropriate commands for Scanafi.</li>
+                    <li>Copy the command to download Scanafi and then copy the command to execute it.</li>
+                </ol>
+                <h3>What Happens Next?</h3>
+                <p>Once executed, Scanafi will scan your environment, discover internal certificates, and securely report the results to Venafi Cloud. These certificates will then be visible in your cloud inventory, providing a complete view of your machine identities.</p>
+                <button id="button-use-case-Internal-Discovery" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="Dashboard2" class="use-case">
+                <h2>Dashboard</h2>
+                <p>Return to the <b>Dashboard</b> and locate the widget titled <b>Newly Added Certificates for the Past 60 Days</b>. Review the most recent entries, as these should include the certificates you just added. Click on the individual certificates to view their details, such as expiration date, issuing authority, and associated domains.</p>
+                <p>While on the Dashboard, take note of the <b>Share</b> button. This feature allows you to easily export or share the Dashboard view, making it convenient to collaborate with your team or provide insights to stakeholders.</p>
+                <p><strong>Navigate to the Dashboard and have a look again. Do you new certificates have been added? Come back we're guiding you thur the next steps.</strong></p>
+                <button id="button-use-case-Dashboard2" type="button">Complete This Use Case</button>
+            </div>
+            
+
+            <div id="Certificate-Location" class="use-case">
+                <h2>Certificate Location</h2>
+                <p>To locate a certificate, follow these steps:</p>
+                <ol>
+                    <li>Navigate to <b>Inventory > Certificates</b>.</li>
+                    <li>Select a certificate from the list.</li>
+                    <li>View the <b>TLS Server Endpoints</b> section.</li>
+                </ol>
+                <p>This section provides details about where the certificate was discovered or installed.</p>
+                <h3>Understanding Scan Types</h3>
+                <ul>
+                    <li><b>Domain:</b> Indicates that the certificate was found in the Google Certificate Transparency (CT) Log.</li>
+                    <li><b>External:</b> Means the certificate was discovered on the public internet during Venafi's recurring Internet Discovery jobs.</li>
+                </ul>
+                <p>These insights allow you to understand the context of the certificate's location and origin, providing valuable information for managing your inventory effectively.</p>
+                <button id="button-use-case-Certificate-Location" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="Expiration-Notification" class="use-case">
+                <h2>Expiration Notification and Reporting (Self-Service)</h2>
+                <p>Venafi TLS Protect Cloud ensures proactive management of your certificates by automatically sending users reports and notifications about upcoming expirations and the overall health of your certificates.</p>
+                <h3>Setting Up Daily Reports</h3>
+                <ol>
+                    <li>In the top-right corner of the interface, click on your <b>Initials</b>.</li>
+                    <li>Select <b>Preferences</b> and navigate to <b>Reports</b>.</li>
+                    <li>Modify the settings for both reports to ensure they are sent to you daily during the Proof of Value (POV) period.</li>
+                </ol>
+                <p>By enabling daily reports, you'll receive detailed insights into your certificate inventory, including any certificates nearing expiration. These reports provide actionable data to help you stay ahead of potential issues.</p>
+                <p><b>Note:</b> You will receive your first report tonight, provided you have certificates that are approaching their expiration dates.</p>
+                <button id="button-use-case-Expiration-Notification" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="Reporting-and-Notification-Policies" class="use-case">
+                <h2>Reporting and Notification Policies</h2>
+                <p>Venafi TLS Protect Cloud provides flexibility in managing certificate notifications and reports. In addition to users configuring their individual preferences, administrators can establish general reporting and notification policies to streamline certificate lifecycle management.</p>
+                <h3>Reviewing Notification Policies</h3>
+                <ol>
+                    <li>Navigate to <b>Settings > Certificate Lifecycle > Certificate Expiration Notification Policy</b>.</li>
+                    <li>Explore the available settings for customizing expiration notifications and reports.</li>
+                </ol>
+                <p>These policies enable you to tailor the notification frequency, recipients, and content to meet your organization's requirements. By setting up these policies, you can ensure timely alerts for upcoming expirations, reducing the risk of disruptions caused by expired certificates.</p>
+                <button id="button-use-case-Reporting-and-Notification-Policies" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="Certificate-Validation" class="use-case">
+                <h2>Certificate Validation</h2>
+                <p>Venafi TLS Protect Cloud provides two types of certificate validation to ensure certificates under its management are secure and properly used:</p>
+                <ul>
+                    <li><b>SSL/TLS Validation:</b> Verifies the proper configuration and usage of the certificate on servers.</li>
+                    <li><b>Certificate Chain Validation:</b> Ensures the certificate chain is complete and trusted.</li>
+                </ul>
+                <h3>Importance of Certificate Validation</h3>
+                <p>As security, compliance, and technological advancements evolve, new criteria emerge for validating certificates and the servers hosting them. Venafi helps maintain the validity and proper usage of your certificates, ensuring robust protection for your machine identities.</p>
+                <p>Once certificates are imported into Venafi, validation automatically occurs every 24 hours. This process ensures certificates are securely installed and used appropriately. If a certificate fails validation, Venafi displays a warning message and sends a <b>Machine Identity Digest</b> email notification to specified recipients for immediate action.</p>
+                <h3>Viewing Certificate Validation Status</h3>
+                <ol>
+                    <li>Sign in to Venafi TLS Protect Cloud.</li>
+                    <li>Navigate to <b>Inventory > TLS Server Endpoints</b> in the toolbar.</li>
+                    <li>Review the <b>TLS Validation</b> and <b>Chain Validation</b> columns in the TLS Server Endpoints table to see the status of each certificate.</li>
+                    <li>To search for a specific certificate, use the search bar at the top.</li>
+                    <li>To filter the list:
+                        <ul>
+                            <li>Click <b>Filter</b> next to the search bar.</li>
+                            <li>Select the states you want to include in the <b>TLS Validation</b> and <b>Chain Validation</b> filters.</li>
+                            <li>Click <b>Apply</b>.</li>
+                        </ul>
+                    </li>
+                </ol>
+                <h3>Machine Identity Digest Email</h3>
+                <p>The <b>Machine Identity Digest</b> email provides a quick overview of validation status. If validation fails for any certificates, you will be notified so you can take corrective action. To enable this feature:</p>
+                <ol>
+                    <li>Click on your user icon in the top-right corner.</li>
+                    <li>Navigate to <b>Profile > Preferences > Reports</b>.</li>
+                    <li>Ensure the Machine Identity Digest email option is enabled. This feature is enabled by default.</li>
+                </ol>
+                <p>The email offers a convenient way to monitor validation statuses and identify certificates that require attention without logging into Venafi frequently.</p>
+                <h3>Running Validation Manually</h3>
+                <p>To manually validate a certificate:</p>
+                <ol>
+                    <li>In the toolbar, click <b>Inventory > TLS Endpoints</b>.</li>
+                    <li>Find the certificate:
+                        <ul>
+                            <li>Search for a specific certificate using the search bar.</li>
+                            <li>Or click <b>Filter</b> to define attributes and apply the filter.</li>
+                        </ul>
+                    </li>
+                    <li>Click the certificate name in the <b>Certificate Name</b> column.</li>
+                    <li>In the Certificate Details view, click <b>Validate Now</b>.</li>
+                </ol>
+                <p>While validation is in progress, a message appears at the top of the page. If successful, the <b>TLS Validation</b> and <b>Chain Validation</b> columns will display <b>Success</b>. If validation fails, a <i>Validation Failed</i> message will be shown.</p>
+                <h3>Additional Notes</h3>
+                <p><b>Last Seen Column:</b> To check when the last validation occurred, refer to the <b>Last Seen</b> column. After running <b>Validate Now</b>, the <b>Last Seen</b> value updates to <i>a minute ago</i>, reflecting the recent validation.</p>
+                <button id="button-use-case-Certificate-Validation" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="Import-certificates-from-Microsoft-CA" class="use-case">
+                <h2>Import Certificates from Microsoft CA</h2>
+                <p>To integrate with Microsoft Certificate Authority (CA), the first step is importing the issued certificates. This process adds the certificates to your inventory, ensuring they are properly managed and monitored.</p>
+                <h3>Steps to Import Certificates</h3>
+                <ol>
+                    <li>Navigate to <b>Settings > Certificate Authorities</b> in the Venafi TLS Protect Cloud interface.</li>
+                    <li>Select your Microsoft CA from the list (provided in your virtual lab).</li>
+                    <li>Click <b>Import</b>.</li>
+                    <li>Under <b>Import Templates</b>, choose the template(s) corresponding to the certificates you want to import. Selecting all templates is acceptable for this process.</li>
+                    <li>Click <b>Import</b> to begin the process.</li>
+                </ol>
+                <p>Once the import is complete, the issued certificates will appear in your inventory, allowing you to manage them effectively within Venafi TLS Protect Cloud.</p>
+            </div>
+
+            <div id="Request-a-New-Certificate-Self-Service" class="use-case">
+                <h2>Request a New Certificate - Self Service</h2>
+                <p>End users or application owners can independently request certificates through Venafi TLS Protect Cloud, simplifying the certificate management process.</p>
+                <h3>Steps to Request a Certificate</h3>
+                <ol>
+                    <li>Click <b>New > Certificate Request</b>.</li>
+                    <li>Select the <b>Application</b> where the certificate will be installed. 
+                        <p><b>Note:</b> Applications are a way to group and organize certificates along with their respective owners.</p>
+                    </li>
+                    <li>For this example, select <b>Sample App Group 2</b>.</li>
+                    <li>Under <b>Request Method</b>, choose <b>Venafi automated certificate request</b>. This option allows Venafi to generate the key and CSR (Certificate Signing Request) automatically.</li>
+                </ol>
+                <h3>Filling Out the Request</h3>
+                <p>On the next screen, notice that most of the fields are pre-filled using templates, making the process simple and user-friendly. You only need to:</p>
+                <ul>
+                    <li>Select the key strength.</li>
+                    <li>Enter the <b>Common Name</b> for the certificate.</li>
+                </ul>
+                <p>After completing these fields, finalize the request by clicking <b>Finish</b>.</p>
+                <h3>Viewing and Downloading the Certificate</h3>
+                <ol>
+                    <li>Once submitted, navigate to the <b>Certificate Requests</b> page. Your request should appear at the top of the list.</li>
+                    <li>Select your certificate request from the list.</li>
+                    <li>Click <b>View Certificate</b> in the window that appears.</li>
+                    <li>Download the certificate in your preferred format.</li>
+                </ol>
+                <p><b>Note:</b> Automated installation will be performed later as part of the process.</p>
+                <button id="button-use-case-Request-a-New-Certificate-Self-Service" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="Request-a-New-Certificate-with-Approval-Required" class="use-case">
+                <h2>Request a New Certificate with Approval Required</h2>
+                <p>In the previous test, no approval was required before the certificate was issued. Now, let's configure a scenario where approval is mandatory before issuing a certificate.</p>
+                <h3>Steps to Configure Approval Requirement</h3>
+                <ol>
+                    <li>Navigate to <b>Settings > Certificate Approval > New</b>.</li>
+                    <li>Provide a meaningful name for the approval policy.</li>
+                    <li>Under <b>Condition</b>, select <b>Applications = Sample App Group 2</b> (the application we used in the previous test).</li>
+                    <li>Under <b>Approvers</b>, add your email as the approver.</li>
+                    <li>Click <b>Save</b> to finalize the configuration.</li>
+                </ol>
+                <h3>Testing the Approval Workflow</h3>
+                <ol>
+                    <li>Run the same test as in the previous example: 
+                        <ul>
+                            <li>Request a new certificate.</li>
+                            <li>Select the application <b>Sample App Group 2</b>.</li>
+                        </ul>
+                    </li>
+                    <li>Notice that this time, an approval is required before the certificate can be issued.</li>
+                </ol>
+                <p>This setup ensures that certificates requested under specific conditions, such as belonging to certain application groups, go through an approval process, adding an extra layer of control and security.</p>
+                <button id="button-use-case-Request-a-New-Certificate-with-Approval-Required" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="Auto-Renewal" class="use-case">
+                <h2>Auto Renewal</h2>
+                <p>Auto-renewal ensures that certificates are automatically renewed before they expire, reducing the risk of service disruptions. Follow these steps to manage auto-renewal settings:</p>
+                <h3>Steps to Configure Auto Renewal</h3>
+                <ol>
+                    <li>Navigate to <b>Applications > (Select an Application) > Auto-renewal</b>.</li>
+                    <li>Review the settings for how auto-renewal is configured for certificates within the selected application.</li>
+                </ol>
+                <h3>About Applications and Auto Renewal</h3>
+                <p>Applications in Venafi TLS Protect Cloud serve as a way to group and manage certificates and their associated settings, such as auto-renewal policies. This grouping simplifies certificate lifecycle management, ensuring that related certificates share consistent policies and renewal schedules.</p>
+                <p>By configuring auto-renewal settings, you can ensure that certificates within an application are renewed automatically, minimizing manual intervention and improving overall efficiency.</p>
+                <button id="button-use-case-Auto-Renewal" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="Windows-IIS-Automated-Installation" class="use-case">
+                <h2>Windows IIS Automated Installation</h2>
+                <p>Windows IIS/CAPI automation includes three tests: <b>Discovery</b>, <b>Renewal</b>, and <b>New Request</b>. Follow the steps below to complete each test.</p>
+                <h3>Test 1: Discovery</h3>
+                <ol>
+                    <li>Navigate to <b>Installations > Machines</b> and click on the IIS Server.</li>
+                    <li>Click the <b>Discovery</b> tab, then click the <b>Discover Now</b> button.</li>
+                    <li>Go to <b>Machine Identities</b> to view the discovered certificates.</li>
+                </ol>
+                <p><b>Note:</b> The certificates and their bindings displayed are from your virtual lab IIS server. Details of the IIS Virtual Lab are documented below this test item.</p>
+                <h3>Test 2: Renewal</h3>
+                <ol>
+                    <li>Navigate to <b>Installations > Machines</b>, select the IIS Server, and go to <b>Machine Identities</b>.</li>
+                    <li>Click on the <b>site1 machine identity</b> (certificate name: <i>.YOURNAMEsite1...</i>).</li>
+                    <li>View the site1 certificate and click <b>Renew</b>.</li>
+                    <li><b>Note:</b> Since this is the first time the certificate is being renewed, you will need to complete the wizard to assign the certificate to an application. This is required only once.</li>
+                    <li>Return to <b>Installations > Machines</b>, select the IIS Server, and go to <b>Machine Identities</b>. Notice that the status of <b>site1</b> is now <b>New</b>, indicating the certificate has been renewed and needs to be installed on the IIS server.</li>
+                    <li>Click the ellipses (three dots) next to the certificate and select <b>Provision</b>.</li>
+                </ol>
+                <h3>Test 3: New Request</h3>
+                <ol>
+                    <li>Request a new certificate:
+                        <ul>
+                            <li>Click <b>New</b> in the menu bar and follow the wizard to create a new certificate.</li>
+                            <li>Use <b>Sample DevOps Group1</b> as the application.</li>
+                            <li>Provide a name for the certificate.</li>
+                        </ul>
+                    </li>
+                    <li>Install the new certificate on the IIS Server with a new binding:
+                        <ol>
+                            <li>Navigate to <b>Installations > Machines</b>, select the IIS Server, and click <b>Provision a Certificate</b>.</li>
+                            <li>From the drop-down menu, select the certificate you just created.</li>
+                            <li>Configure the following settings:
+                                <ul>
+                                    <li><b>CAPI Store:</b> Personal</li>
+                                    <li><b>Friendly Name:</b> Enter a name of your choice.</li>
+                                    <li><b>Bind Certificate to IIS Website:</b> Slide to <b>On</b>.</li>
+                                    <li><b>IIS Website Name:</b> DemoSite1</li>
+                                    <li><b>Create Binding if not Found:</b> Slide to <b>On</b>.</li>
+                                    <li><b>Binding IP Address:</b> 127.0.0.1</li>
+                                    <li><b>Binding Port:</b> 8943</li>
+                                    <li><b>Binding Hostname:</b> test.venafi.com</li>
+                                    <li><b>Push upon Saving:</b> Slide to <b>On</b>.</li>
+                                </ul>
+                            </li>
+                            <li>Click <b>Save</b>.</li>
+                        </ol>
+                    </li>
+                </ol>
+                <p>You have successfully created a new certificate, created a new binding, installed the certificate into the CAPI keystore, and bound it to the IIS binding.</p>                
+                <button id="button-use-case-Windows-IIS-Automated-Installation" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="Apache-Automated-Installation" class="use-case">
+                <h2>Apache Automated Installation</h2>
+                <p>To perform an automated certificate installation on your Apache server, you will need the following details from your virtual lab information (available under <b>Additional Information</b>):</p>
+                <ul>
+                    <li><b>KeyStore Type</b></li>
+                    <li><b>Certificate Path</b></li>
+                    <li><b>Key Path</b></li>
+                    <li><b>Chain Path</b></li>
+                    <li><b>Service Name</b></li>
+                </ul>
+                <h3>Steps to Perform Automated Installation</h3>
+                <ol>
+                    <li>Navigate to <b>Installations > Machines</b> and locate your virtual lab Apache server.</li>
+                    <li>Select the machine where you want to install the certificate.</li>
+                    <li>Click <b>Provision a Certificate</b>.</li>
+                    <li>Enter the required details for your Apache server (available under <b>Additional Information</b>):
+                        <ul>
+                            <li>KeyStore Type: <strong>PEM</strong></li>
+                            <li>Certificate Path: <strong>/etc/ssl/certs/server.crt</strong><</li>
+                            <li>Key Path: <strong>/etc/ssl/private/server.key</strong></li>
+                            <li>Chain Path: <strong>/etc/ssl/certs/server-ca.crt</strong></li>
+                            <li>Service Name: <strong>apache2</strong></li>
+                        </ul>
+                    </li>
+                    <li>Enable the slider for <b>Push upon Saving</b>.</li>
+                    <li>Click <b>Save</b>.</li>
+                </ol>
+                <h3>Validation</h3>
+                <p>Once the installation is complete, the certificate and key will be installed on your Apache server. To validate the installation:</p>
+                <ol>
+                    <li>Navigate to the Apache server's URL: <a href= "https://apachelab-collegeboard.mimlab.io" target="_blank" rel="noopener noreferrer"></a></li>
+                    <li>Check the certificate details and compare the serial number with the newly installed certificate to confirm the update.</li>
+                </ol>
+                <button id="button-use-case-Apache-Automated-Installation" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="Tomcat-Automated-Installation" class="use-case">
+                <h2>Tomcat Automated Installation</h2>
+
+                <p>To perform an automated certificate installation on your Tomcat server, you will need the following details from your virtual lab information (available under <b>Additional Information</b>):</p>
+                <ul>
+                    <li><b>Keystore Type</b></li>
+                    <li><b>Keystore File Path</b></li>
+                    <li><b>Alias</b></li>
+                    <li><b>Keystore Password</b></li>
+                    <li><b>Service Name</b></li>
+                </ul>
+                <h3>Steps to Perform Automated Installation</h3>
+                <ol>
+                    <li>Navigate to <b>Installations > Machines</b> and locate your virtual lab Tomcat server.</li>
+                    <li>Select the machine where you want to install the certificate.</li>
+                    <li>Click <b>Provision a Certificate</b>.</li>
+                    <li>Enter the required details for your Tomcat server (available under <b>Additional Information</b>):
+                        <ul>
+                            <li>Keystore Type: <strong>JKS</strong></li>
+                            <li>Keystore File Path: <strong>/opt/tomcat/tomcat_keystore.jks</strong></li>
+                            <li>Alias: <strong>tomcat</strong></li>
+                            <li>Keystore Password <strong><i>In the canvas</i></strong></li>
+                            <li>Service Name <strong>tomat</strong></li>
+                        </ul>
+                    </li>
+                    <li>Enable the slider for <b>Push upon Saving</b>.</li>
+                    <li>Click <b>Save</b>.</li>
+                </ol>
+                <h3>Validation</h3>
+                <p>Once the installation is complete, the certificate and key will be installed on your Tomcat server. To validate the installation:</p>
+                <ol>
+                    <li>Navigate to the Tomcat server's URL.</li>
+                    <li>Check the certificate details and compare the serial number with the newly installed certificate to confirm the update.</li>
+                </ol>
+                <button id="button-use-case-Tomcat-Automated-Installation" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="NetScaler-Automated-Installation" class="use-case">
+                <h2>NetScaler Automated Installation</h2>
+                <p>To perform an automated certificate installation on your NetScaler, you will need the following details from your virtual lab information (available under <b>Additional Information</b>):</p>
+                <ul>
+                    <li><b>Certificate Name</b></li>
+                    <li><b>Chain Bundle Name</b></li>
+                    <li><b>Endpoint Type</b></li>
+                    <li><b>Endpoint Name</b></li>
+                </ul>
+                <h3>Steps to Perform Automated Installation</h3>
+                <ol>
+                    <li>Navigate to <b>Installations > Machines</b> and select the machine where you want to install the certificate.</li>
+                    <li>Click <b>Provision a Certificate</b>.</li>
+                    <li>Enter the required information for your NetScaler from the virtual lab details:</li>
+                    <ul>
+                        <li><b>Certificate Name: </b>demo01</li>
+                        <li><b>Chain Bundle Name: </b>demo01-chain</li>
+                        <li><b>Endpoint Type: </b>Virtual Server</li>
+                        <li><b>Endpoint Name: </b>demo01</li>
+                    </ul>
+                    <li>Enable the slider for <b>Push upon Saving</b> to automate the certificate push.</li>
+                    <li>Click <b>Save</b> to complete the installation.</li>
+                </ol>
+                <h3>Completion</h3>
+                <p>Once saved, the certificate and key will be installed on your NetScaler automatically. This ensures secure communication and streamlined management.</p>
+                <button id="button-use-case-NetScaler-Automated-Installation" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="Full-automation-via-CLI-API-VCert" class="use-case">
+                <h2>Full Automation via CLI/API - VCert</h2>
+                <p><b>VCert</b> is a powerful CLI utility designed for automated certificate requests, renewals, and installations. It is particularly useful for application owners, developers, and cloud engineers who want to automate the entire certificate lifecycle process efficiently.</p>
+                <h3>Testing VCert</h3>
+                <p>You can test VCert using your virtual lab systems or by following a detailed technical document that walks you through setting up and executing VCert on one of your Linux systems. To test VCert in your virtual lab, you will use the instructions provided below.</p>
+                <h4>Steps to Test VCert with the Virtual Lab</h4>
+                <ol>
+                    <li>SSH into the Apache lab Linux system. This is where you will execute VCert commands.</li>
+                    <li>Execute VCert by referencing a YAML file containing the instructions that VCert will follow.</li>
+                    <li>Review the YAML file to understand what VCert will execute during each run. There are four predefined tests included with the virtual lab.</li>
+                </ol>
+                <h3>VCert Provisioning Details</h3>
+                <p>Use the following commands to test pull provisioning with VCert playbooks:</p>
+                <ul>
+                    <li><b>Provision a certificate to a JKS keystore:</b></li>
+                    <p><code>sudo vcert run -f ./vcert-playbooks/jks.yaml</code></p>
+                    <li><b>Provision a certificate to an Apache website and force renewal:</b></li>
+                    <p><code>sudo vcert run -f ./vcert-playbooks/apache.yaml --force-renew</code></p>
+                    <li><b>Provision a certificate to an Nginx website:</b></li>
+                    <p><ccode>sudo vcert run -f ./vcert-playbooks/nginx.yaml</code></p>
+                    <li><b>Provision a PEM certificate to the file system using a playbook and a macro for the common name:</b></li>
+                    <p><code>sudo vcert run -f ./vcert-playbooks/certonly.yaml</code></p>
+                </ul>
+                <h4>Additional Notes</h4>
+                <p>These tests demonstrate how VCert can seamlessly manage certificates across different systems and environments. Reviewing and modifying the YAML files allows you to customize the actions VCert performs to fit your specific requirements.</p>
+                <button id="button-use-case-Full-automation-via-CLI-API-VCert" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="Default-Logging" class="use-case">
+                <h2>Default Logging</h2>
+                <p>The Event Log in TLS Protect Cloud provides a centralized view of system events, including those triggered by user actions or operational activities within the platform. This powerful tool supports troubleshooting, enhances security practices, and helps monitor activity in your organization.</p>
+                <h3>Accessing the Event Log</h3>
+                <p>To view the Event Log, navigate to <b>Settings > Event Log</b>. From here, you can:</p>
+                <ul>
+                    <li><b>Filter:</b> Narrow down the list of events based on specific criteria.</li>
+                    <li><b>Search:</b> Look up particular events using keywords or resource types.</li>
+                    <li><b>Export:</b> Save the event log data to a file for offline analysis or recordkeeping.</li>
+                </ul>
+                <h3>Understanding the Event Log</h3>
+                <p>The Event Log records a variety of actions and activities, classified by resource type or action type (e.g., Create, Read, Update, Delete - CRUD). Events are further categorized to differentiate between <b>informational</b> and <b>important</b> events, making it easier to focus on critical issues.</p>
+                <p>This log is particularly useful for:</p>
+                <ul>
+                    <li><b>Troubleshooting:</b> Quickly identify and resolve issues by reviewing recent activities.</li>
+                    <li><b>Security Practices:</b> Monitor for unusual or unauthorized activity to strengthen your organization's security posture.</li>
+                    <li><b>Operational Oversight:</b> Track who is performing specific actions within the TLS Protect Cloud account.</li>
+                </ul>
+                <h3>Customizing and Managing Filters</h3>
+                <p>Filters allow you to focus on specific data points in the Event Log. You can create and save filters tailored to your needs, and even set one as your <b>default filter</b> for quicker access during future visits. If a filter is no longer relevant, you can delete it to keep the interface organized and efficient.</p>
+                <h3>Benefits of Event Logging</h3>
+                <p>The Event Log is an essential feature for both operational and security management. By providing detailed insights into platform activities, it enables your team to:</p>
+                <ul>
+                    <li>Maintain transparency by auditing changes and operations.</li>
+                    <li>Enhance accountability by associating actions with specific users.</li>
+                    <li>Streamline troubleshooting by quickly pinpointing issues.</li>
+                </ul>
+                <p>With its powerful search, filter, and export features, the Event Log becomes a cornerstone for managing and securing your TLS Protect Cloud environment.</p>
+                <button id="button-use-case-Default-Logging" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="Webhooks-Splunk" class="use-case">
+                <h2>Webhooks / Splunk</h2>
+                <p>Venafi TLS Protect Cloud supports webhooks to seamlessly integrate with external systems such as Splunk, Slack, ServiceNow, or Microsoft Teams. These integrations enable real-time notifications, allowing you to stay informed about critical events, including expiring certificates, to safeguard machine identities and minimize the risk of certificate-related outages.</p>
+                <h3>Accessing Splunk in Your Virtual Lab</h3>
+                <ol>
+                    <li>Log in to your virtual lab Splunk server. Refer to the login details provided under <b>Additional Information</b>.</li>
+                    <li>On the Splunk dashboard, click <b>Search and Reporting</b> from the left-hand menu.</li>
+                    <li>Select the desired reporting period using the filter on the right (e.g., <b>Last 30 days</b>).</li>
+                    <li>Enter <b>*</b> in the search field to retrieve all available data for the selected period.</li>
+                </ol>
+                <h3>Webhook Integration Details</h3>
+                <p>For those interested in the configuration specifics, the following webhook has been pre-configured in your Venafi lab:</p>
+                <ul>
+                    <li><b>Webhook URL:</b> The destination URL for sending notifications.</li>
+                    <li><b>Event Types:</b> Notifications are triggered for events such as expiring certificates or renewal failures.</li>
+                    <li><b>Format:</b> The payload includes structured data detailing the event type, certificate name, expiration date, and other relevant information.</li>
+                </ul>
+                <h3>Benefits of Webhook Notifications</h3>
+                <p>Webhook notifications offer significant advantages for maintaining the health and security of your TLS ecosystem:</p>
+                <ul>
+                    <li><b>Proactive Alerts:</b> Receive timely updates on expiring certificates or operational issues to prevent outages.</li>
+                    <li><b>Streamlined Collaboration:</b> Integrate notifications into tools like Slack or Microsoft Teams to alert your team instantly.</li>
+                    <li><b>Centralized Monitoring:</b> Use tools like Splunk to aggregate and analyze events from multiple systems for comprehensive visibility.</li>
+                </ul>
+                <h3>Use Case: Monitoring Expiring Certificates</h3>
+                <p>By integrating Venafi TLS Protect Cloud with Splunk or other platforms, your team can stay vigilant about expiring certificates. For example, when a certificate nears its expiration date, a webhook triggers an event that appears in Splunk's event log. From there, you can use Splunk's powerful search and reporting features to analyze and act on the data.</p>
+                <h3>Next Steps</h3>
+                <p>Test the configured webhook in your Venafi lab environment by generating events (such as certificate expiration warnings) and confirming that the notifications appear in Splunk. This integration ensures a proactive approach to managing your machine identities.</p>
+                <div class="image-wrapper medium"><img src="./images/splunkwebhook.png"></div>
+                </p>
+                <button id="button-use-case-Webhooks-Splunk" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="Reporting" class="use-case">
+                <h2>Exteranl Reporting integration example</h2>
+                <p>TLS Protect Cloud provides a powerful API that seamlessly integrates with reporting tools such as Power BI, enabling you to generate insightful reports and visualize your data effectively. Your virtual lab system includes a Power BI server for testing and exploring this functionality.</p>
+                <h3>Accessing the Power BI Server</h3>
+                <ol>
+                    <li>Use the login information provided below this test item to access your virtual lab Power BI server.</li>
+                    <li>We have intentionally left the Power BI setup incomplete, so you can experience how easy it is to configure the integration.</li>
+                </ol>
+                <h3>Setup Instructions</h3>
+                <p>Follow the detailed instructions provided in the link below to set up Power BI with TLS Protect Cloud:</p>
+                <p><a href="https://developer.venafi.com/tlsprotectcloud/docs/power-bi-reporting" target="_blank" rel="noopener noreferrer">Power BI Reporting Documentation</a></p>
+                <h3>Quick Overview of Steps</h3>
+                <ol>
+                    <li><b>Download the Power BI Template:</b> Use the link above to download the preconfigured template.</li>
+                    <li><b>Open the Template:</b> Open the downloaded template in your Power BI virtual lab server.</li>
+                    <li><b>Enter Your API Key:</b> Retrieve the API key from your virtual lab information and input it when prompted.</li>
+                    <li><b>View Reports:</b> Explore the automatically generated reports, which provide detailed insights into your TLS Protect Cloud data.</li>
+                </ol>
+                <h3>Benefits of Power BI Integration</h3>
+                <p>Integrating TLS Protect Cloud with Power BI allows you to:</p>
+                <ul>
+                    <li><b>Visualize Data:</b> Create interactive dashboards and visual representations of your machine identities and certificates.</li>
+                    <li><b>Analyze Trends:</b> Monitor certificate lifecycle metrics to identify patterns and potential risks.</li>
+                    <li><b>Streamline Reporting:</b> Automate the reporting process for enhanced operational efficiency.</li>
+                </ul>
+                <p>With these simple steps, you can quickly set up Power BI to unlock valuable insights and make data-driven decisions using TLS Protect Cloud.</p>
+                <button id="button-use-case-Reporting" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="Documentation" class="use-case">
+                <h2>Documentation</h2>
+                <p>The following test items focus on business and risk considerations rather than operational tasks. These discussions can take place at the beginning or end of the Proof of Value (POV) process.</p>
+                <h3>Comprehensive Online Documentation</h3>
+                <p>Venafi TLS Protect provides extensive online documentation to support users in understanding and utilizing the platform effectively. Access the documentation using the link provided under <b>Additional Information</b>.</p>
+                <h3>Key Sections of the Documentation</h3>
+                <ul>
+                    <li><b>Home:</b> Your starting point for all Venafi Control Plane resources.</li>
+                    <li><b>What's New:</b> Stay updated on the latest enhancements, updates, and capabilities.</li>
+                    <li><b>All Products:</b> Explore detailed information about Venafi's full product suite.</li>
+                    <li><b>Developers:</b> Access API resources and guides for integrating with Venafi solutions.</li>
+                    <li><b>Troubleshooting:</b> Find solutions to common issues and improve system performance.</li>
+                </ul>
+                <h3>Featured Content</h3>
+                <ul>
+                    <li><b>What's New:</b> Learn about the latest updates and new capabilities in the Venafi Control Plane.</li>
+                    <li><b>TLS Protect Cloud:</b> Eliminate TLS certificate-related outages with cutting-edge solutions.</li>
+                    <li><b>Firefly:</b> Issue trusted certificates quickly and efficiently at the speed of light.</li>
+                    <li><b>TLS Protect for Kubernetes:</b> Secure machine identity activity in Kubernetes clusters.</li>
+                </ul>
+                <h3>Getting Started</h3>
+                <p>New to Venafi Control Plane? The documentation includes resources to help you get started:</p>
+                <ul>
+                    <li><b>Getting Started with Control Plane:</b> Learn the fundamentals and start gaining control of your machine identities.</li>
+                    <li><b>What is the Control Plane for Machine Identities?</b> Understand its purpose and how it fits into your infrastructure.</li>
+                    <li><b>Dev Central:</b> Learn how to manage machine identities via API by visiting the developer-focused section.</li>
+                    <li><b>Looking for TLS Protect Datacenter Docs?</b> Access specific documentation for managing datacenter environments.</li>
+                </ul>
+                <p>The Venafi documentation is designed to address a wide range of use cases, from technical troubleshooting to strategic business needs, ensuring you have the knowledge required to succeed with TLS Protect Cloud.</p>
+                <button id="button-use-case-Documentation" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="API-reference-documentation" class="use-case">
+                <h2>API Reference Documentation</h2>
+                <p>Venafi TLS Protect Cloud provides a comprehensive API reference that enables programmatic access to its features and functionality. This document includes sample code in various programming languages to help developers integrate TLS Protect Cloud into their workflows effortlessly. For access, see the link provided under <b>Additional Information</b>.</p>
+                <h3>Overview of the TLS Protect Cloud REST API</h3>
+                <p>The TLS Protect Cloud REST API mirrors the functionality available via the Web User Interface (UI), allowing you to programmatically perform any task that can be executed through the UI. By leveraging the API, you can automate operations to achieve greater consistency and scalability across your organization.</p>
+                <h3>Key Features of the REST API</h3>
+                <p>The REST API follows best practices in API design to ensure reliability and ease of use:</p>
+                <ul>
+                    <li><b>JSON Format:</b> Encapsulates objects returned by the API for straightforward integration.</li>
+                    <li><b>Proper HTTP Verbs and Status Codes:</b> Ensures clarity and alignment with standard REST conventions.</li>
+                    <li><b>Comprehensive Error Messages:</b> Provides detailed responses to aid in diagnosing issues with failed requests.</li>
+                </ul>
+                <h3>Common Use Cases</h3>
+                <p>Organizations use the TLS Protect Cloud API for various tasks, including:</p>
+                <ul>
+                    <li><b>Auditing:</b> Retrieve data about your TLS Protect Cloud account to understand enforced certificate issuance policies.</li>
+                    <li><b>Certificate Requests:</b> Programmatically request certificates for use by applications, such as HTTPS-enabled web servers.</li>
+                    <li><b>Search:</b> Query the system to find certificates issued by your organization or discovered internally and externally by TLS Protect Cloud.</li>
+                    <li><b>Custom Reporting:</b> Extract data and summary information to create custom reports for tracking key and certificate management policy compliance.</li>
+                </ul>
+                <h3>Benefits of Using the API</h3>
+                <p>Integrating the TLS Protect Cloud REST API into your operations enables:</p>
+                <ul>
+                    <li><b>Automation:</b> Reduce manual tasks and increase efficiency by automating certificate-related processes.</li>
+                    <li><b>Consistency:</b> Ensure uniform application of policies and practices across your organization.</li>
+                    <li><b>Scalability:</b> Easily manage certificate operations as your organization grows.</li>
+                    <li><b>Customization:</b> Tailor workflows and reports to meet your specific needs.</li>
+                </ul>
+                <h3>Getting Started</h3>
+                <p>The API reference document provides all the necessary details to begin integrating TLS Protect Cloud with your systems. It includes endpoints, parameters, sample requests, and responses to help developers build robust and scalable solutions.</p>
+                <p>Start exploring the possibilities of automating and enhancing your certificate management workflows with the TLS Protect Cloud API today!</p>
+                <button id="button-use-case-API-reference-documentation" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="SaaS-Overall-System-Status" class="use-case">
+                <h2>SaaS Overall System Status</h2>
+                <p>Venafi TLS Protect Cloud is a true multi-tenant SaaS solution, designed to provide reliability, scalability, and transparency for its customers. To ensure confidence in the platform's performance, a dedicated status page is available to display the current and historical system status. You can access it at the following link: <a href="https://status.venafi.cloud/" target="_blank" rel="noopener noreferrer">https://status.venafi.cloud</a>.</p>
+                <h3>Why System Status Matters</h3>
+                <p>In a SaaS environment, visibility into the platform's health and uptime is not just a convenience—it's a necessity. Customers depend on TLS Protect Cloud for critical machine identity management tasks. Outages or performance issues could disrupt operations, compromise security, and lead to certificate-related outages.</p>
+                <h3>Key Benefits of the Status Page</h3>
+                <p>The status page provides several critical features to ensure transparency and trust:</p>
+                <ul>
+                    <li><b>Real-Time Updates:</b> Instantly access the current status of TLS Protect Cloud, including any active incidents or outages.</li>
+                    <li><b>Historical Data:</b> Review past incidents and resolutions to assess the platform's reliability over time.</li>
+                    <li><b>Proactive Communication:</b> Stay informed about scheduled maintenance or ongoing performance improvements.</li>
+                </ul>
+                <h3>Why This Is Essential for Customers</h3>
+                <p>For customers who rely on SaaS solutions for business-critical functions, a system status page is more than a nice-to-have—it's a must-have:</p>
+                <ul>
+                    <li><b>Trust and Transparency:</b> Customers want to know that their provider is forthright about any issues and is actively working to resolve them.</li>
+                    <li><b>Operational Confidence:</b> Knowing the system's current status allows customers to plan their operations effectively, minimizing disruptions.</li>
+                    <li><b>Accountability:</b> A visible record of uptime and incident management ensures the provider meets Service Level Agreements (SLAs).</li>
+                    <li><b>Competitive Edge:</b> SaaS providers who fail to offer this level of transparency risk losing customers to competitors who prioritize trust and communication.</li>
+                </ul>
+                <h3>Setting the Standard for SaaS Providers</h3>
+                <p>In today's competitive SaaS landscape, customers demand more from their providers. A robust status page demonstrates a commitment to accountability and operational excellence. Customers should expect nothing less from a platform that manages their most sensitive machine identities and certificates. Without such transparency, trust erodes, and organizations may question the provider's ability to deliver reliable service.</p>
+                <p>By offering a real-time and historical system status page, Venafi TLS Protect Cloud sets the standard for what customers should demand from a SaaS solution. This level of transparency is not just a feature—it's a necessity for earning and retaining customer trust.</p>
+                <button id="button-use-case-SaaS-Overall-System-Status" type="button">Complete This Use
+                    Case</button>
+            </div>
+
+            <div id="Technical-Support" class="use-case">
+                <h2>Technical Support</h2>
+                <p>Venafi Technical Support is available 24x7x365, providing global "follow the sun" coverage to ensure that no matter where you are, you have access to real-time assistance. With teams based in Salt Lake City, UT, and around the world, you will always talk to skilled engineers ready to resolve your issues promptly.</p>
+                <h3>Comprehensive and Accessible Support</h3>
+                <ul>
+                    <li><b>Multiple Contact Channels:</b> Support cases can be submitted online, via email, or through our global phone numbers for urgent issues.</li>
+                    <li><b>Seamless Engagement:</b> Whether you're a customer, partner, or part of the Venafi team, our support extends across onboarding, technical troubleshooting, and operational guidance.</li>
+                    <li><b>24/7 Monitoring:</b> Our support queue is monitored continuously, ensuring rapid response and resolution times.</li>
+                </ul>
+                <h3>Proactive Resolution and Escalation</h3>
+                <ul>
+                    <li><b>Swarming Strategy:</b> For complex issues, we escalate seamlessly, engaging cross-functional teams from Support, Engineering, QA, and Product Management to drive resolution.</li>
+                    <li><b>Collaboration with Third Parties:</b> If external vendors are involved, we collaborate directly to ensure swift and effective solutions.</li>
+                </ul>
+                <h3>Guaranteed Response Times</h3>
+                <p>We are committed to resolving issues efficiently, with guaranteed initial response times:</p>
+                <ul>
+                    <li><b>Severity 1 (Urgent):</b> Maximum of 2 hours</li>
+                    <li><b>Severity 2 (High):</b> Maximum of 4 hours</li>
+                    <li><b>Severity 3 (Normal):</b> Maximum of 8 hours</li>
+                    <li><b>Severity 4 (Low):</b> Next business day</li>
+                </ul>
+                <h3>Why It Matters</h3>
+                <p>Reliable, always-on support is essential for maintaining mission-critical systems. With Venafi, you gain peace of mind knowing that your issues will be addressed promptly and with the full backing of our global teams, ensuring your operations stay secure and uninterrupted.</p>
+                <button id="button-use-case-Technical-Support" type="button">Complete This Use
+                    Case</button>
+            </div>
+
+            <div id="Eco-System-Marketplace" class="use-case">
+                <h2>Ecosystem & Marketplace</h2>
+                <p>Venafi boasts the largest partner ecosystem in the machine identity management space, empowering customers with an unparalleled range of integrations and solutions. Our ecosystem enables partners to build seamless integrations with Venafi’s platform, ensuring that our customers can easily extend and customize their machine identity management capabilities.</p>
+                <h3>Venafi Marketplace</h3>
+                <p>The <a href="https://marketplace.venafi.com/xchange/620d2d6ed419fb06a5c5bd36" target="_blank" rel="noopener noreferrer">Venafi Marketplace</a> is a central hub where customers can explore and access a wide variety of integrations and solutions built by our partners. These integrations are designed to work effortlessly with Venafi’s platform and cover areas such as:</p>
+                <ul>
+                    <li><b>Certificate Authorities:</b> Simplify certificate issuance and management by integrating with leading CAs.</li>
+                    <li><b>DevOps Tools:</b> Automate workflows and enhance security for DevOps environments.</li>
+                    <li><b>Cloud Platforms:</b> Secure machine identities across major cloud providers like AWS, Azure, and Google Cloud.</li>
+                    <li><b>Security Solutions:</b> Enhance overall security posture with integrations into SIEMs, firewalls, and more.</li>
+                </ul>
+                <h3>Why This Matters</h3>
+                <p>By leveraging the Venafi ecosystem, customers can:</p>
+                <ul>
+                    <li><b>Seamlessly Extend Functionality:</b> Use prebuilt integrations to add capabilities without additional development effort.</li>
+                    <li><b>Achieve Scalability:</b> Manage machine identities across complex, hybrid environments with ease.</li>
+                    <li><b>Save Costs:</b> The vast majority of these integrations are free for Venafi customers, reducing operational overhead.</li>
+                    <li><b>Enhance Interoperability:</b> Ensure that all components of your tech stack work together seamlessly.</li>
+                </ul>
+                <h3>Integration Support</h3>
+                <p>Every integration available in the Venafi Marketplace is fully supported, ensuring reliability and peace of mind. Whether you're securing Kubernetes clusters, integrating with certificate authorities, or managing endpoints in hybrid environments, Venafi's ecosystem partners provide trusted solutions to meet your needs.</p>
+                <h3>Explore the Ecosystem</h3>
+                <p>Visit the <a href="https://marketplace.venafi.com/xchange/620d2d6ed419fb06a5c5bd36" target="_blank" rel="noopener noreferrer">Venafi Marketplace</a> to discover the wide range of integrations and solutions available. With Venafi’s extensive partner network and industry-leading support, you can confidently build a secure, scalable, and efficient machine identity management strategy.</p>
+                <button id="button-use-case-Eco-System-Marketplace" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="User-Group-Community-Training" class="use-case">
+                <h2>User Group / Community / Training</h2>
+                <p>The <b>Venafi Warrior Community</b> is your launchpad to learn, connect, and explore the wealth of resources available to you as a Venafi customer. It's a vibrant space where clients share knowledge, best practices, and tricks of the trade, while engaging with peers and Venafi experts to enhance their machine identity security capabilities.</p>
+                <h3>Join the Venafi Warrior Community</h3>
+                <p>Start your journey here: <a href="https://community.venafi.com/?_gl=1*u6agj4*_gcl_au*NTM0MzE2MDIuMTcyOTUwMTExNQ..*_ga*MTk4MTAxMTQyOC4xNzI5NTAxMTE1*_ga_TZC9DLSDTX*MTczNDc3NDk3My44LjEuMTczNDc3NTE5NS4wLjAuMA.." target="_blank" rel="noopener noreferrer">Venafi Warrior Community</a>.</p>
+                <h3>What You Can Do</h3>
+                <h4>Learn</h4>
+                <p>Expand your expertise in machine identity security with resources like:</p>
+                <ul>
+                    <li><b>Venafi Customer Support:</b> Access comprehensive support articles and step-by-step guidance.</li>
+                    <li><b>Documentation:</b> Explore Trust Protection Platform and Control Plane documentation.</li>
+                    <li><b>Venafi Academy:</b> Broaden your knowledge with training available exclusively to community members.</li>
+                </ul>
+                <h4>Connect</h4>
+                <p>Network with peers, engage in discussions, and grow your connections through:</p>
+                <ul>
+                    <li><b>Corporate Events:</b> Attend events hosted by Venafi to stay up-to-date.</li>
+                    <li><b>1:1 Industry Networking:</b> Build meaningful professional relationships.</li>
+                    <li><b>Product Discussions:</b> Join conversations about products and solutions.</li>
+                    <li><b>Community Introductions:</b> Meet and collaborate with fellow customers.</li>
+                </ul>
+                <h4>Explore</h4>
+                <p>Dive into developer resources, integration capabilities, and open-source projects, including:</p>
+                <ul>
+                    <li><b>Dev Central:</b> Explore APIs, SDKs, and developer tools.</li>
+                    <li><b>Marketplace:</b> Discover integrations to enhance your workflows.</li>
+                    <li><b>Cool Solutions:</b> Access innovative approaches to solving key challenges.</li>
+                    <li><b>Venafi GitHub:</b> Contribute to or leverage open-source projects.</li>
+                    <li><b>cert-manager:</b> Streamline Kubernetes machine identity management.</li>
+                </ul>
+                <h3>Other Ways to Engage</h3>
+                <p>The Warrior Community goes beyond product enhancement requests. Join forums, participate in contests, and gain insights from the Customer Success Corner. Whether you're submitting ideas, fixing bugs, or contributing to discussions, this is your hub for meaningful engagement.</p>
+                <p>Looking for real-time interaction? Join the Venafi Slack channel to connect directly with developers and other members of the community:</p>
+                <p><a href="https://join.slack.com/t/venafi-integrations/shared_invite/zt-i8fwc379-kDJlmzU8OiIQOJFSwiA~dg" target="_blank" rel="noopener noreferrer">Join Venafi Slack</a></p>
+                <h3>Why Join?</h3>
+                <p>As a Venafi Warrior, you become a leader, ideator, and discoverer in shaping the future of machine identity security. Be part of the conversation, contribute to innovation, and steer the direction of this dynamic field. If this resonates with you, join today and make your mark!</p>
+                <button id="button-use-case-User-Group-Community-Training" type="button">Complete This Use Case</button>
+            </div>
+
+            <div id="Appendix" class="use-case">
+                <h2>Appendix</h2>
+                <p><b>Certificate Chain Validation States</b></p>
+                <p>Following are the possible certificate chain validation states, their descriptions, and resolution actions.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Validation Status</th>
+                            <th>Description</th>
+                            <th>Risk Level</th>
+                            <th>Resolution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Chain expiring soon</td>
+                            <td>One or more of the CA certificates in the trust chain expires before the end-entity
+                                does or is expiring soon.</td>
+                            <td>High</td>
+                            <td>
+                                Identify the expiring or about-to-expire CA certificate from the end-entity
+                                certificate, download and install the current chain.<br>
+                                If the current chain is not available, renew the certificate, download, and install
+                                end-entity and chain certificates.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Chain building failed</td>
+                            <td>One or more intermediate or root CA certificates is missing, and a complete chain
+                                can't be constructed.<br>
+                                This means VC can build the chain for the certificate independent of the CA
+                                certificates returned by the server.</td>
+                            <td>Warning</td>
+                            <td>Install the missing intermediate CA certificate(s) on the TLS server target.</td>
+                        </tr>
+                        <tr>
+                            <td>Incomplete chain</td>
+                            <td>The chain returned by the endpoint did not include enough valid intermediate
+                                certificates to build a complete chain anchored by a root CA.<br>
+                                If you miss installing the intermediate certificate or upload the wrong one, then it
+                                cannot be chained back, and the browsers will not trust the certificate and may
+                                generate a broken chain or similar warnings.</td>
+                            <td>Warning</td>
+                            <td>
+                                Check if your intermediate certificate is invalid due to revocation or
+                                expiration.<br>
+                                Download and install your end-entity certificate along with proper intermediate
+                                certificate(s) that form its trust chain.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Chain not trusted</td>
+                            <td>The chain returned by the target cannot be used to form a Trusted chain.</td>
+                            <td>Warning</td>
+                            <td>Add the missing CA certificate to the Trusted CA Certificate inventory.</td>
+                        </tr>
+                        <tr>
+                            <td>Unknown error</td>
+                            <td>Venafi encountered an error but could not identify it.</td>
+                            <td>Warning</td>
+                            <td>
+                                When an unknown error occurs, Venafi automatically captures the details of the
+                                condition and submits it for future enhancement.<br>
+                                If you have additional questions, contact Support.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Pending</td>
+                            <td>The validation process has not yet occurred.</td>
+                            <td>Warning</td>
+                            <td>
+                                When this occurs, try running a manual validation (Validate Now) or waiting until
+                                the next automated validation occurs.<br>
+                                If you have additional questions, contact Support.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p><b>SSL/TLS Validation States</b></p>
+                <p>Following are the possible SSL/TLS validation states, their descriptions, and resolution actions.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Validation Status</th>
+                            <th>Description</th>
+                            <th>Risk Level</th>
+                            <th>Resolution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Hostname mismatch</td>
+                            <td>The TLS target presented a certificate, but the common name or SAN of your SSL/TLS
+                                certificate does not match the domain where the certificate is installed.</td>
+                            <td>High</td>
+                            <td>Install the correct version of the certificate associated with the domain, or reissue a
+                                certificate by verifying the CN and SAN.</td>
+                        </tr>
+                        <tr>
+                            <td>Old version of certificate found</td>
+                            <td>One of the certificate installations is using older versions of certificates that should
+                                be replaced with the newer versions.</td>
+                            <td>High</td>
+                            <td>Install the current version of the certificate on the target TLS server installation.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>No certificate present</td>
+                            <td>The TLS target specified in the Venafi platform didn't present a certificate on a
+                                specified port.</td>
+                            <td>Warning</td>
+                            <td>
+                                Verify the TLS server installation and port number and ensure if the target is valid. If
+                                the target is valid, investigate why the certificate is not present. If the target is no
+                                longer valid, remove the target from the discovery target list, or wait until the
+                                installation is aged out (current aged-out time is 30 days).
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Unexpected certificate found</td>
+                            <td>Certificate found on the TLS target contains a different fingerprint than the one that
+                                Venafi expected.</td>
+                            <td>Warning</td>
+                            <td>Install the correct certificate on the endpoint.</td>
+                        </tr>
+                        <tr>
+                            <td>Unknown error</td>
+                            <td>Venafi encountered an error but could not identify it.</td>
+                            <td>Warning</td>
+                            <td>
+                                When an unknown error occurs, Venafi automatically captures the details of the condition
+                                and submits it for future enhancement.<br>
+                                If you have additional questions, contact <a href="https://support.venafi.com/" target="_blank" rel="noopener noreferrer">Support</a>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Pending</td>
+                            <td>The validation process has not yet occurred.</td>
+                            <td>Warning</td>
+                            <td>
+                                When this occurs, try running a manual validation (Validate Now) or waiting until the
+                                next automated validation occurs.<br>
+                                If you have additional questions, contact <a href="https://support.venafi.com/" target="_blank" rel="noopener noreferrer">Support</a>.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p></p>
+                <p></p>
+                <p></p>
+                <button id="button-use-case-Appendix" type="button">Complete This Use
+                    Case</button>
+            </div>
+
+        </div>
+
+
+
+        <div id="info-panel">
+            <div id="info-panel-header">
+                <span>Details</span>
+                <span id="close-info-panel" onclick="closeInfoPanel()">×</span>
+            </div>
+            <div id="info-panel-content">
+                <!-- Dynamic content will be inserted here by JavaScript -->
+            </div>
+            <!-- Assistance/Feedback Section
+            <div id="assistance-section">
+                <button id="ask-assistance-button" class="clipboard-button"
+                    onclick="toggleAssistanceForm()">Assistance/Feedback</button>
+                <div id="assistance-form" style="display:none;">
+                    <p>Need help with a use case or have feedback, please let us know, we are keen to hear what you
+                        think.</p>
+                    <textarea id="assistance-message" placeholder="Enter your message here..." rows="5"
+                        style="width: 100%; margin-top: 10px;"></textarea>
+                    <button id="send-assistance" class="clipboard-button"
+                        onclick="sendAssistanceMessage()">Send</button>
+                </div>
+            </div> -->
+
+            <button id="menu-button" onclick="toggleInfoPanel()">Addtional Information</button>
+        </div>
+        <script src="scripts.js"></script>
+</body>
+
+</html>

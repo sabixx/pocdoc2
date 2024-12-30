@@ -1,0 +1,11 @@
+{
+    "hiddenUseCases": [
+        "welcome",
+        "use-case-12"
+    ],
+    "hiddenSections": [
+        "SSH",
+        "CodeSigning"
+        
+    ]
+}

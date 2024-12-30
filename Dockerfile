@@ -1,0 +1,48 @@
+# Use the official PHP-FPM image
+FROM php:8.3-fpm-alpine
+
+# Install required packages for Nginx and utilities
+RUN apk add --no-cache nginx bash curl \
+    && mkdir -p /run/nginx /var/www/html /etc/nginx/conf.d \
+    && chmod -R 777 /var/www/html \
+    && chown -R www-data:www-data /var/www/html
+
+# Copy application files to the container
+COPY ./pocdoc /var/www/html
+
+COPY ./test.php /var/www/html
+# Copy Nginx configuration files
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY default.conf /etc/nginx/conf.d/default.conf
+
+# Configure PHP-FPM error logging
+RUN echo "log_errors = On" >> /usr/local/etc/php/conf.d/php-custom.ini \
+    && echo "error_log = /var/log/php_errors.log" >> /usr/local/etc/php/conf.d/php-custom.ini
+
+# Ensure PHP-FPM runs as root
+#RUN sed -i 's/^user = www-data/user = root/' /usr/local/etc/php-fpm.d/www.conf \
+#    && sed -i 's/^group = www-data/group = root/' /usr/local/etc/php-fpm.d/www.conf
+
+# PHP Configuration: Enable error logging and display errors
+RUN echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php.ini \
+    && echo "log_errors = On" >> /usr/local/etc/php/conf.d/docker-php.ini \
+    && echo "error_log = /var/log/php_errors.log" >> /usr/local/etc/php/conf.d/docker-php.ini
+
+# Ensure PHP error log file exists and is writable
+RUN touch /var/log/php_errors.log \
+    && chown www-data:www-data /var/log/php_errors.log
+
+
+# Expose HTTP and HTTPS ports
+EXPOSE 80 443
+
+# Set environment variables
+ENV Prospect="EvalCompanyDemo"
+ENV USER="jens.sabitzer_default"
+
+
+# Start Nginx and PHP-FPM
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
+CMD ["/start.sh"]

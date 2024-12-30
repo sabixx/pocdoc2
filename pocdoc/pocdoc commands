@@ -1,0 +1,15 @@
+
+
+docker stop pcodoc_activeusecases && docker remove pcodoc_activeusecases
+
+docker build -t pcodoc_activeusecases .
+
+docker run -d --name pcodoc_activeusecases -e Prospect="EvalNew ActiveUseCases" -e USER="jens.sabitzer_default2" -p 8081:80 pcodoc_activeusecases:latest 
+
+
+
+
+
+docker exec -it pcodoc_activeusecases /bin/sh
+
+

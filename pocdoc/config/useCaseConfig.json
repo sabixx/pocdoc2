@@ -1,0 +1,12 @@
+{
+    "noFeedbackUseCases": [
+        "use-case-9"
+    ],
+    "feedbackLabels": {
+        "very-disappointed": "Very Disappointed",
+        "disappointed": "Disappointed",
+        "neutral": "not bad/not great",
+        "pleased": "Pleased",
+        "very-pleased": "Very Pleased"
+    }
+}
