@@ -12,4 +12,7 @@ docker run -d --name pcodoc_activeusecases -e Prospect="EvalNew ActiveUseCases" 
 
 docker exec -it pcodoc_activeusecases /bin/sh
 
+docker tag pcodoc_activeusecases:latest sabix/pcodoc:latest
+docker push sabix/pcodoc:latest
+
 
