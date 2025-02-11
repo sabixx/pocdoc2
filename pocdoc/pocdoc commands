@@ -2,9 +2,16 @@
 
 docker stop pcodoc_activeusecases && docker remove pcodoc_activeusecases
 
+docker stop pcodoc_activeusecases_withstandrdpassword && docker remove pcodoc_activeusecases_withstandrdpassword 
+
+
 docker build -t pcodoc_activeusecases .
 
-docker run -d --name pcodoc_activeusecases -e Prospect="EvalNew ActiveUseCases" -e USER="jens.sabitzer_default2" -p 8081:80 pcodoc_activeusecases:latest 
+docker run -d --name pcodoc_activeusecases_withstandrdpassword -e PROSPECT="EvalNew ActiveUseCases" -e ACTIVEUSECASES="welcome,Setup-and-Overview,prepare-about-vsat,prepare-vsat-firewall,prepare-vsat-system" -e USER="jens.sabitzer_default2" -p 8083:80 pcodoc_activeusecases:latest 
+
+# with a different htaccess password
+docker run -d --name pcodoc_activeusecases_withstandrdpassword -e PROSPECT="EvalNew ActiveUseCases" -e ACTIVEUSECASES="welcome,Setup-and-Overview,prepare-about-vsat,prepare-vsat-firewall,prepare-vsat-system" -e HTACCESS='venafilab:$apr1$uj332HzM$rTn6EmoRtF0UJAkhL77xV0' -e USER="jens.sabitzer_default2" -p 8083:80 pcodoc_activeusecases:latest 
+
 
 
 
@@ -12,6 +19,8 @@ docker run -d --name pcodoc_activeusecases -e Prospect="EvalNew ActiveUseCases" 
 
 docker exec -it pcodoc_activeusecases /bin/sh
 
+
+docker build -t pcodoc_activeusecases .
 docker tag pcodoc_activeusecases:latest sabix/pcodoc:latest
 docker push sabix/pcodoc:latest
 

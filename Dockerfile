@@ -1,6 +1,11 @@
 # Use the official PHP-FPM image
 FROM php:8.3-fpm-alpine
 
+# Set environment variables
+ENV Prospect="EvalCompanyDemo"
+ENV USER="jens.sabitzer_default"
+ENV DEFAULT_HTACCESS='venafilab:$apr1$uj332HzM$rTn6EmoRtF0UJAkhL77xV0'
+
 # Install required packages for Nginx and utilities
 RUN apk add --no-cache nginx bash curl \
     && mkdir -p /run/nginx /var/www/html /etc/nginx/conf.d \
@@ -35,11 +40,6 @@ RUN touch /var/log/php_errors.log \
 
 # Expose HTTP and HTTPS ports
 EXPOSE 80 443
-
-# Set environment variables
-ENV Prospect="EvalCompanyDemo"
-ENV USER="jens.sabitzer_default"
-
 
 # Start Nginx and PHP-FPM
 COPY start.sh /start.sh
