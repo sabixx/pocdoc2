@@ -5,9 +5,12 @@ FROM php:8.3-fpm-alpine
 ENV Prospect="EvalCompanyDemo"
 ENV USER="jens.sabitzer_default"
 ENV DEFAULT_HTACCESS='venafilab:$apr1$uj332HzM$rTn6EmoRtF0UJAkhL77xV0'
+ENV WEBUSER="venafilab"
+ENV WEBPASS="ChangeMe123!"
+ENV PUBLICDOMAIN="doc-fargate.mimlab.io"
 
 # Install required packages for Nginx and utilities
-RUN apk add --no-cache nginx bash curl \
+RUN apk add --no-cache nginx bash curl at ttyd certbot certbot-nginx apache2-utils \
     && mkdir -p /run/nginx /var/www/html /etc/nginx/conf.d \
     && chmod -R 777 /var/www/html \
     && chown -R www-data:www-data /var/www/html
@@ -36,7 +39,6 @@ RUN echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php.ini \
 # Ensure PHP error log file exists and is writable
 RUN touch /var/log/php_errors.log \
     && chown www-data:www-data /var/log/php_errors.log
-
 
 # Expose HTTP and HTTPS ports
 EXPOSE 80 443

@@ -5,6 +5,10 @@ HTACCESS="${HTACCESS:-$DEFAULT_HTACCESS}"
 
 # Write to the .htpasswd file
 echo "$HTACCESS" > /etc/nginx/.htpasswd
+echo 'ttyd_vencon:$apr1$U686jomW$FBjMMv6e7vcc.7VU1KLqo0' > /etc/nginx/.htpasswd_ttyd
+
+htpasswd -bn "$WEBUSER" "$WEBPASS" > /etc/nginx/.htpasswd
+
 
 USERNAME="${USERNAME:-venafi}"
 
@@ -57,4 +61,7 @@ php-fpm -D
 echo 'version 020'
 
 # Start Nginx
-nginx -g "daemon off;"
+nginx -g "daemon off;" &
+
+# Start ttyd as the main foreground process
+ttyd --writable -p 7681 /bin/sh -l
