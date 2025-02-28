@@ -7,4 +7,6 @@ Environment Variabled to be set
 PROSPECT="EvalNew ActiveUseCases" - to be send with teams webhook
 USER="jens.sabitzer_default2"  - SA to be send with the teams webhook
 ACTIVEUSECASES="welcome,Setup-and-Overview,prepare-about-vsat,prepare-vsat-firewall,prepare-vsat-system"  - defined use cases to be shown to the prospect
-DEFAULT_HTACCESS='venafilab:$apr1$uj332HzM$rTn6EmoRtF0UJAkhL77xV0' - access to the page
+WEBUSER="jens" username for basic auth
+WEBPASS="1234" password for webauth
+TLSPCURL= evaluationtenant

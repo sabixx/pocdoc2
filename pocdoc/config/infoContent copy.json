@@ -452,7 +452,7 @@
                 "url": "https://bastion-@@PROSPECT@@.mimlab.io",
                 "username": "venafilab",
                 "password": "@@PASSWORD@@",
-                "text": "Bastion Host Access"
+                "text": "BastionHostAccess"
             }
         ]
     },
@@ -474,13 +474,14 @@
     },
     "lab5-financial-cert-expired": {
         "temas_description": "Workshop Housekeeping Information",
-        "text": "Remember internal systems accessible via the bastion host only",
+        "text": "Remember: internal systems accessible via bastion host only",
         "credentials": [
             {
                 "url": "https://bastion-@@PROSPECT@@.mimlab.io",
                 "username": "venafilab",
                 "password": "@@PASSWORD@@",
-                "text": "Bastion Host Access"
+                "text": ["Bastion Host Access"]
+
             },
             {
                 "text": "Finance System",

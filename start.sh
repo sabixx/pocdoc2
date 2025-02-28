@@ -1,5 +1,46 @@
 #!/bin/bash
 
+set -x
+
+################## Public Cert ##################
+
+echo "PLAYBOOK_URL=$PLAYBOOK_URL"
+#echo "TLSPC_APIKEY=$TLSPC_APIKEY"
+echo "PUBLICDOMAIN=$PUBLICDOMAIN"
+
+if [ -n "$PLAYBOOK_URL" ] && [ -n "$TLSPC_APIKEY" ] && [ -n "$PUBLICDOMAIN" ]; then
+    echo "All required environment variables (PLAYBOOK_URL, TLSPC_APIKEY, PUBLICDOMAIN) are set. Will get a public certifiate"
+
+    VCERT_URL="https://github.com/Venafi/vcert/releases/download/v5.7.1/vcert_v5.7.1_linux.zip"
+    export PLAYBOOK_URL="$PLAYBOOK_URL"
+    DOWNLOAD_DIR="$HOME"
+    TARGET_DIR="/usr/local/bin"
+
+    curl -L -o "$DOWNLOAD_DIR/vcert.zip" "$VCERT_URL"
+    echo "Unzipping vcert to $DOWNLOAD_DIR..."
+    unzip -o "$DOWNLOAD_DIR/vcert.zip" -d "$DOWNLOAD_DIR"
+    chmod +x "$DOWNLOAD_DIR/vcert"
+    echo "Moving vcert to $TARGET_DIR..."
+    mv "$DOWNLOAD_DIR/vcert" "$TARGET_DIR/"
+    echo "Cleaning up..."
+    rm "$DOWNLOAD_DIR/vcert.zip"
+
+    echo "Downloading Playbook..."
+    curl -L -o "$DOWNLOAD_DIR/playbook.yaml" "$PLAYBOOK_URL"
+
+    vcert run -f /root/playbook.yaml
+
+    #set the config to use SSL
+    mv /etc/nginx/conf.d/default_ssl.conf /etc/nginx/conf.d/default.conf
+
+
+else
+    echo "Error: One or more environment variables (PLAYBOOK_URL, TLSPC_APIKEY, PUBLICDOMAIN) are not set."
+fi
+
+
+################## Set Access creds to the console page ##################
+
 # Set a default value if HTACCESS is not set
 HTACCESS="${HTACCESS:-$DEFAULT_HTACCESS}"
 
@@ -8,6 +49,9 @@ echo "$HTACCESS" > /etc/nginx/.htpasswd
 echo 'ttyd_vencon:$apr1$U686jomW$FBjMMv6e7vcc.7VU1KLqo0' > /etc/nginx/.htpasswd_ttyd
 
 htpasswd -bn "$WEBUSER" "$WEBPASS" > /etc/nginx/.htpasswd
+
+
+################## Customer Sepcific settings ##################
 
 
 USERNAME="${USERNAME:-venafi}"
@@ -35,18 +79,18 @@ export JSON_ARRAY
 echo "activated use cases:"
 echo "$JSON_ARRAY"
 
+
 # Write the JSON content to the file
 echo "{ \"visibleUseCases\": [ $JSON_ARRAY ] }" > "$ACTIVE_USE_CASES_CONFIG_FILE"
 
 # Confirm the file was created
 echo "activeUsecases.json file created at $ACTIVE_USE_CASES_CONFIG_FILE"
 
-# insert to download the files from a repo..
-#  infoContent.json
-#  hiddenUseCases.json
-#
-#
-#
+sed -i 's|@@PASSWORD@@|'"$WEBPASS"'|g; s|@@PROSPECT@@|'"$PROSPECT"'|g'  /var/www/html/config/infoContent.json /var/www/html/index.html
+sed -i "s|@@TLSPCURL@@|${TLSPCURL}|g; s|@@PASSWORD@@|${WEBPASS}|g; s|@@PROSPECT@@|${PROSPECT}|g" /var/www/html/config/infoContent.json /var/www/html/index.html
+
+
+################## Webpage config and nginx startup ##################
 
 # Set correct permissions
 chown -R www-data:www-data /var/www/html
@@ -58,10 +102,17 @@ chown www-data:www-data /var/log/php_errors.log
 # Start PHP-FPM
 php-fpm -D
 
-echo 'version 020'
+echo 'version 031'
 
 # Start Nginx
 nginx -g "daemon off;" &
+#nginx 2>&1 &
+
+
+################## run ttyd ##################
+
 
 # Start ttyd as the main foreground process
-ttyd --writable -p 7681 /bin/sh -l
+# ttyd --writable -p 7681 /bin/sh -l 
+
+ttyd -p 7681 --writable -c "$WEBUSER:$WEBPASS" sh -l

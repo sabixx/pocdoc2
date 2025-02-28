@@ -357,19 +357,21 @@ function updatePanelContent(section) {
                 if (Array.isArray(credential.text)) {
                     credential.text.forEach((text) => {
                         const textElement = document.createElement('p');
-                        textElement.innerHTML = `${text}&#128203;</span>`;
+                        textElement.innerHTML = `${text}&#128203;`;
                         credentialDiv.appendChild(textElement);
                     });
                 } else if (credential.text) {
                     const textElement = document.createElement('p');
-                    textElement.innerHTML = `${credential.text}"&#128203;</span>`;
+                    textElement.innerHTML = `${credential.text}&#128203;`;
                     credentialDiv.appendChild(textElement);
                 }
 
                 // Add URL
                 if (credential.url) {
                     const urlElement = document.createElement('p');
-                    urlElement.innerHTML = `URL: <a href="${credential.url}" target="_blank">${credential.url}</a> <span class="copy-icon" onclick="copyToClipboard('url', '${section}', ${index})"&#128203;</span>`;
+            //      urlElement.innerHTML = `URL: <a href="${credential.url}" target="_blank">${credential.url}</a> <span class="copy-icon" onclick="copyToClipboard('url', '${section}', ${index})"&#128203;</span>`;
+                    urlElement.innerHTML = `URL: <a href="${credential.url}" target="_blank">${credential.url}</a> <span class="copy-icon" onclick="copyToClipboard('url', '${section}', ${index})">&#128203;</span>`;
+
                     credentialDiv.appendChild(urlElement);
                 }
 

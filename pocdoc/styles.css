@@ -344,9 +344,13 @@ body {
     content: "\1F601"; /* 😁 Grinning face with smiling eyes */
 }
 
-.copy-icon {
-    cursor: pointer; /* Change cursor to pointer on hover */
-}
+.material-icons.copy-icon {
+    cursor: pointer; 
+    font-size: 18px;        /* Adjust icon size */
+    vertical-align: middle; /* Align icon with text */
+    margin-left: 6px;       /* Spacing from preceding text */
+  }
+
 
 /* General table styling */
 table {

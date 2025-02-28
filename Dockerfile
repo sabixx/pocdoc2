@@ -8,9 +8,10 @@ ENV DEFAULT_HTACCESS='venafilab:$apr1$uj332HzM$rTn6EmoRtF0UJAkhL77xV0'
 ENV WEBUSER="venafilab"
 ENV WEBPASS="ChangeMe123!"
 ENV PUBLICDOMAIN="doc-fargate.mimlab.io"
+ENV TLSPCURL="https://ui.venafi.cloud"
 
 # Install required packages for Nginx and utilities
-RUN apk add --no-cache nginx bash curl at ttyd certbot certbot-nginx apache2-utils \
+RUN apk add --no-cache nginx bash curl at ttyd certbot certbot-nginx apache2-utils libc6-compat \
     && mkdir -p /run/nginx /var/www/html /etc/nginx/conf.d \
     && chmod -R 777 /var/www/html \
     && chown -R www-data:www-data /var/www/html
@@ -22,6 +23,7 @@ COPY ./test.php /var/www/html
 # Copy Nginx configuration files
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf /etc/nginx/conf.d/default.conf
+COPY default_ssl.conf /etc/nginx/conf.d/default_ssl.conf
 
 # Configure PHP-FPM error logging
 RUN echo "log_errors = On" >> /usr/local/etc/php/conf.d/php-custom.ini \

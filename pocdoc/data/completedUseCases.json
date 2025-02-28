@@ -30,5 +30,10 @@
     "Technical-Support": false,
     "Eco-System-Marketplace": false,
     "User-Group-Community-Training": false,
+    "Workshop-welcome": false,
+    "Workshop-housekeeping": false,
+    "lab1-a-cisos-request": false,
+    "lab2-the-hidden-risks": false,
+    "lab3-MarketingMeltdown": false,
     "Appendix": false
 }

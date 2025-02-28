@@ -9,6 +9,7 @@
     <link rel="icon" type="image/x-icon" href="icons/v.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 
@@ -32,7 +33,7 @@
                 <a href="#Dashboard" onclick="showContent('Dashboard')" id="link-Dashboard">Dashboard</a>
                 <a href="#Internet-Discovery" onclick="showContent('Internet-Discovery')" id="link-Internet-Discovery">Internet Discovery</a>
                 <a href="#Internal-Discovery" onclick="showContent('Internal-Discovery')" id="link-Internal-Discovery">Internal Discovery</a>
-                <a href="#Dashboard2" onclick="showContent('Dashboard2')" id="link-Dashboard2"">Dashboard</a>
+                <a href="#Dashboard2" onclick="showContent('Dashboard2')" id="link-Dashboard2">Dashboard</a>
                 <a href="#Certificate-Location" onclick="showContent('Certificate-Location')" id="link-Certificate-Location">Certificate Location</a>
                 <a href="#Expiration-Notification" onclick="showContent('Expiration-Notification')" id="link-Expiration-Notification">Expiration Notification and Reporting (Self-Service)</a>
                 <a href="#Reporting-and-Notification-Policies" onclick="showContent('Reporting-and-Notification-Policies')" id="link-Reporting-and-Notification-Policies">Reporting and Notification Policies</a>
@@ -58,10 +59,21 @@
                 <a href="#Technical-Support" onclick="showContent('Technical-Support')" id="link-Technical-Support">Technical Support</a>
                 <a href="#Eco-System-Marketplace" onclick="showContent('Eco-System-Marketplace')" id="link-Eco-System-Marketplace">Eco System / Marketplace</a>
                 <a href="#User-Group-Community-Training" onclick="showContent('User-Group-Community-Training')" id="link-User-Group-Community-Training">User Group / Community / Training</a>
+                <h3>Workshop</h3>
+                <a href="#Workshop-welcome" onclick="showContent('Workshop-welcome')" id="link-Workshop-welcome">Welcome to the Lab</a>
+                <a href="#Workshop-housekeeping" onclick="showContent('Workshop-housekeeping')" id="link-Workshop-housekeeping">Housekeeping</a>
+                <h3>LABs</h3>
+                <a href="#lab1-a-cisos-request" onclick="showContent('lab1-a-cisos-request')" id="link-lab1-a-cisos-request">A CISO's Request</a>
+                <a href="#lab2-the-hidden-risks" onclick="showContent('lab2-the-hidden-risks')" id="link-lab2-the-hidden-risks">The Hidden Risks</a>
+                <a href="#lab3-MainfraimMeltdown" onclick="showContent('lab3-MainfraimMeltdown')" id="link-lab3-MainfraimMeltdown">Mainfraim Meltdown</a>
+                <a href="#lab4-MagicOfAutomation" onclick="showContent('lab4-MagicOfAutomation')" id="link-lab4-MagicOfAutomation">Magic of Automation</a>   
+                <a href="#lab5-financial-cert-expired" onclick="showContent('lab5-financial-cert-expired')" id="link-lab5-financial-cert-expired">Missing Paychecks</a>
+
                 <h3>Appendix</h3>
                 <a href="#Appendix" onclick="showContent('Appendix')" id="link-Appendix">Appendix</a>
 
 
+            <!-- control section disabled until needed
                 <div class="separator"></div>
 
                 <div id="control-section">
@@ -70,6 +82,8 @@
                     <button onclick="setupSSO()">Setup SSO</button>
                     <button onclick="deployDemoSystems()">Deploy Demo Systems</button>
                 </div>
+            -->
+
             </div>
         </div>
 
@@ -830,9 +844,9 @@
 
             <div id="Eco-System-Marketplace" class="use-case">
                 <h2>Ecosystem & Marketplace</h2>
-                <p>Venafi boasts the largest partner ecosystem in the machine identity management space, empowering customers with an unparalleled range of integrations and solutions. Our ecosystem enables partners to build seamless integrations with Venafi’s platform, ensuring that our customers can easily extend and customize their machine identity management capabilities.</p>
+                <p>Venafi boasts the largest partner ecosystem in the machine identity management space, empowering customers with an unparalleled range of integrations and solutions. Our ecosystem enables partners to build seamless integrations with Venafi's platform, ensuring that our customers can easily extend and customize their machine identity management capabilities.</p>
                 <h3>Venafi Marketplace</h3>
-                <p>The <a href="https://marketplace.venafi.com/xchange/620d2d6ed419fb06a5c5bd36" target="_blank" rel="noopener noreferrer">Venafi Marketplace</a> is a central hub where customers can explore and access a wide variety of integrations and solutions built by our partners. These integrations are designed to work effortlessly with Venafi’s platform and cover areas such as:</p>
+                <p>The <a href="https://marketplace.venafi.com/xchange/620d2d6ed419fb06a5c5bd36" target="_blank" rel="noopener noreferrer">Venafi Marketplace</a> is a central hub where customers can explore and access a wide variety of integrations and solutions built by our partners. These integrations are designed to work effortlessly with Venafi's platform and cover areas such as:</p>
                 <ul>
                     <li><b>Certificate Authorities:</b> Simplify certificate issuance and management by integrating with leading CAs.</li>
                     <li><b>DevOps Tools:</b> Automate workflows and enhance security for DevOps environments.</li>
@@ -850,7 +864,7 @@
                 <h3>Integration Support</h3>
                 <p>Every integration available in the Venafi Marketplace is fully supported, ensuring reliability and peace of mind. Whether you're securing Kubernetes clusters, integrating with certificate authorities, or managing endpoints in hybrid environments, Venafi's ecosystem partners provide trusted solutions to meet your needs.</p>
                 <h3>Explore the Ecosystem</h3>
-                <p>Visit the <a href="https://marketplace.venafi.com/xchange/620d2d6ed419fb06a5c5bd36" target="_blank" rel="noopener noreferrer">Venafi Marketplace</a> to discover the wide range of integrations and solutions available. With Venafi’s extensive partner network and industry-leading support, you can confidently build a secure, scalable, and efficient machine identity management strategy.</p>
+                <p>Visit the <a href="https://marketplace.venafi.com/xchange/620d2d6ed419fb06a5c5bd36" target="_blank" rel="noopener noreferrer">Venafi Marketplace</a> to discover the wide range of integrations and solutions available. With Venafi's extensive partner network and industry-leading support, you can confidently build a secure, scalable, and efficient machine identity management strategy.</p>
                 <button id="button-use-case-Eco-System-Marketplace" type="button">Complete This Use Case</button>
             </div>
 
@@ -892,6 +906,152 @@
                 <p>As a Venafi Warrior, you become a leader, ideator, and discoverer in shaping the future of machine identity security. Be part of the conversation, contribute to innovation, and steer the direction of this dynamic field. If this resonates with you, join today and make your mark!</p>
                 <button id="button-use-case-User-Group-Community-Training" type="button">Complete This Use Case</button>
             </div>
+
+            <div id="Workshop-welcome" class="use-case">
+                <div class="text-left">
+                    <img class="medium" src="./images/Venafi_CYBR_R_logo_1200x377.png">
+                </div>
+                <h2>Welcome to the CyberArk Machine Identity Labs!</h2>
+                <p></p>
+                <p>We're excited to have you here for this hands-on workshop, where you'll tackle <strong>real-world challenges</strong> using <strong>CyberArk Machine Identity solutions</strong>. These labs are inspired by <strong>actual incidents</strong>—with real consequences.</p>
+                <p><em>"The scenarios you'll face have happened before. Out of respect for the companies involved, names and details have been changed… but the risks remain very real."</em></p>
+                <p>Each participant has a dedicated environment to explore, experiment, and complete the labs. This is your chance to see firsthand how CyberArk's solutions help organizations navigate real security threats.</p>
+                <h3>Before we get started:</h3>
+                <p><strong>✅ Housekeeping & Access:</strong> Before getting started, review the <strong>housekeeping section</strong> to understand how to access your environment and the systems available.</p>
+                <p><strong>✅ These labs are for you!</strong> Your feedback is invaluable in making them even better. I personally review every single comment and use your insights to refine and improve the labs for future participants. Don’t hesitate to share your thoughts!</p>
+                <p>Let's dive in, learn, and have fun—while tackling security challenges that truly matter. 🚀</p>    
+                <button id="button-use-case-Workshop-welcome" type="button">Complete</button>
+            </div>
+
+            <div id="Workshop-housekeeping" class="use-case">
+                <h1>Housekeeping & System Access</h1>
+                <h2>Preconfigured Environment</h2>
+                <p>You have been assigned a <strong>Venafi Tenant</strong>, which is already configured. During the lab, you’ll work on identifying and fixing issues within this environment.</p>
+                <p><strong>Important:</strong> Some labs require changes to be made on the <strong>Venafi Tenant</strong>, while others require modifications on the <strong>endpoints</strong>. Think carefully before making changes to ensure you're adjusting the correct component.</p>
+                <h2>Network Scope</h2>
+                <p>The lab environment consists of both <strong>publicly accessible</strong> and <strong>internal systems</strong>.</p>
+                <h2>Internal System Access</h2>
+                <p>Internal systems are accessible via a <a href="https://bastion-@@PROSPECT@@.mimlab.io/" target="_blank" rel="noopener noreferrer">bastion host</a>. You can find the all URLs and access details in the <strong>canvas</strong> (Additional Information) of the actual lab section. <strong>When a system ends at .internal it is soley accessible via the Bastio Host</strong></p>            
+                <h2>Remote Terminal Access Simulation</h2>
+                <p>To simulate remote access, some systems provide <strong>console access via a reverse proxy</strong>. This is accessible via the https://system.dns/console path of the corresponding webpage.</p>
+                <p><strong>Authentication is required</strong>—you will need to enter a <strong>username and password</strong>.</p>
+                <h2>Lab Progression & Expectations</h2>
+                <p>Early labs will <strong>explicitly guide you</strong> through the required steps.</p>
+                <p>More advanced labs <strong>assume prior experience</strong> and may not provide step-by-step instructions for accessing the console.</p>
+                <p>In some cases, accessing the console is <strong>necessary</strong> to diagnose issues, apply fixes, or find configuration options.</p>            
+                <h2>Reference Materials</h2>
+                <ul>
+                    <li><strong>Access Credentials:</strong> Available under the <strong>"Additional Information"</strong> button in the top-right corner.</li>
+                    <li><strong>High Level Network Diagram:</strong></li>
+                </ul>
+                <div class="image-wrapper medium">
+                    <img src="./images/workshopDiagram.png" alt="Network Diagram">
+                </div>
+                <button id="button-use-case-Workshop-housekeeping" type="button">Complete This Lab</button>
+            </div> 
+
+            <div id="lab1-a-cisos-request" class="use-case">
+                <h1>Lab 1: A CISO's Urgent Request</h1>
+                <div class="image-wrapper small"> <img src="./images/lab1-a-cisos-request.webp"></div>
+                <p>It’s just another day at the office—until the <strong>CISO walks in</strong>. His tone is serious.</p>
+                <p><em>"I have a board meeting this afternoon. I need to address the latest outage that affected several of our internal systems."</em></p>
+                <p>He takes a deep breath before continuing.</p>
+                <p><em>"Could you get me a list of all the <strong>internal</strong> certificates our web servers use? I just need a list for now; we’ll worry about fixing any issues later. But I need to make sure this doesn’t happen again."</em></p>
+                <p>No pressure, right? Just a simple request—except, you’re not entirely sure <strong>where all the certificates are</strong> or <strong>how many are actually in use</strong>.</p>
+                <p><strong>Time to get to work.</strong></p>
+                <button id="button-use-case-lab1-a-cisos-request" type="button">Complete This Lab</button>
+                <p><i>This Lab is completed when you have internal certificates showing up in your inventory.</i></p>
+            </div>
+
+            <div id="lab2-the-hidden-risks" class="use-case">
+                <h1>Lab 2: The Hidden Risks of Certificates</h1>
+                <div class="image-wrapper small"> <img src="./images/lab2.hidden-risks.webp"></div>
+                <p>You’re in a meeting following the board presentation. The CISO looks at you and nods.</p>      
+                <p><em>"Thank you very much for the report you sent. I really appreciated it."</em></p>
+                <p>Then his expression shifts slightly. <em>"However, this report has revealed several security incidents in our network—self-signed certificates, weak key lengths, unauthorized root certificates... We need to fix these issues."</em></p>
+                <p>Someone leans back in their chair and shrugs. <strong>"Who cares?"</strong> they say dismissively. <em>"It’s internal only. Why does this matter?"</em></p>
+                <p>The CISO responds, his voice calm but firm.</p>
+                <p><em>"It is internal, but as a global company, we have several regulations, legislations, and compliance requirements—HIPAA, DORA, GDPR, NIS2. I can go on… the list is endless."</em></p>
+                <p><em>"Furthermore, security is about <strong>Confidentiality, Integrity, and Availability (CIA)</strong>. Expiring certificates impact availability—therefore, we cannot consider them secure."</em></p>
+                <p><em>"And if users get used to ignoring certificate warnings, they won’t recognize a real attack when it happens. If we take this lightly, we are effectively <strong>teaching people how to get phished</strong>."</em></p>
+                <p>He pauses before adding, <em>"And I don’t even want to think about the fines we could face."</em></p>                
+                <p>The room is quiet as the CISO leans forward.</p>
+                <p><em>"Now, I want you to really think about the impact of a <strong>malicious root certificate</strong> being distributed across our systems."</em></p>
+                <p>He pauses for a moment before continuing.</p>
+                <p><em>"Imagine a scenario where a large number of systems unknowingly trust this certificate. Over time, these certificates and even the Root could expire without anyone noticing, leading to <strong>widespread and unpredictable failures</strong>. But that’s not even the worst-case scenario."</em></p>
+                <p>He looks around the table.</p>
+                <p><em>"What if <strong>anyone</strong>—even an attacker, a rogue insider—could obtain a certificate that is <strong>trusted across significant parts of our infrastructure</strong>? The damage would be enormous. We could face <strong>disruptions, compromises, and even catastrophic breaches</strong>."</em></p>
+                <p>He straightens up.</p>
+                <h2>"Now, Here’s What We’re Going to Do:"</h2>
+                <ol>
+                    <li><strong>Assigning Certificates:</strong> We will assign all certificates to their <strong>Applications</strong>. Each Application is associated to one or multiple teams.</li>
+                    <li><strong>Automated Assignment:</strong> We’ll use ports and IP ranges to automatically assing certificates to the Applications.</li>
+                    <li><strong>Team Responsibility:</strong> The assigned application teams will be notified of all the issues, and it will be their job to fix them.</li>
+                    <li><strong>Inventory Cleanup:</strong> Feel free to delete everything from our current inventory. We just started, don't worry about deleting stuff.</li>
+                    <li><strong>Minimizing Manual Work:</strong> Let’s automate the assignment of as many certificates as much as possible. If a few certificates remain unassigned, don’t worry- if we can automate 80%, we have a fraction of the work we'd have had.</li>
+                </ol>
+                <p>Time to take action.</p>
+                <p><i>You're done you successfully assciated certificates to applications, you don't need to do all, it's more important to understand the concept for this Lab.</i></p>
+
+                <button id="button-use-case-lab2-the-hidden-risks" type="button">Complete This Lab</button>
+            </div>   
+            
+            <div id="lab3-MainfraimMeltdown" class="use-case">        
+                <h1>Lab 3: The Mainfraim Meltdown</h1>
+                <div class="image-wrapper small"> <img src="./images/lab3MainfraimMeltdown.webp"></div>
+                <p>On your way to grab another coffee, you walk past <strong>Iain’s office</strong>. You hear a strange sound—sniffles? You pause for a moment and peek inside.</p>
+                <p><strong>Iain from Mainfraim is sitting at his desk, head in his hands.</strong> He’s clearly having a rough time.</p>
+                <p>Noticing you, he quickly wipes his face and sighs in frustration.</p>
+                <p><em>"I need to replace all the certificates on my systems? For what reason?"</em> he blurts out. <em>"Who cares if they are self-signed?"</em></p>
+                <p>Before you can respond, he throws his hands up in exasperation.</p>
+                <p><em>"Do you have any idea how long it takes to create this ‘CRS thing’?"</em> he continues. <em>"I’ve had to redo it so many times! Then I have to email it, wait 3-5 business days, and hope it gets issued correctly. I have better things to do!"</em></p>
+                <p>He leans back in his chair, shaking his head.</p>
+                <p>Clearly, he’s not in the mood for a long-winded security lecture. But maybe, just maybe, you can <strong>show</strong> him a better way.</p>        
+                <h2>Your Task</h2>
+                <ul>
+                    <li>Help Iain replace his <strong>NGINX certificate</strong>.</li>
+                    <li>Show him <strong>how easy it is</strong> to request a new certificate with <strong>automated, pre-generated requests</strong>.</li>
+                    <li>Prove to him that certificate management <strong>doesn’t have to be a headache anymore</strong>.</li>
+                </ul>
+                <p><strong>Just issue the certificate for now.</strong> We’ll help Iain with the <strong>automated provisioning</strong> in the next lab.</p>
+                <p>It’s time to turn his frustration into <strong>relief</strong>. Let’s get started.</p>
+                <p><i>You're done when you successfuly issued the certificate thru the UI.</i></p>
+
+                <button id="button-use-case-lab3-MainfraimMeltdown" type="button">Complete This Lab</button>
+            </div> 
+            
+            <div id="lab4-MagicOfAutomation" class="use-case"> 
+                <h1>Lab 4: The Magic of Automation</h1>
+                <div class="image-wrapper small"> <img src="./images/lab4AutomationMagic.webp"></div>
+                <p><strong>Iain is impressed.</strong> He leans back in his chair, shaking his head in disbelief.</p>
+                <p><em>"That was even faster than creating a new self-signed certificate. WOW."</em> He pauses for a moment before continuing. <em>"And you said it could even install it for me? I don’t have to do that manually?"</em></p>
+                <p>You nod with a smile. <em>"Exactly. If you know where it needs to go, we can do it right away."</em></p>
+                <p><strong>"I know where it needs to go on the box…"</strong> Iain says, hesitating. <em>"But the credential is in our PAM solution."</em></p>
+                <p>He sighs. <em>"Too bad…"</em></p>
+                <p>You shake your head. <em>"No worries! This is a <strong>CyberArk product</strong> as well—they cooperate nicely. We can use the credential <strong>directly from the safe</strong> to authenticate and install the certificate."</em></p>
+                <p>You point Iain to the <strong>IDP title</strong> of the solution. <em>"Just log back in, go to <strong>Installations → Machines</strong>, click on <strong>New</strong>, and follow the instructions."</em></p>
+                <p><i>This Lab is completed when the certificate is automaticlly installed, without any manual action on the server.</i></p>
+                <button id="button-use-case-lab4-MagicOfAutomation" type="button">Complete This Lab</button>
+            </div>        
+    
+            <div id="lab5-financial-cert-expired" class="use-case">
+                <h1>Lab 5: Missing Paychecks & Mystery Transactions (the real lab starts here)</h1>
+                <div class="image-wrapper small"> <img src="./images/MissingPaychecks.webp"></div>
+                <p>Something feels off today. As you arrive at work, there’s a nagging feeling in the back of your mind. Your paycheck should have landed in your account days ago—but it’s nowhere to be seen.</p>
+                <p>Before heading to your boss’s office, you grab a coffee and run into Bob from Finance. Casually, you bring up the delay in your salary, hoping for a simple explanation. But Bob just shrugs. <em>“All payments were processed on time,”</em> he says. <em>“Might be an issue with your bank.”</em></p>
+                <p>That didn’t exactly put your mind at ease—even with what he said next. <em>"Actually, I just spoke with Sarah—she thanked me for the quick turnaround on her expense reimbursement."</em></p>   
+                <p>You pause, coffee in hand. Before storming into your boss’s office, maybe it’s worth looking a little deeper. Could there be more to this than just a banking delay?</p>
+                <p><i>You will know when the Lab is completed sucessfully.</i></p> 
+                <button id="button-use-case-lab5-financial-cert-expired" type="button">Complete This Lab</button>
+            </div>
+
+
+
+
+
+
+
+            <!-- Keep appendinx at the bottom.-->
 
             <div id="Appendix" class="use-case">
                 <h2>Appendix</h2>
@@ -1047,9 +1207,10 @@
                 <p></p>
                 <p></p>
                 <p></p>
-                <button id="button-use-case-Appendix" type="button">Complete This Use
-                    Case</button>
+                <button id="button-use-case-Appendix" type="button">Complete This Use Case</button>
             </div>
+
+
 
         </div>
 

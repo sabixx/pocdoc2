@@ -484,23 +484,59 @@ function updatePanelContent(section) {
                 credentialDiv.classList.add('credential-info');
                 credentialDiv.id = `credential-${section}-${index}`;
 
-                //Add text
-                if (Array.isArray(credential.text)) {
-                    credential.text.forEach((text) => {
-                        const textElement = document.createElement('p');
-                        textElement.innerHTML = `${text}&#128203;</span>`;
-                        credentialDiv.appendChild(textElement);
-                    });
-                } else if (credential.text) {
-                    const textElement = document.createElement('p');
-                    textElement.innerHTML = `${credential.text}"</span>`;
-                    credentialDiv.appendChild(textElement);
-                }
+                // Normalize credential text into an array
+                const texts = Array.isArray(credential.text) ? credential.text : [credential.text];
 
+                texts.forEach((text) => {
+                    const textElement = document.createElement('p');
+                    textElement.textContent = text;  // Use textContent to prevent HTML issues
+                    credentialDiv.appendChild(textElement);
+                });
+                
                 // Add URL
                 if (credential.url) {
                     const urlElement = document.createElement('p');
-                    urlElement.innerHTML = `URL: <a href="${credential.url}" target="_blank">${credential.url}</a> <span class="copy-icon" onclick="copyToClipboard('url', '${section}', ${index})"&#128203;</span>`;
+                    urlElement.innerHTML = `
+                        URL: <a href="${credential.url}" target="_blank">${credential.url}</a>
+                        <span class="material-icons copy-icon" onclick="copyToClipboard('url', '${section}', ${index})">
+                            content_copy
+                        </span>
+                    `;
+                    credentialDiv.appendChild(urlElement);
+                }
+
+                // Add Username
+                if (credential.username) {
+                    const usernameElement = document.createElement('p');
+                    usernameElement.innerHTML = `
+                        Username: <span class="copy-text">${credential.username}</span>
+                        <span class="material-icons copy-icon" onclick="copyToClipboard('username', '${section}', ${index})">
+                            content_copy
+                        </span>
+                    `;
+                    credentialDiv.appendChild(usernameElement);
+                }
+
+                // Add Password
+                if (credential.password) {
+                    const passwordElement = document.createElement('p');
+                    passwordElement.innerHTML = `
+                        Password: <span class="copy-text">${credential.password}</span>
+                        <span class="material-icons copy-icon" onclick="copyToClipboard('password', '${section}', ${index})">
+                            content_copy
+                        </span>
+                    `;
+                    credentialDiv.appendChild(passwordElement);
+                }
+
+
+/*                              
+
+                // Add URL
+                if (credential.url) {
+                    const urlElement = document.createElement('p');                  
+                    urlElement.innerHTML = `URL: <a href="${credential.url}" target="_blank">${credential.url}</a> <span class="copy-icon" onclick="copyToClipboard('url', '${section}', ${index})">&#128203;</span>`;
+
                     credentialDiv.appendChild(urlElement);
                 }
 
@@ -517,6 +553,8 @@ function updatePanelContent(section) {
                     passwordElement.innerHTML = `Password: <span class="copy-text">${credential.password}</span> <span class="copy-icon" onclick="copyToClipboard('password', '${section}', ${index})">&#128203;</span>`;
                     credentialDiv.appendChild(passwordElement);
                 }
+
+*/
 
                 // Append the credential information to the use case div
                 useCaseDiv.appendChild(credentialDiv);
