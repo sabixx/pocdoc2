@@ -65,7 +65,7 @@
                 <h3>LABs</h3>
                 <a href="#lab1-a-cisos-request" onclick="showContent('lab1-a-cisos-request')" id="link-lab1-a-cisos-request">A CISO's Request</a>
                 <a href="#lab2-the-hidden-risks" onclick="showContent('lab2-the-hidden-risks')" id="link-lab2-the-hidden-risks">The Hidden Risks</a>
-                <a href="#lab3-MainfraimMeltdown" onclick="showContent('lab3-MainfraimMeltdown')" id="link-lab3-MainfraimMeltdown">Mainfraim Meltdown</a>
+                <a href="#lab3-MainframeMeltdown" onclick="showContent('lab3-MainframeMeltdown')" id="link-lab3-MainframeMeltdown">Mainframe Meltdown</a>
                 <a href="#lab4-MagicOfAutomation" onclick="showContent('lab4-MagicOfAutomation')" id="link-lab4-MagicOfAutomation">Magic of Automation</a>   
                 <a href="#lab5-financial-cert-expired" onclick="showContent('lab5-financial-cert-expired')" id="link-lab5-financial-cert-expired">Missing Paychecks</a>
 
@@ -931,7 +931,7 @@
                 <h2>Network Scope</h2>
                 <p>The lab environment consists of both <strong>publicly accessible</strong> and <strong>internal systems</strong>.</p>
                 <h2>Internal System Access</h2>
-                <p>Internal systems are accessible via a <a href="https://bastion-@@PROSPECT@@.mimlab.io/" target="_blank" rel="noopener noreferrer">bastion host</a>. You can find the all URLs and access details in the <strong>canvas</strong> (Additional Information) of the actual lab section. <strong>When a system ends at .internal it is soley accessible via the Bastio Host</strong></p>            
+                <p>Internal systems are accessible via a <a href="https://bastion-@@PROSPECT@@.mimlab.io/" target="_blank" rel="noopener noreferrer">bastion host</a>. You can find the all URLs and access details in the <strong>canvas</strong> (Additional Information) of the actual lab section. <strong>When a system ends at .internal it is soley accessible via the Bastion Host</strong></p>            
                 <h2>Remote Terminal Access Simulation</h2>
                 <p>To simulate remote access, some systems provide <strong>console access via a reverse proxy</strong>. This is accessible via the https://system.dns/console path of the corresponding webpage.</p>
                 <p><strong>Authentication is required</strong>—you will need to enter a <strong>username and password</strong>.</p>
@@ -947,6 +947,7 @@
                 <div class="image-wrapper medium">
                     <img src="./images/workshopDiagram.png" alt="Network Diagram">
                 </div>
+                <p><h3>10.0.0.0/16</h3></p>
                 <button id="button-use-case-Workshop-housekeeping" type="button">Complete This Lab</button>
             </div> 
 
@@ -972,9 +973,11 @@
                 <p>Someone leans back in their chair and shrugs. <strong>"Who cares?"</strong> they say dismissively. <em>"It’s internal only. Why does this matter?"</em></p>
                 <p>The CISO responds, his voice calm but firm.</p>
                 <p><em>"It is internal, but as a global company, we have several regulations, legislations, and compliance requirements—HIPAA, DORA, GDPR, NIS2. I can go on… the list is endless."</em></p>
-                <p><em>"Furthermore, security is about <strong>Confidentiality, Integrity, and Availability (CIA)</strong>. Expiring certificates impact availability—therefore, we cannot consider them secure."</em></p>
+                <p><em>"Furthermore, security is about <strong>Confidentiality, Integrity, and Availability (CIA)</strong>. Expiring certificates impact availability—therefore, we cannot consider them secure."</em></p>                
+                <p><em>"When an internal system, such as a database, has an expired certificate, the impact can cascade to production-facing systems. In some cases, users may not receive a certificate warning, but critical services relying on secure connections may still fail, leading to an outage. This highlights how certificate expiration can disrupt availability even when the issue originates from an internal component."</em></p>                
                 <p><em>"And if users get used to ignoring certificate warnings, they won’t recognize a real attack when it happens. If we take this lightly, we are effectively <strong>teaching people how to get phished</strong>."</em></p>
                 <p>He pauses before adding, <em>"And I don’t even want to think about the fines we could face."</em></p>                
+                <p><em>"All of these poor processes—whether it's failing to track certificate lifecycles, lacking automated renewals, or missing proactive monitoring—accumulate into a massive risk that threatens business continuity. Without proper mitigation, these gaps can lead to avoidable downtime, security breaches, and loss of trust. Addressing these issues must be a priority to ensure long-term resilience."</em></p>                
                 <p>The room is quiet as the CISO leans forward.</p>
                 <p><em>"Now, I want you to really think about the impact of a <strong>malicious root certificate</strong> being distributed across our systems."</em></p>
                 <p>He pauses for a moment before continuing.</p>
@@ -987,7 +990,7 @@
                     <li><strong>Assigning Certificates:</strong> We will assign all certificates to their <strong>Applications</strong>. Each Application is associated to one or multiple teams.</li>
                     <li><strong>Automated Assignment:</strong> We’ll use ports and IP ranges to automatically assing certificates to the Applications.</li>
                     <li><strong>Team Responsibility:</strong> The assigned application teams will be notified of all the issues, and it will be their job to fix them.</li>
-                    <li><strong>Inventory Cleanup:</strong> Feel free to delete everything from our current inventory. We just started, don't worry about deleting stuff.</li>
+                    <li><strong>Inventory Cleanup:</strong> Feel free to delete everything from our current inventory. We're just getting started, don't worry about deleting stuff.</li>
                     <li><strong>Minimizing Manual Work:</strong> Let’s automate the assignment of as many certificates as much as possible. If a few certificates remain unassigned, don’t worry- if we can automate 80%, we have a fraction of the work we'd have had.</li>
                 </ol>
                 <p>Time to take action.</p>
@@ -996,11 +999,11 @@
                 <button id="button-use-case-lab2-the-hidden-risks" type="button">Complete This Lab</button>
             </div>   
             
-            <div id="lab3-MainfraimMeltdown" class="use-case">        
-                <h1>Lab 3: The Mainfraim Meltdown</h1>
-                <div class="image-wrapper small"> <img src="./images/lab3MainfraimMeltdown.webp"></div>
+            <div id="lab3-MainframeMeltdown" class="use-case">        
+                <h1>Lab 3: The Mainframe Meltdown</h1>
+                <div class="image-wrapper small"> <img src="./images/lab3-MainframeMeltdown.webp"></div>
                 <p>On your way to grab another coffee, you walk past <strong>Iain’s office</strong>. You hear a strange sound—sniffles? You pause for a moment and peek inside.</p>
-                <p><strong>Iain from Mainfraim is sitting at his desk, head in his hands.</strong> He’s clearly having a rough time.</p>
+                <p><strong>Iain from Mainframe is sitting at his desk, head in his hands.</strong> He’s clearly having a rough time.</p>
                 <p>Noticing you, he quickly wipes his face and sighs in frustration.</p>
                 <p><em>"I need to replace all the certificates on my systems? For what reason?"</em> he blurts out. <em>"Who cares if they are self-signed?"</em></p>
                 <p>Before you can respond, he throws his hands up in exasperation.</p>
@@ -1009,7 +1012,7 @@
                 <p>Clearly, he’s not in the mood for a long-winded security lecture. But maybe, just maybe, you can <strong>show</strong> him a better way.</p>        
                 <h2>Your Task</h2>
                 <ul>
-                    <li>Help Iain replace his <strong>NGINX certificate</strong>.</li>
+                    <li>Help Iain replace his <strong>MAINFRAME certificate</strong>.</li>
                     <li>Show him <strong>how easy it is</strong> to request a new certificate with <strong>automated, pre-generated requests</strong>.</li>
                     <li>Prove to him that certificate management <strong>doesn’t have to be a headache anymore</strong>.</li>
                 </ul>
@@ -1017,7 +1020,7 @@
                 <p>It’s time to turn his frustration into <strong>relief</strong>. Let’s get started.</p>
                 <p><i>You're done when you successfuly issued the certificate thru the UI.</i></p>
 
-                <button id="button-use-case-lab3-MainfraimMeltdown" type="button">Complete This Lab</button>
+                <button id="button-use-case-lab3-MainframeMeltdown" type="button">Complete This Lab</button>
             </div> 
             
             <div id="lab4-MagicOfAutomation" class="use-case"> 
@@ -1025,6 +1028,7 @@
                 <div class="image-wrapper small"> <img src="./images/lab4AutomationMagic.webp"></div>
                 <p><strong>Iain is impressed.</strong> He leans back in his chair, shaking his head in disbelief.</p>
                 <p><em>"That was even faster than creating a new self-signed certificate. WOW."</em> He pauses for a moment before continuing. <em>"And you said it could even install it for me? I don’t have to do that manually?"</em></p>
+                <p><em>You know, the maingframe certs are painful, but there aren't that many. However, we have tons of certificats on nginx. Could we try with one of those?</em></p>
                 <p>You nod with a smile. <em>"Exactly. If you know where it needs to go, we can do it right away."</em></p>
                 <p><strong>"I know where it needs to go on the box…"</strong> Iain says, hesitating. <em>"But the credential is in our PAM solution."</em></p>
                 <p>He sighs. <em>"Too bad…"</em></p>
@@ -1039,16 +1043,11 @@
                 <div class="image-wrapper small"> <img src="./images/MissingPaychecks.webp"></div>
                 <p>Something feels off today. As you arrive at work, there’s a nagging feeling in the back of your mind. Your paycheck should have landed in your account days ago—but it’s nowhere to be seen.</p>
                 <p>Before heading to your boss’s office, you grab a coffee and run into Bob from Finance. Casually, you bring up the delay in your salary, hoping for a simple explanation. But Bob just shrugs. <em>“All payments were processed on time,”</em> he says. <em>“Might be an issue with your bank.”</em></p>
-                <p>That didn’t exactly put your mind at ease—even with what he said next. <em>"Actually, I just spoke with Sarah—she thanked me for the quick turnaround on her expense reimbursement."</em></p>   
+                <p>That didn’t exactly put your mind at ease—even with what he said next. <em>"Yep, I just ran a very generous transaction thru the <strong>payroll system</strong> to Sarah. Let’s call it ‘strategic financial redistribution’—sounds fancier than ‘big expense,’ right?."</em></p>   
                 <p>You pause, coffee in hand. Before storming into your boss’s office, maybe it’s worth looking a little deeper. Could there be more to this than just a banking delay?</p>
                 <p><i>You will know when the Lab is completed sucessfully.</i></p> 
                 <button id="button-use-case-lab5-financial-cert-expired" type="button">Complete This Lab</button>
             </div>
-
-
-
-
-
 
 
             <!-- Keep appendinx at the bottom.-->

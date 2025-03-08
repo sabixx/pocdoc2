@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -x
+set -e
 
 ################## Public Cert ##################
 
@@ -46,9 +47,18 @@ HTACCESS="${HTACCESS:-$DEFAULT_HTACCESS}"
 
 # Write to the .htpasswd file
 echo "$HTACCESS" > /etc/nginx/.htpasswd
-echo 'ttyd_vencon:$apr1$U686jomW$FBjMMv6e7vcc.7VU1KLqo0' > /etc/nginx/.htpasswd_ttyd
+#echo 'admin:$apr1$U686jomW$FBjMMv6e7vcc.7VU1KLqo0' > /etc/nginx/.htpasswd_ttyd
+#echo 'ttyd_vencon:$2y$05$hLhX8vBeb6vVebCRmAl8AecCDYXDpsDkDEN.pPsWGffU/ttSQGycO' >> /etc/nginx/.htpasswd_ttyd
 
-htpasswd -bn "$WEBUSER" "$WEBPASS" > /etc/nginx/.htpasswd
+echo 'ttyd_vencon:$2y$05$LKXlIsDm83fIRndBEOvKI.4jZ5Jld1jO8IwJiiukp8UycQKZpHJEu'  > /etc/nginx/.htpasswd_ttyd
+#echo 'jens:$2y$05$9BHX.xX66eae0N4ExfdGoOaipogzSWFn0h4hakO0Ug3t9JwMBxRSK' > /etc/nginx/.htpasswd_ttyd
+#echo 'admin:$2y$05$3/6AIyo5Jn4gphhZgVlMAO86YOU9Eu02v8m5DsjMkkMGqR/kNooTW'  >> /etc/nginx/.htpasswd_ttyd
+
+
+#htpasswd -bB /etc/nginx/.htpasswd_ttyd ttyd_vencon 12345
+#htpasswd -bB /etc/nginx/.htpasswd_ttyd ttyd_vencon 12345
+
+htpasswd -bBn "$WEBUSER" "$WEBPASS" > /etc/nginx/.htpasswd
 
 
 ################## Customer Sepcific settings ##################
@@ -102,7 +112,7 @@ chown www-data:www-data /var/log/php_errors.log
 # Start PHP-FPM
 php-fpm -D
 
-echo 'version 031'
+echo 'version 039'
 
 # Start Nginx
 nginx -g "daemon off;" &
@@ -113,6 +123,6 @@ nginx -g "daemon off;" &
 
 
 # Start ttyd as the main foreground process
-# ttyd --writable -p 7681 /bin/sh -l 
+#ttyd --writable -p 7681 /bin/sh -l 
 
 ttyd -p 7681 --writable -c "$WEBUSER:$WEBPASS" sh -l

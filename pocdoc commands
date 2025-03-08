@@ -13,7 +13,7 @@ docker build -t pcodoc_activeusecases .
 docker stop pcodoc_activeusecases_withcustompasswd && docker remove pcodoc_activeusecases_withcustompasswd 
 
 docker run -d --name pcodoc_activeusecases_withcustompasswd -e TLSPC_APIKEY="005450c8-8aeb-41da-80fb-c9a821e098e7" -e PUBLICDOMAIN="doc-testing001.mimlab.io" -e PLAYBOOK_URL="https://raw.githubusercontent.com/sabixx/vcertplaybooks/refs/heads/main/TLSPC_US_POD_WORKSHOP_PUBLICCERT_NGINX.yaml" -e TLSPCURL="https://eval.mimdemo.io" -e PROSPECT="prospect55" \
--e ACTIVEUSECASES="Workshop-welcome,Workshop-housekeeping,Tomcat-Automated-Installation,lab1-a-cisos-request,lab2-the-hidden-risks,lab3-MarketingMeltdown,lab4-MagicOfAutomation,lab5-financial-cert-expired,Appendix" \
+-e ACTIVEUSECASES="Workshop-welcome,Workshop-housekeeping,lab1-a-cisos-request,lab2-the-hidden-risks,lab3-MainframeMeltdown,lab4-MagicOfAutomation,lab5-financial-cert-expired,Appendix" \
 -e USER="jens.sabitzer_LABtest" -e WEBUSER="jens" -e WEBPASS="1234" -p 8084:80 -p 15443:443 pcodoc_activeusecases:latest 
 
 docker logs pcodoc_activeusecases_withcustompasswd -f 
@@ -24,7 +24,7 @@ docker exec -it pcodoc_activeusecases_withcustompasswd /bin/sh
 #-e ACTIVEUSECASES="welcome,Setup-and-Overview,prepare-about-vsat,prepare-vsat-firewall,prepare-vsat-system,Auto-Renewal,Windows-IIS-Automated-Installation,Apache-Automated-Installation,Tomcat-Automated-Installation,NetScaler-Automated-Installation" \
 
 #workshop use cases -- NOT COMPETE
-#-e ACTIVEUSECASES="Workshop-welcome,Workshop-housekeeping,lab1-a-cisos-request,lab2-the-hidden-risks,lab3-MarketingMeltdown,lab4-MagicOfAutomation,lab5-financial-cert-expired,Appendix" \
+#-e ACTIVEUSECASES="Workshop-welcome,Workshop-housekeeping,lab1-a-cisos-request,lab2-the-hidden-risks,lab3-MainframeMeltdown,lab4-MagicOfAutomation,lab5-financial-cert-expired,Appendix" \
 
 docker logs pcodoc_activeusecases_withcustompasswd -f
 

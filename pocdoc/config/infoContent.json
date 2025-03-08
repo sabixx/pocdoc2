@@ -450,9 +450,12 @@
             },
             {
                 "url": "https://bastion-@@PROSPECT@@.mimlab.io",
-                "username": "venafilab",
+                "username": "@@PROSPECT@@",
                 "password": "@@PASSWORD@@",
                 "text": "Bastion Host Access"
+            },
+            {
+                "text": "Pro Tip: Once connected to the Bastion host, use its browser to access both this webpage and the Venafi UI."
             }
         ]
     },
@@ -464,46 +467,58 @@
         "temas_description": "",
         "text": "No information available for this section."
     },
-    "lab3-MarketingMeltdown": {
+    "lab3-MainfraimMeltdown": {
         "temas_description": "",
         "text": "No information available for this section."
     },
     "lab4-MagicOfAutomation": {
-        "temas_description": "",
-        "text": "No information available for this section."
-    },
-    "lab5-financial-cert-expired": {
         "temas_description": "Workshop Housekeeping Information",
         "text": "Remember internal systems accessible via the bastion host only",
         "credentials": [
             {
                 "url": "https://bastion-@@PROSPECT@@.mimlab.io",
-                "username": "venafilab",
+                "username": "@@PROSPECT@@",
                 "password": "@@PASSWORD@@",
                 "text": "Bastion Host Access"
-            },
+            },            
             {
-                "text": "Finance System",
-                "url": "https://finance.internal",
-                "username": "venafilab",
+                "text": "SSH/console access:",
+                "url": "https://nginx-@@PROSPECT@@.internal/console",
+                "username": "@@PROSPECT@@",
                 "password": "@@PASSWORD@@"
             },
             {
-                "text": "SSH / Console Access",
-                "url": "https://finance.internal/console",
-                "username": "venafilab",
+                "text": "SSH/console access:",
+                "url": "https://nginx-@@PROSPECT@@.internal/console",
+                "username": "@@PROSPECT@@",
                 "password": "@@PASSWORD@@"
             },
             {
-                "text": "Paroll WebAccess:",
-                "url": "https://payrollweb.internal",
-                "username": "venafilab",
-                "password": "@@PASSWORD@@"
-            },
+                "text": [
+                    "Device IP: I‘m sure you'll find out. :-)",
+                    "KeyStore Type: PEM",
+                    "Certificate Path: /etc/nginx/ssl/nginx_443.crt",
+                    "Certificate Key Path: /etc/nginx/ssl/nginx_443.key",
+                    "Certificate Chain Path: /etc/nginx/ssl/nginx_443.crt",
+                    "Service Name: nginx"
+                ]
+            }
+        ]
+    },
+    "lab5-financial-cert-expired": {
+        "temas_description": "Finace Lab",
+        "text": "Remember internal systems accessible via the bastion host only",
+        "credentials": [
             {
-                "text": "SSH / Console Access",
-                "url": "https://payrollweb.internal/console",
-                "username": "venafilab",
+                "url": "https://bastion-@@PROSPECT@@.mimlab.io",
+                "username": "@@PROSPECT@@",
+                "password": "@@PASSWORD@@",
+                "text": "Bastion Host Access"
+            },            
+            {
+                "text": "SSH/console access by adding /console to the URL, e.g.:",
+                "url": "https://systemname/console",
+                "username": "@@PROSPECT@@",
                 "password": "@@PASSWORD@@"
             }
         ]

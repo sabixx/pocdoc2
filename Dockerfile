@@ -9,6 +9,8 @@ ENV WEBUSER="venafilab"
 ENV WEBPASS="ChangeMe123!"
 ENV PUBLICDOMAIN="doc-fargate.mimlab.io"
 ENV TLSPCURL="https://ui.venafi.cloud"
+ENV DEFAULT_HTACCESS='ttyd_vencon:$apr1$U686jomW$FBjMMv6e7vcc.7VU1KLqo0'
+
 
 # Install required packages for Nginx and utilities
 RUN apk add --no-cache nginx bash curl at ttyd certbot certbot-nginx apache2-utils libc6-compat \
