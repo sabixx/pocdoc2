@@ -262,6 +262,14 @@ function sendFeedback(useCaseId, smiley) {
     }
 }
 
+function histsUsed (points) {
+//
+//  keep track of points lost..
+//
+//
+
+}
+
 
 /*
 // Fetch hidden use cases and sections
@@ -573,8 +581,6 @@ function updatePanelContent(section) {
 
 function copyToClipboard(field, key, index) {
     let text = '';
-
-    // Locate the credential container
     const credentialDiv = document.getElementById(`credential-${key}-${index}`);
     if (!credentialDiv) {
         console.error("Credential div not found for key:", key, "index:", index);
@@ -582,16 +588,15 @@ function copyToClipboard(field, key, index) {
         return;
     }
 
-    // Extract the text based on the field type
+    const copyTextElements = credentialDiv.querySelectorAll(".copy-text");
+    
     if (field === 'url') {
         const linkElement = credentialDiv.querySelector("a");
         text = linkElement ? linkElement.href : '';
     } else if (field === 'username') {
-        const usernameElement = credentialDiv.querySelector(".copy-text");
-        text = usernameElement ? usernameElement.textContent.trim() : '';
+        text = copyTextElements[0] ? copyTextElements[0].textContent.trim() : '';
     } else if (field === 'password') {
-        const passwordElement = credentialDiv.querySelector(".copy-text");
-        text = passwordElement ? passwordElement.textContent.trim() : '';
+        text = copyTextElements[1] ? copyTextElements[1].textContent.trim() : '';
     }
 
     if (!text) {
@@ -600,17 +605,15 @@ function copyToClipboard(field, key, index) {
         return;
     }
 
-    // Check Clipboard API
     if (!navigator.clipboard) {
         console.error("Clipboard API not supported.");
         alert("Your browser does not support copying to clipboard. Make sure you're running the app over HTTPS or localhost.");
         return;
     }
 
-    // Attempt to copy to clipboard
     navigator.clipboard.writeText(text)
         .then(() => {
-            alert(`${field} copied to clipboard!`);
+//            alert(`${field} copied to clipboard!`);
             console.log(`${field} successfully copied:`, text);
         })
         .catch(err => {
@@ -618,6 +621,8 @@ function copyToClipboard(field, key, index) {
             alert("Failed to copy text. Ensure you're running this over HTTPS or localhost, and try again.");
         });
 }
+
+
 
 function toggleInfoPanel() {
     const infoPanel = document.getElementById('info-panel');

@@ -112,7 +112,7 @@ chown www-data:www-data /var/log/php_errors.log
 # Start PHP-FPM
 php-fpm -D
 
-echo 'version 039'
+echo 'version 040'
 
 # Start Nginx
 nginx -g "daemon off;" &
@@ -123,6 +123,7 @@ nginx -g "daemon off;" &
 
 
 # Start ttyd as the main foreground process
-#ttyd --writable -p 7681 /bin/sh -l 
+ttyd --writable -p 7681 /bin/sh -l 
 
-ttyd -p 7681 --writable -c "$WEBUSER:$WEBPASS" sh -l
+# don't use this as access is determined via remoteproxy to use different users for vencon and documentation
+#ttyd -p 7681 --writable -c "$WEBUSER:$WEBPASS" sh -l

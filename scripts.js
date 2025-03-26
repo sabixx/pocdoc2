@@ -406,27 +406,48 @@ function updatePanelContent(section) {
 
 function copyToClipboard(field, key, index) {
     let text = '';
-
     const credentialDiv = document.getElementById(`credential-${key}-${index}`);
-    if (!credentialDiv) return;
+    if (!credentialDiv) {
+        console.error("Credential div not found for key:", key, "index:", index);
+        alert("Failed to copy. No credential found.");
+        return;
+    }
 
+    const copyTextElements = credentialDiv.querySelectorAll(".copy-text");
+    
     if (field === 'url') {
         const linkElement = credentialDiv.querySelector("a");
         text = linkElement ? linkElement.href : '';
     } else if (field === 'username') {
-        const usernameElement = credentialDiv.querySelector(".copy-text");
-        text = usernameElement ? usernameElement.textContent.trim() : '';
+        text = copyTextElements[0] ? copyTextElements[0].textContent.trim() : '';
     } else if (field === 'password') {
-        const passwordElement = credentialDiv.querySelector(".copy-text");
-        text = passwordElement ? passwordElement.textContent.trim() : '';
+        text = copyTextElements[1] ? copyTextElements[1].textContent.trim() : '';
     }
 
-    navigator.clipboard.writeText(text).then(() => {
-        alert(`${field} copied to clipboard!`);
-    }).catch(err => {
-        console.error('Failed to copy text: ', err);
-    });
+    if (!text) {
+        console.error("No text found to copy for field:", field);
+        alert(`Failed to copy ${field}. No content available.`);
+        return;
+    }
+
+    if (!navigator.clipboard) {
+        console.error("Clipboard API not supported.");
+        alert("Your browser does not support copying to clipboard. Make sure you're running the app over HTTPS or localhost.");
+        return;
+    }
+
+    navigator.clipboard.writeText(text)
+        .then(() => {
+            alert(`${field} copied to clipboard!`);
+            console.log(`${field} successfully copied:`, text);
+        })
+        .catch(err => {
+            console.error("Failed to copy text. Possible reasons:", err);
+            alert("Failed to copy text. Ensure you're running this over HTTPS or localhost, and try again.");
+        });
 }
+
+
 
 function toggleInfoPanel() {
     const infoPanel = document.getElementById('info-panel');

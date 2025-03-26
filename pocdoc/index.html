@@ -63,11 +63,11 @@
                 <a href="#Workshop-welcome" onclick="showContent('Workshop-welcome')" id="link-Workshop-welcome">Welcome to the Lab</a>
                 <a href="#Workshop-housekeeping" onclick="showContent('Workshop-housekeeping')" id="link-Workshop-housekeeping">Housekeeping</a>
                 <h3>LABs</h3>
-                <a href="#lab1-a-cisos-request" onclick="showContent('lab1-a-cisos-request')" id="link-lab1-a-cisos-request">A CISO's Request</a>
-                <a href="#lab2-the-hidden-risks" onclick="showContent('lab2-the-hidden-risks')" id="link-lab2-the-hidden-risks">The Hidden Risks</a>
-                <a href="#lab3-MainframeMeltdown" onclick="showContent('lab3-MainframeMeltdown')" id="link-lab3-MainframeMeltdown">Mainframe Meltdown</a>
-                <a href="#lab4-MagicOfAutomation" onclick="showContent('lab4-MagicOfAutomation')" id="link-lab4-MagicOfAutomation">Magic of Automation</a>   
-                <a href="#lab5-financial-cert-expired" onclick="showContent('lab5-financial-cert-expired')" id="link-lab5-financial-cert-expired">Missing Paychecks</a>
+                <a href="#lab1-a-cisos-request" onclick="showContent('lab1-a-cisos-request')" id="link-lab1-a-cisos-request">Lab1: A CISO's Request</a>
+                <a href="#lab2-the-hidden-risks" onclick="showContent('lab2-the-hidden-risks')" id="link-lab2-the-hidden-risks">Lab2: The Hidden Risks</a>
+                <a href="#lab3-MainframeMeltdown" onclick="showContent('lab3-MainframeMeltdown')" id="link-lab3-MainframeMeltdown">Lab3: Mainframe Meltdown</a>
+                <a href="#lab4-MagicOfAutomation" onclick="showContent('lab4-MagicOfAutomation')" id="link-lab4-MagicOfAutomation">Lab4: Magic of Automation</a>   
+                <a href="#lab5-financial-cert-expired" onclick="showContent('lab5-financial-cert-expired')" id="link-lab5-financial-cert-expired">Lab5: Missing Paychecks</a>
 
                 <h3>Appendix</h3>
                 <a href="#Appendix" onclick="showContent('Appendix')" id="link-Appendix">Appendix</a>
@@ -919,7 +919,8 @@
                 <h3>Before we get started:</h3>
                 <p><strong>✅ Housekeeping & Access:</strong> Before getting started, review the <strong>housekeeping section</strong> to understand how to access your environment and the systems available.</p>
                 <p><strong>✅ These labs are for you!</strong> Your feedback is invaluable in making them even better. I personally review every single comment and use your insights to refine and improve the labs for future participants. Don’t hesitate to share your thoughts!</p>
-                <p>Let's dive in, learn, and have fun—while tackling security challenges that truly matter. 🚀</p>    
+                <p>Let's dive in, learn, and have fun—while tackling security challenges that truly matter.🚀</p>    
+                <p><i>Click on Complete and comment with Let's have some fun.</i></p>  
                 <button id="button-use-case-Workshop-welcome" type="button">Complete</button>
             </div>
 
@@ -931,24 +932,42 @@
                 <h2>Network Scope</h2>
                 <p>The lab environment consists of both <strong>publicly accessible</strong> and <strong>internal systems</strong>.</p>
                 <h2>Internal System Access</h2>
-                <p>Internal systems are accessible via a <a href="https://bastion-@@PROSPECT@@.mimlab.io/" target="_blank" rel="noopener noreferrer">bastion host</a>. You can find the all URLs and access details in the <strong>canvas</strong> (Additional Information) of the actual lab section. <strong>When a system ends at .internal it is soley accessible via the Bastion Host</strong></p>            
+                <p>Internal systems are accessible via a bastion host. You can find all URLs and access details by pressing the
+                    <span style="background-color: #00457a; color: white; padding: 5px 10px; font-size: 12px;">Additional Information</span>
+                    link at the top right.</p>                    
+                <p><strong>When a systems name ends with .internal, it is solely accessible via the Bastion Host.</strong></p>
                 <h2>Remote Terminal Access Simulation</h2>
-                <p>To simulate remote access, some systems provide <strong>console access via a reverse proxy</strong>. This is accessible via the https://system.dns/console path of the corresponding webpage.</p>
-                <p><strong>Authentication is required</strong>—you will need to enter a <strong>username and password</strong>.</p>
+                <p>To simulate remote access, some systems provide <strong>console access via a reverse proxy</strong>. This is accessible via by adding /console to the URL path of the corresponding webpage. You will need this in Lab 3 for the first time.</p>
+                <p><strong>Authentication is required</strong>—you will need to enter a <strong>username and password</strong>. This information is also found under <span style="background-color: #00457a; color: white; padding: 5px 10px; font-size: 12px;">Additional Information</span></p>
                 <h2>Lab Progression & Expectations</h2>
-                <p>Early labs will <strong>explicitly guide you</strong> through the required steps.</p>
+                <!--  <p>Early labs will <strong>explicitly guide you</strong> through the required steps.</p> -->
                 <p>More advanced labs <strong>assume prior experience</strong> and may not provide step-by-step instructions for accessing the console.</p>
                 <p>In some cases, accessing the console is <strong>necessary</strong> to diagnose issues, apply fixes, or find configuration options.</p>            
-                <h2>Reference Materials</h2>
-                <ul>
+                <p><strong>Please be aware that internal systems are solely accessible through the Bastion Host.
+                <p><strong>Access Credentials:</strong> Available under the <span style="background-color: #00457a; color: white; padding: 5px 10px; font-size: 12px;">Additional Information</span></p>
+                </strong> </p>
+                <!--  <h2>Reference Materials</h2>  -->
+                <p><strong>High Level Network Diagram:</strong></p>
+                <!--  <ul>
                     <li><strong>Access Credentials:</strong> Available under the <strong>"Additional Information"</strong> button in the top-right corner.</li>
-                    <li><strong>High Level Network Diagram:</strong></li>
-                </ul>
+                    <li>/li>
+                </ul> -->
                 <div class="image-wrapper medium">
                     <img src="./images/workshopDiagram.png" alt="Network Diagram">
                 </div>
-                <p><h3>10.0.0.0/16</h3></p>
-                <button id="button-use-case-Workshop-housekeeping" type="button">Complete This Lab</button>
+                
+            <!--     </p><h2>What do I do next?</h2></p>
+                <p><strong>Click on Additional Informaiton</strong> Each Lab will contain details that can be necessary to complete them.</p>
+                <p><strong>Access Credentials:</strong> Available under the <strong>"Additional Information"</strong> button in the top-right corner.</p>
+                <div>
+                    <p>Please log in to the bastion host using the link provided under <strong>Additional Information</strong>.</p>
+                    <p>Essential details are available on Canvas—some labs cannot be completed without this information.</p>
+                    <p>To access the bastion host, you must first log in to the Guacamole web server.</p>
+                    <p>From the bastion host, you can open this document and the Venafi Cloud UI directly.</p>
+                    <p>This setup makes it much easier to copy and paste data.</p>
+                  </div> -->
+
+                <button id="button-use-case-Workshop-housekeeping" type="button">Complete</button>
             </div> 
 
             <div id="lab1-a-cisos-request" class="use-case">
@@ -960,8 +979,35 @@
                 <p><em>"Could you get me a list of all the <strong>internal</strong> certificates our web servers use? I just need a list for now; we’ll worry about fixing any issues later. But I need to make sure this doesn’t happen again."</em></p>
                 <p>No pressure, right? Just a simple request—except, you’re not entirely sure <strong>where all the certificates are</strong> or <strong>how many are actually in use</strong>.</p>
                 <p><strong>Time to get to work.</strong></p>
-                <button id="button-use-case-lab1-a-cisos-request" type="button">Complete This Lab</button>
-                <p><i>This Lab is completed when you have internal certificates showing up in your inventory.</i></p>
+                
+                <details>
+                    <summary onclick="hintsUsed(10)">Hint 1</summary>
+                    <p>You need to create Network Discovery Job</p>
+
+                    <details>
+                        <summary onclick="hintsUsed(20)">Hint 2</summary>
+                        <p>It's under Configuration</p>
+
+                        <details>
+                            <summary onclick="hintsUsed(30)">Hint 3</summary>
+                            <p>Network Discovery</p>
+                            <p>Create a new Enhanced Discovery</p>
+                            <p>Give it a name</p>
+                            <p>Select the existing VSatellite</p>
+                            <p>Add the port 443</p>
+                            <p>Enter the CIDR Network range</p>
+                            <p>Click Next and then Create Service</p>                            
+
+                            <details>
+                                <summary onclick="hintsUsed(40)">Hint 4</summary>
+                                <p>Wait until your discover Job runs at shedule or click Discover Now</p>                    
+                            </details>
+                        </details>
+                    </details>    
+                </details>
+                <p>It's a /16 network, give it a moment.</p>
+                <p><i>"This lab is complete when you have successfully exported the internal certificates in a format suitable for presentation to the CISO for their meeting."</i></p>
+                <button id="button-use-case-lab1-a-cisos-request" type="button">Mark this lab complete</button>            
             </div>
 
             <div id="lab2-the-hidden-risks" class="use-case">
@@ -994,9 +1040,23 @@
                     <li><strong>Minimizing Manual Work:</strong> Let’s automate the assignment of as many certificates as much as possible. If a few certificates remain unassigned, don’t worry- if we can automate 80%, we have a fraction of the work we'd have had.</li>
                 </ol>
                 <p>Time to take action.</p>
+
+                <details>
+                    <summary onclick="hintsUsed(10)">Hint 1</summary>
+                    <p>There are two options to solve this:</p>
+                    <details>
+                        <summary onclick="hintsUsed(10)">Hint 2</summary>
+                        <p>One option is to manually assign the certificates to an application. This simple, one-time action is perfectly valid and will solve the problem in the long term by ensuring the correct teams are notified if anything happens to their certificates. It also improves visibility and accountability around certificate ownership.</p>
+                        <details>
+                            <summary onclick="hintsUsed(10)">Hint 3</summary>
+                            <p>The alternative is to automatically assign certificates to applications based on port and IP mappings. You can do this by navigating to the application and reviewing its associated ports and IP addresses. To enable this method, you'll need to remove the certificates from the inventory and re-run the network discovery process. This approach reduces manual effort and helps maintain accurate, ongoing certificate-to-application mappings.</p>
+                        </details>
+                    </details>
+                </details>
+
                 <p><i>You're done you successfully assciated certificates to applications, you don't need to do all, it's more important to understand the concept for this Lab.</i></p>
 
-                <button id="button-use-case-lab2-the-hidden-risks" type="button">Complete This Lab</button>
+                <button id="button-use-case-lab2-the-hidden-risks" type="button">Mark this lab complete</button>
             </div>   
             
             <div id="lab3-MainframeMeltdown" class="use-case">        
@@ -1012,15 +1072,14 @@
                 <p>Clearly, he’s not in the mood for a long-winded security lecture. But maybe, just maybe, you can <strong>show</strong> him a better way.</p>        
                 <h2>Your Task</h2>
                 <ul>
-                    <li>Help Iain replace his <strong>MAINFRAME certificate</strong>.</li>
+                    <li>Help Iain to get a new <strong>MAINFRAME certificate</strong>.</li>
                     <li>Show him <strong>how easy it is</strong> to request a new certificate with <strong>automated, pre-generated requests</strong>.</li>
                     <li>Prove to him that certificate management <strong>doesn’t have to be a headache anymore</strong>.</li>
                 </ul>
                 <p><strong>Just issue the certificate for now.</strong> We’ll help Iain with the <strong>automated provisioning</strong> in the next lab.</p>
                 <p>It’s time to turn his frustration into <strong>relief</strong>. Let’s get started.</p>
                 <p><i>You're done when you successfuly issued the certificate thru the UI.</i></p>
-
-                <button id="button-use-case-lab3-MainframeMeltdown" type="button">Complete This Lab</button>
+                <button id="button-use-case-lab3-MainframeMeltdown" type="button">Mark this lab complete</button>
             </div> 
             
             <div id="lab4-MagicOfAutomation" class="use-case"> 
@@ -1034,8 +1093,34 @@
                 <p>He sighs. <em>"Too bad…"</em></p>
                 <p>You shake your head. <em>"No worries! This is a <strong>CyberArk product</strong> as well—they cooperate nicely. We can use the credential <strong>directly from the safe</strong> to authenticate and install the certificate."</em></p>
                 <p>You point Iain to the <strong>IDP title</strong> of the solution. <em>"Just log back in, go to <strong>Installations → Machines</strong>, click on <strong>New</strong>, and follow the instructions."</em></p>
-                <p><i>This Lab is completed when the certificate is automaticlly installed, without any manual action on the server.</i></p>
-                <button id="button-use-case-lab4-MagicOfAutomation" type="button">Complete This Lab</button>
+                <p><i>This Lab is completed when the certificate is automaticlly installed.</i></p>
+                <details>
+                    <summary onclick="hintsUsed(10)">Hint 1</summary>
+                    <p>Have you found the certificate via network discovery?</p>
+                    <details>
+                        <summary onclick="hintsUsed(10)">Hint 2</summary>
+                        <p>Renew the certificate.</p>
+                        <details>
+                            <summary onclick="hintsUsed(10)">Hint 3</summary>
+                            <p>It's time to install the certificate - automatically.</p>
+                            <details>
+                                <summary onclick="hintsUsed(10)">Hint 4</summary>
+                                <p>You'll find all information necessary on the box via console/ssh.</p>
+                                <details>
+                                    <summary onclick="hintsUsed(10)">What is the requierd configuration?</summary>
+                                    <p>Device IP: nginx-@@PROSPECT@@.internal</p>
+                                    <p>Machine Type: Common KeyStore (PEM, JKS, PKCS#12)</p>
+                                    <p>KeyStore Type: PEM</p>
+                                    <p>Certificate Path: /etc/nginx/ssl/nginx_443.crt</p>
+                                    <p>Certificate Key Path: /etc/nginx/ssl/nginx_443.key</p>
+                                    <p>Certificate Chain Path: /etc/nginx/ssl/nginx_443.crt</p>
+                                    <p>Service Name: nginx</p>
+                                </details>
+                            </details>
+                        </details>
+                    </details>
+                </details>
+              <button id="button-use-case-lab4-MagicOfAutomation" type="button">Mark this lab complete</button>
             </div>        
     
             <div id="lab5-financial-cert-expired" class="use-case">
@@ -1046,7 +1131,157 @@
                 <p>That didn’t exactly put your mind at ease—even with what he said next. <em>"Yep, I just ran a very generous transaction thru the <strong>payroll system</strong> to Sarah. Let’s call it ‘strategic financial redistribution’—sounds fancier than ‘big expense,’ right?."</em></p>   
                 <p>You pause, coffee in hand. Before storming into your boss’s office, maybe it’s worth looking a little deeper. Could there be more to this than just a banking delay?</p>
                 <p><i>You will know when the Lab is completed sucessfully.</i></p> 
-                <button id="button-use-case-lab5-financial-cert-expired" type="button">Complete This Lab</button>
+                <details>
+                    <summary onclick="hintsUsed(10)">Hint 1</summary>
+                    <p>What certificates did you find in Lab 1?</p>
+
+                    <details>
+                        <summary onclick="hintsUsed(10)">Hint 2</summary>
+                        <p>Which systems could be involved in the error?</p>
+
+                        <details>
+                            <summary onclick="hintsUsed(10)">Hint 3</summary>
+                            <p>A good technichan checks logs files carefully.</p>
+
+                            <details>
+                                <summary onclick="hintsUsed(10)">Hint 4</summary>
+                                <p>Which certificate could be involved?</p>
+                                
+                                <details>
+                                    <summary onclick="hintsUsed(10)">Hint 5</summary>
+                                    <p>Remeber how you got console access?</p>
+                                    
+                                    <details>
+                                        <summary onclick="hintsUsed(10)">Hint 6</summary>
+                                        <p>A good technichan reads messages carefully.</p>
+
+                                        <details>
+                                            <summary onclick="hintsUsed(10)">Hint 7</summary>
+                                            <p>Found the keys to the kingdom?</p>
+                                            
+                                            <details>
+                                                <summary onclick="hintsUsed(10)">Hint 8</summary>
+                                                <p>Remeber the "Magic"</p>
+
+                                                <details>
+                                                    <summary onclick="hintsUsed(10)">Walk me thru this, please..</summary>
+                                                    <p>You found a finance.internal and payrollweb.internal certificate via network discovery.</p>
+
+                                                    <details>
+                                                        <summary onclick="hintsUsed(10)">Hint 10</summary>
+                                                        <p>Both certificates are valid. However, when you go to the finance system you'll find a debug log. This log points to an error connecting to a port 5432 (that's the standard port of a postgres database.)</p>
+
+                                                        <details>
+                                                            <summary onclick="hintsUsed(10)">Hint 11</summary>
+                                                            <p>We still don't know on which system this certificate is located. We'll use Venafi to find it. Add to your Network Disocvery from Lab 1 port 5432.</p>
+
+                                                            <details>
+                                                                <summary onclick="hintsUsed(10)">Hint 12</summary>
+                                                                <p>Congrats, you found the expired certificat causing the problem. Before we can fix the endpoint we need to renew the certifcate or get a new one as you did in Lab 3.</p>
+    
+                                                                <details>
+                                                                    <summary onclick="hintsUsed(10)">Hint 12</summary>
+                                                                    <p>Now we're going to use Push provisisong as we did in Lab 4.</p>
+        
+                                                                    <details>
+                                                                        <summary onclick="hintsUsed(10)">Hint 13</summary>
+                                                                        <p>The information is found on the payroll system. You can access the console/ssh via the bastion host: <a href="https://payroll.internal/console" target="_blank" rel="noopener noreferrer">https://payroll.internal/console</a></p>
+            
+                                                                        <details>
+                                                                            <summary onclick="hintsUsed(10)">Hint 14</summary>
+                                                                            <p>On this box, there is a postgres.conf file which includes the information we need to setup provisioning for the certificate.</p>
+
+                                                                            <details>
+                                                                                <summary onclick="hintsUsed(10)">Hint 15</summary>
+                                                                                <p>On this box, there is a postgres.conf file which includes the information we need to setup provisioning for the certificate.</p>
+
+                                                                                <details>
+                                                                                    <summary onclick="hintsUsed(10)">Hint 16</summary>
+                                                                                    <p>The User & SSH key we need is found in the file /home/venafi/ssh.key file.</p>
+
+                                                                                    <details>
+                                                                                        <summary onclick="hintsUsed(10)">Hint 17</summary>
+                                                                                        <p>Congratulations you have found all informaiton you need to fix the issue.</p>
+
+                                                                                        <details>
+                                                                                            <summary onclick="hintsUsed(10)">Hint 18</summary>
+                                                                                            <p>When the certificate was installed succesfully, check the finance webpage <a href="https://payroll.internal/" target="_blank" rel="noopener noreferrer">https://finance.internal</a> it wil update.</p>
+
+                                                                                            <details>
+                                                                                                <summary onclick="hintsUsed(10)">SPOILER: This is the last hint. It will reveal the solution.</summary>
+                                                                                                <p><strong>Step 1</strong></p>
+                                                                                                <p>Create a new certificate with CN: payroll.internal</p>
+                                                                                                <p>This certificate needs to come from the ztPKI CA.</p>  
+                                                                                                <p></p>                                               
+                                                                                                <p><strong>Step 2</strong></p>
+                                                                                                <p>Go to Installations</p>
+                                                                                                <p>Go to Machines</p>
+                                                                                                <p>Create new Machine</p>                                                    
+                                                                                                <p>Use the follwoing information:</p>
+                                                                                                <p></p>
+                                                                                                <p>Give it a name, e.g.: <strong>payroll</strong></p>
+                                                                                                <p>Select <strong>VSatellite Hub 0001</strong></p>
+                                                                                                <p>Select an owning team</p>
+                                                                                                <p>Machine type: <strong>Common KeyStore (PEM, JKS, PKCS#12)</strong></p>
+                                                                                                <div class="image-wrapper smedium"><img src="./images/lab5-step1.png"></div>
+                                                                                                <p><i>Click Next</i></p>
+                                                                                                <p>IP Address / Hostname: <strong>payroll.internal</strong> </p>
+                                                                                                <p>Select Protocol: <strong>SSH</strong></p>
+                                                                                                <p>Authentication Type: <strong>Private Key</strong></p>
+                                                                                                <p>Select Enter Credentials</p>
+                                                                                                <p>Username: <strong>venafi</strong></p>
+                                                                                                <p>Private Key:</p>
+                                                                                                <pre><code>
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+QyNTUxOQAAACBqsS94Kfsil5V/tw3gbJZTH5GOH5PqHRJiGpLQsYWrggAAAIh7+bjje/m4
+4wAAAAtzc2gtZWQyNTUxOQAAACBqsS94Kfsil5V/tw3gbJZTH5GOH5PqHRJiGpLQsYWrgg
+AAAECE71RAay7RG2uONhl28f7PCFDQ+S5c3UbNo9XsjI4mDGqxL3gp+yKXlX+3DeBsllMf
+kY4fk+odEmIaktCxhauCAAAAAAECAwQF
+-----END OPENSSH PRIVATE KEY-----
+                                                                                                </code></pre>
+                                                                                                <p><i>Click Test Access, then Create</i></p>
+                                                                                                <div class="image-wrapper smedium"><img src="./images/lab5-step3.png"></div>
+                                                                                                <p><strong>Step 3</strong></p>
+                                                                                                <p>Select the machine</p>
+                                                                                                <p>Select Provision a Certificate</p>                                                                                                 
+                                                                                                <div class="image-wrapper small"><img src="./images/lab5-step4.png"></div>
+                                                                                                <p>Select the certificate you created in step 1</p>                                                    
+                                                                                                <p>KeyStore Type: <strong>PEM</strong></p>
+                                                                                                <p>Certificate Path (including filename): <strong>/var/lib/postgresql/ssl/certs/db.crt</strong></p>
+                                                                                                <p>Private Key Path (including filename:) <strong>/var/lib/postgresql/ssl/private/db.key</strong></p>
+                                                                                                <p>Certificate Chain Path (including filename): <strong>/var/lib/postgresql/ssl/dbchain.crt</strong></p>
+                                                                                                <p>Service Name: <strong>postgress</strong></p>
+                                                                                                <p>Push upon saving: enabled</p>
+                                                                                                <div class="image-wrapper smedium"><img src="./images/lab5-step5.png"></div>
+                                                                                                <p></p>
+                                                                                                <p>You will see a message like this:</p>
+                                                                                                <p><div class="image-wrapper small"><img src="./images/lab5-step6.png"></div></p>
+                                                                                                <p>Go check the Finance https://finance.internal webpage, the page will update.</p>
+                                                                                                <p></p>
+                                                                                                <p>It's much easier to set up automation once than to constantly renew certificates and troubleshoot issues, isn't it?</p>                                                    
+                                                                                                <p></p> 
+                                                                                            </details> 
+                                                                                        </details> 
+                                                                                    </details> 
+                                                                                </details> 
+                                                                            </details> 
+                                                                        </details> 
+                                                                    </details> 
+                                                                </details>                       
+                                                            </details> 
+                                                        </details> 
+                                                    </details>                                                                              
+                                                </details> 
+                                            </details>                                           
+                                        </details>   
+                                    </details>
+                                </details>  
+                            </details> 
+                        </details>
+                    </details>
+                </details>
+                <button id="button-use-case-lab5-financial-cert-expired" type="button">Mark this lab complete</button>
             </div>
 
 
@@ -1237,7 +1472,7 @@
                 </div>
             </div> -->
 
-            <button id="menu-button" onclick="toggleInfoPanel()">Addtional Information</button>
+            <button id="menu-button" onclick="toggleInfoPanel()">Additional Information</button>
         </div>
         <script src="scripts.js"></script>
 </body>

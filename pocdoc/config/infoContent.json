@@ -437,11 +437,6 @@
     },
     "Workshop-welcome": {
         "temas_description": "",
-        "text": "No information available for this section."
-    },
-    "Workshop-housekeeping": {
-        "temas_description": "Workshop Housekeeping Information",
-        "text": "This section contains login details for TLS Protect Cloud and the Bastion Host used in the workshop.",
         "credentials": [
             {
                 "url": "@@TLSPCURL@@",
@@ -449,27 +444,56 @@
                 "password": "@@PASSWORD@@"
             },
             {
+                "text": [
+                    "The Network CIDR for the Lab is 10.0.0.0/16.",
+                    "Webservers are typically running on port 443."
+                ]
+            } 
+        ]
+    },
+    "Workshop-housekeeping": {
+        "temas_description": "Workshop Housekeeping Information",
+        "text": "This section contains login details for TLS Protect Cloud and the Bastion Host used in the workshop.",
+        "credentials": [
+            {
                 "url": "https://bastion-@@PROSPECT@@.mimlab.io",
                 "username": "@@PROSPECT@@",
                 "password": "@@PASSWORD@@",
                 "text": "Bastion Host Access"
             },
             {
-                "text": "Pro Tip: Once connected to the Bastion host, use its browser to access both this webpage and the Venafi UI."
+                "text": [
+                    "Pro Tip: Once connected to the Bastion host, use its browser to access both this webpage and the Venafi UI.",
+                    "There is already a link on the desktop to this page.",
+                    " ",
+                    "The Network CIDR for the Lab is 10.0.0.0/16."
+                ]  
             }
         ]
     },
     "lab1-a-cisos-request": {
         "temas_description": "",
-        "text": "Lab 1 section"
+        "credentials": [
+            {
+                "url": "@@TLSPCURL@@",
+                "username": "administrator",
+                "password": "@@PASSWORD@@"
+            },
+            {
+                "text": [
+                    "The Network CIDR for the Lab is 10.0.0.0/16.",
+                    "Webservers are typically running on port 443."
+                ]
+            } 
+        ]
     },
     "lab2-the-hidden-risks": {
         "temas_description": "",
-        "text": "No information available for this section."
+        "text": "Review the discovered certificates and explore options to automatically assign them to applications during the discovery process. When deleting certificates, please ensure that you do not select the ‘Do not rediscover‘ option. If you accidentally choose it, let us know and we’ll help resolve the issue promptly."
     },
-    "lab3-MainfraimMeltdown": {
+    "lab3-MainframeMeltdown": {
         "temas_description": "",
-        "text": "No information available for this section."
+        "text": "Manually create a certificate with ease—there's no need to generate a CSR on your own. We know it can be a time-consuming process, so we’ve streamlined it to save you time. Use it."
     },
     "lab4-MagicOfAutomation": {
         "temas_description": "Workshop Housekeeping Information",
@@ -482,26 +506,14 @@
                 "text": "Bastion Host Access"
             },            
             {
-                "text": "SSH/console access:",
-                "url": "https://nginx-@@PROSPECT@@.internal/console",
-                "username": "@@PROSPECT@@",
-                "password": "@@PASSWORD@@"
-            },
+                "text": "Nginx Webpage:",
+                "url": "https://nginx-@@PROSPECT@@.internal"
+            }, 
             {
                 "text": "SSH/console access:",
                 "url": "https://nginx-@@PROSPECT@@.internal/console",
                 "username": "@@PROSPECT@@",
                 "password": "@@PASSWORD@@"
-            },
-            {
-                "text": [
-                    "Device IP: I‘m sure you'll find out. :-)",
-                    "KeyStore Type: PEM",
-                    "Certificate Path: /etc/nginx/ssl/nginx_443.crt",
-                    "Certificate Key Path: /etc/nginx/ssl/nginx_443.key",
-                    "Certificate Chain Path: /etc/nginx/ssl/nginx_443.crt",
-                    "Service Name: nginx"
-                ]
             }
         ]
     },
@@ -517,7 +529,7 @@
             },            
             {
                 "text": "SSH/console access by adding /console to the URL, e.g.:",
-                "url": "https://systemname/console",
+                "url": "https://.../console",
                 "username": "@@PROSPECT@@",
                 "password": "@@PASSWORD@@"
             }
