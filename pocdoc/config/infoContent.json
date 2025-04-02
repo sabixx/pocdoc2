@@ -489,7 +489,7 @@
     },
     "lab2-the-hidden-risks": {
         "temas_description": "",
-        "text": "Review the discovered certificates and explore options to automatically assign them to applications during the discovery process. When deleting certificates, please ensure that you do not select the ‘Do not rediscover‘ option. If you accidentally choose it, let us know and we’ll help resolve the issue promptly."
+        "text": "Review the discovered certificates and explore options to automatically assign them to applications during the discovery process. Feel free to create any applications that seem reasonable to you—or ones you regularly use."
     },
     "lab3-MainframeMeltdown": {
         "temas_description": "",
@@ -504,16 +504,32 @@
                 "username": "@@PROSPECT@@",
                 "password": "@@PASSWORD@@",
                 "text": "Bastion Host Access"
-            },            
+            },  
             {
                 "text": "Nginx Webpage:",
                 "url": "https://nginx-@@PROSPECT@@.internal"
-            }, 
+            },     
             {
-                "text": "SSH/console access:",
+                "text": "console access:",
                 "url": "https://nginx-@@PROSPECT@@.internal/console",
                 "username": "@@PROSPECT@@",
                 "password": "@@PASSWORD@@"
+            },
+            {
+                "url": "@@TLSPCURL@@",
+                "username": "administrator",
+                "password": "@@PASSWORD@@"
+            },
+            {   "text": [
+                "SSH access:",
+                "Hostname: nginx-@@PROSPECT@@.internal"
+                ]
+            },
+            {
+                "username": "venafi"
+            },
+            {   
+                "text": "SSH private key is stored in the CyberArk safe (not yet… but I will put it there. Promise. Soon-ish.)"
             }
         ]
     },
@@ -529,7 +545,7 @@
             },            
             {
                 "text": "SSH/console access by adding /console to the URL, e.g.:",
-                "url": "https://.../console",
+                "url": "https://nginx-@@PROSPECT@@.internal/console",
                 "username": "@@PROSPECT@@",
                 "password": "@@PASSWORD@@"
             }
