@@ -24,8 +24,8 @@ COPY ./pocdoc /var/www/html
 COPY ./test.php /var/www/html
 # Copy Nginx configuration files
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY default.conf /etc/nginx/conf.d/default.conf
-COPY default_ssl.conf /etc/nginx/conf.d/default_ssl.conf
+# COPY default.conf /etc/nginx/conf.d/default.conf
+COPY default_ssl.conf /etc/nginx/conf.d/default.conf
 
 # Configure PHP-FPM error logging
 RUN echo "log_errors = On" >> /usr/local/etc/php/conf.d/php-custom.ini \
@@ -51,4 +51,4 @@ EXPOSE 80 443
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
-CMD ["/start.sh"]
+ENTRYPOINT ["/start.sh"]

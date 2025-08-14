@@ -32,7 +32,7 @@ if [ -n "$PLAYBOOK_URL" ] && [ -n "$TLSPC_APIKEY" ] && [ -n "$PUBLICDOMAIN" ]; t
     vcert run -f /root/playbook.yaml
 
     #set the config to use SSL
-    mv /etc/nginx/conf.d/default_ssl.conf /etc/nginx/conf.d/default.conf
+    #mv /etc/nginx/conf.d/default_ssl.conf /etc/nginx/conf.d/default.conf
 
 
 else

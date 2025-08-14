@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Venafi Evaluation</title>
+    <title>Cyberark Evaluation</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="icons/v.png">
     
@@ -19,10 +19,11 @@
         <div id="sidebar">
             <!-- Logo Section -->
             <div id="logo-section">
-                <img src="./images/Venafi_CYBR_R_logo_1200x377.png" alt="Venafi Logo">
+                <img src="./images/Venafi_CYBR_R_logo_1200x377.png" alt="Cyberark Logo">
             </div>
             <div id="use-case-menu">
                 <a href="#welcome" onclick="showContent('welcome')" id="link-welcome">Welcome</a>
+                <a href="#feedback" onclick="showContent('feedback')" id="link-feedback">Feedback</a>
                 <a href="#Setup-and-Overview" onclick="showContent('Setup-and-Overview')" id="link-Setup-and-Overview">Setup and Overview</a>
                 <h3>Prepare your Environment</h3>
                 <a href="#prepare-about-vsat" onclick="showContent('prepare-about-vsat')" id="link-prepare-about-vsat">About VSatellites</a>
@@ -91,20 +92,26 @@
             <!-- Main content will go here -->
             <div id="welcome" class="use-case">
                 <div class="text-left">
-                    <img class="medium" src="./images/Venafi_CYBR_R_logo_1200x377.png">
+                    <img class="medium" src="./images/Venafi_CYBR_R_logo_1200x377.png" style="display: block; margin: 0 auto;">
                 </div>
-                <h2>Welcome to your Venafi Evaluation</h2>
-                <p>This document outlines the Venafi TLS Protect Cloud Proof of Value (POV) use cases and test items using a dedicated cloud-based test lab designed specifically for your organization.</p>
+                <h2>Welcome to your Cyberark Evaluation</h2>
+                <p>This document outlines the Cyberark Certificate Manager SAAS Proof of Value (POV) use cases and test items using a dedicated cloud-based test lab designed specifically for your organization.</p>
                 <p>On the right, you will find a menu with additional information, including credentials for accessing the use cases.</p>
                 <p>Each use case includes an option for providing feedback. Please take advantage of this feature as we are eager to hear your thoughts. <string>All feedback is carefully reviewed and shared with the corresponding teams.</strong></p>
                 <p>We encourage you to use this feedback mechanism extensively. Your input is invaluable in helping us continue to deliver and improve the best products and services.</p>
-                <p>The login details for the demo tenant are available under the "Additional Information" section.</p>
+                <p>The login details for the demo tenant are available under the "Additional Information" (right side) section.</p>
                 <p>Please follow the sections in order, as some sections build upon the previous ones.</p>
-                <p><b>POV Environment:</b> This includes the SaaS tenant of Venafi TLS Protect (with optional Zero Touch PKI) and your virtual lab.</p>
+                <p><b>POV Environment:</b> This includes the SaaS tenant of Cyberark Certificate Manager (with optional Zero Touch PKI) and your virtual lab.</p>
                 <img class="medium" src="./images/povimage.png">
             </div>
 
-            <div id="Setup-and-Overview" style="height: 450px;" class="use-case">
+            <div id="feedback" style="height: 500px;" class="use-case">
+                <p><h2>Feedback</h2></p>
+                <p><b>After you complete a use case, a feedback section will show up—please use it extensively and share your thoughts. Every comment is carefully reviewed by our team—including Product Management—to help us enhance the proof-of-concept experience and, more importantly, to guide future product improvements. Your insights are invaluable to us. Thank you in advance for your time and feedback!</b></p>
+                <button id="button-use-case-feedback" type="button">Complete (Try it!)</button>
+            </div>
+
+            <div id="Setup-and-Overview" style="height: 500px;" class="use-case">
                 <h2>Setup and Overview</h2>
                 <p>Internal CA Root Certificate</p>
                 <p>During the testing you will use a Microsoft Certificate Authority (ADCS) in the virtual lab. You will
@@ -118,11 +125,11 @@
 
             <div id="prepare-about-vsat" class="use-case">
                 <h2>Flexible Deployment of VSatellites: Your Infrastructure, Your Choice</h2>
-                <p>Venafi VSatellites are an innovative and essential component of TLS Protect Cloud, Venafi's cloud-native machine identity management service.</p>
+                <p>Cyberark VSatellites are an innovative and essential component of TLS Protect Cloud, Cyberark's cloud-native machine identity management service.</p>
                 <p>VSatellites extend the capabilities of your TLS Protect Cloud account beyond publicly accessible networks and hosts, bridging the gap to your on-premises or private cloud networks and machines. This enables you to gain a comprehensive view of your machine identities across your organization, regardless of whether they reside in public or private environments.</p>
-                <p>At its core, a Venafi VSatellite is a self-updating application that serves as a runtime extension of TLS Protect Cloud, designed to operate seamlessly within your private infrastructure.</p>
+                <p>At its core, a Cyberark VSatellite is a self-updating application that serves as a runtime extension of TLS Protect Cloud, designed to operate seamlessly within your private infrastructure.</p>
                 <p>VSatellite is a modern, lightweight, self-contained, Kubernetes-based application runtime that runs on widely used Linux systems.</p>
-                <p>VSatellites can be deployed seamlessly within your internal infrastructure—whether in your on-premises data centers or your cloud environment. The choice is yours, ensuring flexibility and alignment with your operational needs. As part of the Professional Service Foundation Implementation provided by Venafi, a CyberArk company and its trusted implementation partners, you will receive expert guidance on the optimal deployment of VSatellites. Our partners are rigorously trained to follow the same proven procedures and best practices as our own consultants, ensuring a consistent and high-quality experience.</p>
+                <p>VSatellites can be deployed seamlessly within your internal infrastructure—whether in your on-premises data centers or your cloud environment. The choice is yours, ensuring flexibility and alignment with your operational needs. As part of the Professional Service Foundation Implementation provided by Cyberark, a CyberArk company and its trusted implementation partners, you will receive expert guidance on the optimal deployment of VSatellites. Our partners are rigorously trained to follow the same proven procedures and best practices as our own consultants, ensuring a consistent and high-quality experience.</p>
                 <p>Once deployed, VSatellites deliver critical functionality to enhance your environment, including:</p>
                 <p><strong>Internal Network Discovery:</strong> Identify and monitor certificates and keys across your internal network.</p>
                 <p><strong>Certificate Distribution:</strong> Push certificates securely to endpoints across your infrastructure.</p>
@@ -183,7 +190,7 @@
 
             <div id="Single-Sign-On" class="use-case">
                 <h2>Single-Sign-On</h2>
-                <p>To view how single sign on is configured in Venafi:</p>
+                <p>To view how single sign on is configured in Cyberark:</p>
                 <p>go to <b>Settings > Platform > Single Sign On.</b></p>
                 <p>From there you can see the OAuth/OIDC settings.</p>
                 <p><br></p>
@@ -193,7 +200,7 @@
 
             <div id="Dashboard" class="use-case">
                 <h2>Dashboard</h2>
-                <p>When you signed up for Venafi TLS Protect Cloud, the platform automatically scanned and inventoried the TLS certificates associated with publicly accessible endpoints linked to your email domain. This automated discovery process provides immediate visibility into the certificates protecting your organization's public-facing internet presence, ensuring you have a starting point for comprehensive machine identity management.</p>
+                <p>When you signed up for Cyberark Certificate Manager SAAS, the platform automatically scanned and inventoried the TLS certificates associated with publicly accessible endpoints linked to your email domain. This automated discovery process provides immediate visibility into the certificates protecting your organization's public-facing internet presence, ensuring you have a starting point for comprehensive machine identity management.</p>
                 <p>To review the certificates that were automatically discovered, navigate to the <b>Dashboard</b> in the menu bar. The Dashboard presents an organized view of the identified certificates, including key details such as expiration dates, issuing authorities, and associated applications. This information is critical for identifying potential risks, such as expired or misconfigured certificates, and taking proactive action.</p>
                 <p>If you need assistance locating your login credentials, you can find this information in the "Additional Information" section of the canvas. This section is designed to provide quick access to essential resources, ensuring you can seamlessly log in and start exploring the capabilities of TLS Protect Cloud.</p>
                 <p>By leveraging the automated inventory and the insights provided on the Dashboard, you can begin taking control of your machine identities. Whether you need to manage existing certificates or address any gaps identified during the discovery process, TLS Protect Cloud offers the tools and visibility needed to secure your organization effectively.</p>
@@ -236,11 +243,11 @@
 
             <div id="Internal-Discovery" class="use-case">
                 <h2>Internal Discovery</h2>
-                <p>Venafi TLS Protect Cloud offers two methods for internal discovery: <b>VSatellite</b> and <b>Scanafi</b>. For this Proof of Value (POV), we will utilize <b>Scanafi</b>.</p>
+                <p>Cyberark Certificate Manager SAAS offers two methods for internal discovery: <b>VSatellite</b> and <b>Scanafi</b>. For this Proof of Value (POV), we will utilize <b>Scanafi</b>.</p>
                 <h3>About VSatellite</h3>
-                <p><b>VSatellite</b> is a system that acts as a proxy, enabling secure communication between Venafi Cloud and your on-premises systems. Your virtual lab already includes a preconfigured VSatellite. When transitioning from POV to production, you will deploy and configure your own VSatellite within your environment.</p>
+                <p><b>VSatellite</b> is a system that acts as a proxy, enabling secure communication between Cyberark Cloud and your on-premises systems. Your virtual lab already includes a preconfigured VSatellite. When transitioning from POV to production, you will deploy and configure your own VSatellite within your environment.</p>
                 <h3>About Scanafi</h3>
-                <p><b>Scanafi</b> is a lightweight and simple method for discovering internal certificates within your environment. It can be run on any system within your network and communicates securely over port 443 to Venafi Cloud to populate your certificate inventory.</p>
+                <p><b>Scanafi</b> is a lightweight and simple method for discovering internal certificates within your environment. It can be run on any system within your network and communicates securely over port 443 to Cyberark Cloud to populate your certificate inventory.</p>
                 <h3>How to Run Scanafi</h3>
                 <ol>
                     <li>Navigate to: <b>Discovery > New > Basic Discovery</b>.</li>
@@ -255,7 +262,7 @@
                     <li>Copy the command to download Scanafi and then copy the command to execute it.</li>
                 </ol>
                 <h3>What Happens Next?</h3>
-                <p>Once executed, Scanafi will scan your environment, discover internal certificates, and securely report the results to Venafi Cloud. These certificates will then be visible in your cloud inventory, providing a complete view of your machine identities.</p>
+                <p>Once executed, Scanafi will scan your environment, discover internal certificates, and securely report the results to Cyberark Cloud. These certificates will then be visible in your cloud inventory, providing a complete view of your machine identities.</p>
                 <button id="button-use-case-Internal-Discovery" type="button">Complete This Use Case</button>
             </div>
 
@@ -280,7 +287,7 @@
                 <h3>Understanding Scan Types</h3>
                 <ul>
                     <li><b>Domain:</b> Indicates that the certificate was found in the Google Certificate Transparency (CT) Log.</li>
-                    <li><b>External:</b> Means the certificate was discovered on the public internet during Venafi's recurring Internet Discovery jobs.</li>
+                    <li><b>External:</b> Means the certificate was discovered on the public internet during Cyberark's recurring Internet Discovery jobs.</li>
                 </ul>
                 <p>These insights allow you to understand the context of the certificate's location and origin, providing valuable information for managing your inventory effectively.</p>
                 <button id="button-use-case-Certificate-Location" type="button">Complete This Use Case</button>
@@ -288,7 +295,7 @@
 
             <div id="Expiration-Notification" class="use-case">
                 <h2>Expiration Notification and Reporting (Self-Service)</h2>
-                <p>Venafi TLS Protect Cloud ensures proactive management of your certificates by automatically sending users reports and notifications about upcoming expirations and the overall health of your certificates.</p>
+                <p>Cyberark Certificate Manager SAAS ensures proactive management of your certificates by automatically sending users reports and notifications about upcoming expirations and the overall health of your certificates.</p>
                 <h3>Setting Up Daily Reports</h3>
                 <ol>
                     <li>In the top-right corner of the interface, click on your <b>Initials</b>.</li>
@@ -302,10 +309,10 @@
 
             <div id="Reporting-and-Notification-Policies" class="use-case">
                 <h2>Reporting and Notification Policies</h2>
-                <p>Venafi TLS Protect Cloud provides flexibility in managing certificate notifications and reports. In addition to users configuring their individual preferences, administrators can establish general reporting and notification policies to streamline certificate lifecycle management.</p>
+                <p>Cyberark Certificate Manager SAAS provides flexibility in managing certificate notifications and reports. In addition to users configuring their individual preferences, administrators can establish general reporting and notification policies to streamline certificate lifecycle management.</p>
                 <h3>Reviewing Notification Policies</h3>
                 <ol>
-                    <li>Navigate to <b>Settings > Certificate Lifecycle > Certificate Expiration Notification Policy</b>.</li>
+                    <li>Navigate to <b>Policies > Certificate Lifecycle > Certificate Expiration Notification Policy</b>.</li>
                     <li>Explore the available settings for customizing expiration notifications and reports.</li>
                 </ol>
                 <p>These policies enable you to tailor the notification frequency, recipients, and content to meet your organization's requirements. By setting up these policies, you can ensure timely alerts for upcoming expirations, reducing the risk of disruptions caused by expired certificates.</p>
@@ -314,17 +321,17 @@
 
             <div id="Certificate-Validation" class="use-case">
                 <h2>Certificate Validation</h2>
-                <p>Venafi TLS Protect Cloud provides two types of certificate validation to ensure certificates under its management are secure and properly used:</p>
+                <p>Cyberark Certificate Manager SAAS provides two types of certificate validation to ensure certificates under its management are secure and properly used:</p>
                 <ul>
                     <li><b>SSL/TLS Validation:</b> Verifies the proper configuration and usage of the certificate on servers.</li>
                     <li><b>Certificate Chain Validation:</b> Ensures the certificate chain is complete and trusted.</li>
                 </ul>
                 <h3>Importance of Certificate Validation</h3>
-                <p>As security, compliance, and technological advancements evolve, new criteria emerge for validating certificates and the servers hosting them. Venafi helps maintain the validity and proper usage of your certificates, ensuring robust protection for your machine identities.</p>
-                <p>Once certificates are imported into Venafi, validation automatically occurs every 24 hours. This process ensures certificates are securely installed and used appropriately. If a certificate fails validation, Venafi displays a warning message and sends a <b>Machine Identity Digest</b> email notification to specified recipients for immediate action.</p>
+                <p>As security, compliance, and technological advancements evolve, new criteria emerge for validating certificates and the servers hosting them. Cyberark helps maintain the validity and proper usage of your certificates, ensuring robust protection for your machine identities.</p>
+                <p>Once certificates are imported into Cyberark, validation automatically occurs every 24 hours. This process ensures certificates are securely installed and used appropriately. If a certificate fails validation, Cyberark displays a warning message and sends a <b>Machine Identity Digest</b> email notification to specified recipients for immediate action.</p>
                 <h3>Viewing Certificate Validation Status</h3>
                 <ol>
-                    <li>Sign in to Venafi TLS Protect Cloud.</li>
+                    <li>Sign in to Cyberark Certificate Manager SAAS.</li>
                     <li>Navigate to <b>Inventory > TLS Server Endpoints</b> in the toolbar.</li>
                     <li>Review the <b>TLS Validation</b> and <b>Chain Validation</b> columns in the TLS Server Endpoints table to see the status of each certificate.</li>
                     <li>To search for a specific certificate, use the search bar at the top.</li>
@@ -343,7 +350,7 @@
                     <li>Navigate to <b>Profile > Preferences > Reports</b>.</li>
                     <li>Ensure the Machine Identity Digest email option is enabled. This feature is enabled by default.</li>
                 </ol>
-                <p>The email offers a convenient way to monitor validation statuses and identify certificates that require attention without logging into Venafi frequently.</p>
+                <p>The email offers a convenient way to monitor validation statuses and identify certificates that require attention without logging into Cyberark frequently.</p>
                 <h3>Running Validation Manually</h3>
                 <p>To manually validate a certificate:</p>
                 <ol>
@@ -368,18 +375,19 @@
                 <p>To integrate with Microsoft Certificate Authority (CA), the first step is importing the issued certificates. This process adds the certificates to your inventory, ensuring they are properly managed and monitored.</p>
                 <h3>Steps to Import Certificates</h3>
                 <ol>
-                    <li>Navigate to <b>Settings > Certificate Authorities</b> in the Venafi TLS Protect Cloud interface.</li>
+                    <li>Navigate to <b>Settings > Certificate Authorities</b> in the Cyberark Certificate Manager SAAS interface.</li>
                     <li>Select your Microsoft CA from the list (provided in your virtual lab).</li>
                     <li>Click <b>Import</b>.</li>
                     <li>Under <b>Import Templates</b>, choose the template(s) corresponding to the certificates you want to import. Selecting all templates is acceptable for this process.</li>
                     <li>Click <b>Import</b> to begin the process.</li>
                 </ol>
-                <p>Once the import is complete, the issued certificates will appear in your inventory, allowing you to manage them effectively within Venafi TLS Protect Cloud.</p>
+                <p>Once the import is complete, the issued certificates will appear in your inventory, allowing you to manage them effectively within Cyberark Certificate Manager SAAS.</p>
+                <button id="button-use-case-Import-certificates-from-Microsoft-CA" type="button">Complete This Use Case</button>
             </div>
 
             <div id="Request-a-New-Certificate-Self-Service" class="use-case">
                 <h2>Request a New Certificate - Self Service</h2>
-                <p>End users or application owners can independently request certificates through Venafi TLS Protect Cloud, simplifying the certificate management process.</p>
+                <p>End users or application owners can independently request certificates through Cyberark Certificate Manager SAAS, simplifying the certificate management process.</p>
                 <h3>Steps to Request a Certificate</h3>
                 <ol>
                     <li>Click <b>New > Certificate Request</b>.</li>
@@ -387,7 +395,7 @@
                         <p><b>Note:</b> Applications are a way to group and organize certificates along with their respective owners.</p>
                     </li>
                     <li>For this example, select <b>Sample App Group 2</b>.</li>
-                    <li>Under <b>Request Method</b>, choose <b>Venafi automated certificate request</b>. This option allows Venafi to generate the key and CSR (Certificate Signing Request) automatically.</li>
+                    <li>Under <b>Request Method</b>, choose <b>Cyberark automated certificate request</b>. This option allows Cyberark to generate the key and CSR (Certificate Signing Request) automatically.</li>
                 </ol>
                 <h3>Filling Out the Request</h3>
                 <p>On the next screen, notice that most of the fields are pre-filled using templates, making the process simple and user-friendly. You only need to:</p>
@@ -441,7 +449,7 @@
                     <li>Review the settings for how auto-renewal is configured for certificates within the selected application.</li>
                 </ol>
                 <h3>About Applications and Auto Renewal</h3>
-                <p>Applications in Venafi TLS Protect Cloud serve as a way to group and manage certificates and their associated settings, such as auto-renewal policies. This grouping simplifies certificate lifecycle management, ensuring that related certificates share consistent policies and renewal schedules.</p>
+                <p>Applications in Cyberark Certificate Manager SAAS serve as a way to group and manage certificates and their associated settings, such as auto-renewal policies. This grouping simplifies certificate lifecycle management, ensuring that related certificates share consistent policies and renewal schedules.</p>
                 <p>By configuring auto-renewal settings, you can ensure that certificates within an application are renewed automatically, minimizing manual intervention and improving overall efficiency.</p>
                 <button id="button-use-case-Auto-Renewal" type="button">Complete This Use Case</button>
             </div>
@@ -661,7 +669,7 @@
 
             <div id="Webhooks-Splunk" class="use-case">
                 <h2>Webhooks / Splunk</h2>
-                <p>Venafi TLS Protect Cloud supports webhooks to seamlessly integrate with external systems such as Splunk, Slack, ServiceNow, or Microsoft Teams. These integrations enable real-time notifications, allowing you to stay informed about critical events, including expiring certificates, to safeguard machine identities and minimize the risk of certificate-related outages.</p>
+                <p>Cyberark Certificate Manager SAAS supports webhooks to seamlessly integrate with external systems such as Splunk, Slack, ServiceNow, or Microsoft Teams. These integrations enable real-time notifications, allowing you to stay informed about critical events, including expiring certificates, to safeguard machine identities and minimize the risk of certificate-related outages.</p>
                 <h3>Accessing Splunk in Your Virtual Lab</h3>
                 <ol>
                     <li>Log in to your virtual lab Splunk server. Refer to the login details provided under <b>Additional Information</b>.</li>
@@ -670,7 +678,7 @@
                     <li>Enter <b>*</b> in the search field to retrieve all available data for the selected period.</li>
                 </ol>
                 <h3>Webhook Integration Details</h3>
-                <p>For those interested in the configuration specifics, the following webhook has been pre-configured in your Venafi lab:</p>
+                <p>For those interested in the configuration specifics, the following webhook has been pre-configured in your Cyberark lab:</p>
                 <ul>
                     <li><b>Webhook URL:</b> The destination URL for sending notifications.</li>
                     <li><b>Event Types:</b> Notifications are triggered for events such as expiring certificates or renewal failures.</li>
@@ -684,9 +692,9 @@
                     <li><b>Centralized Monitoring:</b> Use tools like Splunk to aggregate and analyze events from multiple systems for comprehensive visibility.</li>
                 </ul>
                 <h3>Use Case: Monitoring Expiring Certificates</h3>
-                <p>By integrating Venafi TLS Protect Cloud with Splunk or other platforms, your team can stay vigilant about expiring certificates. For example, when a certificate nears its expiration date, a webhook triggers an event that appears in Splunk's event log. From there, you can use Splunk's powerful search and reporting features to analyze and act on the data.</p>
+                <p>By integrating Cyberark Certificate Manager SAAS with Splunk or other platforms, your team can stay vigilant about expiring certificates. For example, when a certificate nears its expiration date, a webhook triggers an event that appears in Splunk's event log. From there, you can use Splunk's powerful search and reporting features to analyze and act on the data.</p>
                 <h3>Next Steps</h3>
-                <p>Test the configured webhook in your Venafi lab environment by generating events (such as certificate expiration warnings) and confirming that the notifications appear in Splunk. This integration ensures a proactive approach to managing your machine identities.</p>
+                <p>Test the configured webhook in your Cyberark lab environment by generating events (such as certificate expiration warnings) and confirming that the notifications appear in Splunk. This integration ensures a proactive approach to managing your machine identities.</p>
                 <div class="image-wrapper medium"><img src="./images/splunkwebhook.png"></div>
                 </p>
                 <button id="button-use-case-Webhooks-Splunk" type="button">Complete This Use Case</button>
@@ -725,37 +733,37 @@
                 <h2>Documentation</h2>
                 <p>The following test items focus on business and risk considerations rather than operational tasks. These discussions can take place at the beginning or end of the Proof of Value (POV) process.</p>
                 <h3>Comprehensive Online Documentation</h3>
-                <p>Venafi TLS Protect provides extensive online documentation to support users in understanding and utilizing the platform effectively. Access the documentation using the link provided under <b>Additional Information</b>.</p>
+                <p>Cyberark Certificate Manager provides extensive online documentation to support users in understanding and utilizing the platform effectively. Access the documentation using the link provided under <b>Additional Information</b>.</p>
                 <h3>Key Sections of the Documentation</h3>
                 <ul>
-                    <li><b>Home:</b> Your starting point for all Venafi Control Plane resources.</li>
+                    <li><b>Home:</b> Your starting point for all Cyberark Control Plane resources.</li>
                     <li><b>What's New:</b> Stay updated on the latest enhancements, updates, and capabilities.</li>
-                    <li><b>All Products:</b> Explore detailed information about Venafi's full product suite.</li>
-                    <li><b>Developers:</b> Access API resources and guides for integrating with Venafi solutions.</li>
+                    <li><b>All Products:</b> Explore detailed information about Cyberark's full product suite.</li>
+                    <li><b>Developers:</b> Access API resources and guides for integrating with Cyberark solutions.</li>
                     <li><b>Troubleshooting:</b> Find solutions to common issues and improve system performance.</li>
                 </ul>
                 <h3>Featured Content</h3>
                 <ul>
-                    <li><b>What's New:</b> Learn about the latest updates and new capabilities in the Venafi Control Plane.</li>
+                    <li><b>What's New:</b> Learn about the latest updates and new capabilities in the Cyberark Control Plane.</li>
                     <li><b>TLS Protect Cloud:</b> Eliminate TLS certificate-related outages with cutting-edge solutions.</li>
                     <li><b>Firefly:</b> Issue trusted certificates quickly and efficiently at the speed of light.</li>
                     <li><b>TLS Protect for Kubernetes:</b> Secure machine identity activity in Kubernetes clusters.</li>
                 </ul>
                 <h3>Getting Started</h3>
-                <p>New to Venafi Control Plane? The documentation includes resources to help you get started:</p>
+                <p>New to Cyberark Control Plane? The documentation includes resources to help you get started:</p>
                 <ul>
                     <li><b>Getting Started with Control Plane:</b> Learn the fundamentals and start gaining control of your machine identities.</li>
                     <li><b>What is the Control Plane for Machine Identities?</b> Understand its purpose and how it fits into your infrastructure.</li>
                     <li><b>Dev Central:</b> Learn how to manage machine identities via API by visiting the developer-focused section.</li>
                     <li><b>Looking for TLS Protect Datacenter Docs?</b> Access specific documentation for managing datacenter environments.</li>
                 </ul>
-                <p>The Venafi documentation is designed to address a wide range of use cases, from technical troubleshooting to strategic business needs, ensuring you have the knowledge required to succeed with TLS Protect Cloud.</p>
+                <p>The Cyberark documentation is designed to address a wide range of use cases, from technical troubleshooting to strategic business needs, ensuring you have the knowledge required to succeed with TLS Protect Cloud.</p>
                 <button id="button-use-case-Documentation" type="button">Complete This Use Case</button>
             </div>
 
             <div id="API-reference-documentation" class="use-case">
                 <h2>API Reference Documentation</h2>
-                <p>Venafi TLS Protect Cloud provides a comprehensive API reference that enables programmatic access to its features and functionality. This document includes sample code in various programming languages to help developers integrate TLS Protect Cloud into their workflows effortlessly. For access, see the link provided under <b>Additional Information</b>.</p>
+                <p>Cyberark Certificate Manager SAAS provides a comprehensive API reference that enables programmatic access to its features and functionality. This document includes sample code in various programming languages to help developers integrate TLS Protect Cloud into their workflows effortlessly. For access, see the link provided under <b>Additional Information</b>.</p>
                 <h3>Overview of the TLS Protect Cloud REST API</h3>
                 <p>The TLS Protect Cloud REST API mirrors the functionality available via the Web User Interface (UI), allowing you to programmatically perform any task that can be executed through the UI. By leveraging the API, you can automate operations to achieve greater consistency and scalability across your organization.</p>
                 <h3>Key Features of the REST API</h3>
@@ -789,7 +797,7 @@
 
             <div id="SaaS-Overall-System-Status" class="use-case">
                 <h2>SaaS Overall System Status</h2>
-                <p>Venafi TLS Protect Cloud is a true multi-tenant SaaS solution, designed to provide reliability, scalability, and transparency for its customers. To ensure confidence in the platform's performance, a dedicated status page is available to display the current and historical system status. You can access it at the following link: <a href="https://status.venafi.cloud/" target="_blank" rel="noopener noreferrer">https://status.venafi.cloud</a>.</p>
+                <p>Cyberark Certificate Manager SAAS is a true multi-tenant SaaS solution, designed to provide reliability, scalability, and transparency for its customers. To ensure confidence in the platform's performance, a dedicated status page is available to display the current and historical system status. You can access it at the following link: <a href="https://status.venafi.cloud/" target="_blank" rel="noopener noreferrer">https://status.venafi.cloud</a>.</p>
                 <h3>Why System Status Matters</h3>
                 <p>In a SaaS environment, visibility into the platform's health and uptime is not just a convenience—it's a necessity. Customers depend on TLS Protect Cloud for critical machine identity management tasks. Outages or performance issues could disrupt operations, compromise security, and lead to certificate-related outages.</p>
                 <h3>Key Benefits of the Status Page</h3>
@@ -809,18 +817,18 @@
                 </ul>
                 <h3>Setting the Standard for SaaS Providers</h3>
                 <p>In today's competitive SaaS landscape, customers demand more from their providers. A robust status page demonstrates a commitment to accountability and operational excellence. Customers should expect nothing less from a platform that manages their most sensitive machine identities and certificates. Without such transparency, trust erodes, and organizations may question the provider's ability to deliver reliable service.</p>
-                <p>By offering a real-time and historical system status page, Venafi TLS Protect Cloud sets the standard for what customers should demand from a SaaS solution. This level of transparency is not just a feature—it's a necessity for earning and retaining customer trust.</p>
+                <p>By offering a real-time and historical system status page, Cyberark Certificate Manager SAAS sets the standard for what customers should demand from a SaaS solution. This level of transparency is not just a feature—it's a necessity for earning and retaining customer trust.</p>
                 <button id="button-use-case-SaaS-Overall-System-Status" type="button">Complete This Use
                     Case</button>
             </div>
 
             <div id="Technical-Support" class="use-case">
                 <h2>Technical Support</h2>
-                <p>Venafi Technical Support is available 24x7x365, providing global "follow the sun" coverage to ensure that no matter where you are, you have access to real-time assistance. With teams based in Salt Lake City, UT, and around the world, you will always talk to skilled engineers ready to resolve your issues promptly.</p>
+                <p>Cyberark Technical Support is available 24x7x365, providing global "follow the sun" coverage to ensure that no matter where you are, you have access to real-time assistance. With teams based in Salt Lake City, UT, and around the world, you will always talk to skilled engineers ready to resolve your issues promptly.</p>
                 <h3>Comprehensive and Accessible Support</h3>
                 <ul>
                     <li><b>Multiple Contact Channels:</b> Support cases can be submitted online, via email, or through our global phone numbers for urgent issues.</li>
-                    <li><b>Seamless Engagement:</b> Whether you're a customer, partner, or part of the Venafi team, our support extends across onboarding, technical troubleshooting, and operational guidance.</li>
+                    <li><b>Seamless Engagement:</b> Whether you're a customer, partner, or part of the Cyberark team, our support extends across onboarding, technical troubleshooting, and operational guidance.</li>
                     <li><b>24/7 Monitoring:</b> Our support queue is monitored continuously, ensuring rapid response and resolution times.</li>
                 </ul>
                 <h3>Proactive Resolution and Escalation</h3>
@@ -837,16 +845,16 @@
                     <li><b>Severity 4 (Low):</b> Next business day</li>
                 </ul>
                 <h3>Why It Matters</h3>
-                <p>Reliable, always-on support is essential for maintaining mission-critical systems. With Venafi, you gain peace of mind knowing that your issues will be addressed promptly and with the full backing of our global teams, ensuring your operations stay secure and uninterrupted.</p>
+                <p>Reliable, always-on support is essential for maintaining mission-critical systems. With Cyberark, you gain peace of mind knowing that your issues will be addressed promptly and with the full backing of our global teams, ensuring your operations stay secure and uninterrupted.</p>
                 <button id="button-use-case-Technical-Support" type="button">Complete This Use
                     Case</button>
             </div>
 
             <div id="Eco-System-Marketplace" class="use-case">
                 <h2>Ecosystem & Marketplace</h2>
-                <p>Venafi boasts the largest partner ecosystem in the machine identity management space, empowering customers with an unparalleled range of integrations and solutions. Our ecosystem enables partners to build seamless integrations with Venafi's platform, ensuring that our customers can easily extend and customize their machine identity management capabilities.</p>
-                <h3>Venafi Marketplace</h3>
-                <p>The <a href="https://marketplace.venafi.com/xchange/620d2d6ed419fb06a5c5bd36" target="_blank" rel="noopener noreferrer">Venafi Marketplace</a> is a central hub where customers can explore and access a wide variety of integrations and solutions built by our partners. These integrations are designed to work effortlessly with Venafi's platform and cover areas such as:</p>
+                <p>Cyberark boasts the largest partner ecosystem in the machine identity management space, empowering customers with an unparalleled range of integrations and solutions. Our ecosystem enables partners to build seamless integrations with Cyberark's platform, ensuring that our customers can easily extend and customize their machine identity management capabilities.</p>
+                <h3>Cyberark Marketplace</h3>
+                <p>The <a href="https://marketplace.venafi.com/xchange/620d2d6ed419fb06a5c5bd36" target="_blank" rel="noopener noreferrer">Cyberark Marketplace</a> is a central hub where customers can explore and access a wide variety of integrations and solutions built by our partners. These integrations are designed to work effortlessly with Cyberark's platform and cover areas such as:</p>
                 <ul>
                     <li><b>Certificate Authorities:</b> Simplify certificate issuance and management by integrating with leading CAs.</li>
                     <li><b>DevOps Tools:</b> Automate workflows and enhance security for DevOps environments.</li>
@@ -854,37 +862,37 @@
                     <li><b>Security Solutions:</b> Enhance overall security posture with integrations into SIEMs, firewalls, and more.</li>
                 </ul>
                 <h3>Why This Matters</h3>
-                <p>By leveraging the Venafi ecosystem, customers can:</p>
+                <p>By leveraging the Cyberark ecosystem, customers can:</p>
                 <ul>
                     <li><b>Seamlessly Extend Functionality:</b> Use prebuilt integrations to add capabilities without additional development effort.</li>
                     <li><b>Achieve Scalability:</b> Manage machine identities across complex, hybrid environments with ease.</li>
-                    <li><b>Save Costs:</b> The vast majority of these integrations are free for Venafi customers, reducing operational overhead.</li>
+                    <li><b>Save Costs:</b> The vast majority of these integrations are free for Cyberark customers, reducing operational overhead.</li>
                     <li><b>Enhance Interoperability:</b> Ensure that all components of your tech stack work together seamlessly.</li>
                 </ul>
                 <h3>Integration Support</h3>
-                <p>Every integration available in the Venafi Marketplace is fully supported, ensuring reliability and peace of mind. Whether you're securing Kubernetes clusters, integrating with certificate authorities, or managing endpoints in hybrid environments, Venafi's ecosystem partners provide trusted solutions to meet your needs.</p>
+                <p>Every integration available in the Cyberark Marketplace is fully supported, ensuring reliability and peace of mind. Whether you're securing Kubernetes clusters, integrating with certificate authorities, or managing endpoints in hybrid environments, Cyberark's ecosystem partners provide trusted solutions to meet your needs.</p>
                 <h3>Explore the Ecosystem</h3>
-                <p>Visit the <a href="https://marketplace.venafi.com/xchange/620d2d6ed419fb06a5c5bd36" target="_blank" rel="noopener noreferrer">Venafi Marketplace</a> to discover the wide range of integrations and solutions available. With Venafi's extensive partner network and industry-leading support, you can confidently build a secure, scalable, and efficient machine identity management strategy.</p>
+                <p>Visit the <a href="https://marketplace.venafi.com/xchange/620d2d6ed419fb06a5c5bd36" target="_blank" rel="noopener noreferrer">Cyberark Marketplace</a> to discover the wide range of integrations and solutions available. With Cyberark's extensive partner network and industry-leading support, you can confidently build a secure, scalable, and efficient machine identity management strategy.</p>
                 <button id="button-use-case-Eco-System-Marketplace" type="button">Complete This Use Case</button>
             </div>
 
             <div id="User-Group-Community-Training" class="use-case">
                 <h2>User Group / Community / Training</h2>
-                <p>The <b>Venafi Warrior Community</b> is your launchpad to learn, connect, and explore the wealth of resources available to you as a Venafi customer. It's a vibrant space where clients share knowledge, best practices, and tricks of the trade, while engaging with peers and Venafi experts to enhance their machine identity security capabilities.</p>
-                <h3>Join the Venafi Warrior Community</h3>
-                <p>Start your journey here: <a href="https://community.venafi.com/?_gl=1*u6agj4*_gcl_au*NTM0MzE2MDIuMTcyOTUwMTExNQ..*_ga*MTk4MTAxMTQyOC4xNzI5NTAxMTE1*_ga_TZC9DLSDTX*MTczNDc3NDk3My44LjEuMTczNDc3NTE5NS4wLjAuMA.." target="_blank" rel="noopener noreferrer">Venafi Warrior Community</a>.</p>
+                <p>The <b>Cyberark Community</b> is your launchpad to learn, connect, and explore the wealth of resources available to you as a Cyberark customer. It's a vibrant space where clients share knowledge, best practices, and tricks of the trade, while engaging with peers and Cyberark experts to enhance their machine identity security capabilities.</p>
+                <h3>Join the Cyberark Community</h3>
+                <p>Start your journey here: <a href="https://community.venafi.com/?_gl=1*u6agj4*_gcl_au*NTM0MzE2MDIuMTcyOTUwMTExNQ..*_ga*MTk4MTAxMTQyOC4xNzI5NTAxMTE1*_ga_TZC9DLSDTX*MTczNDc3NDk3My44LjEuMTczNDc3NTE5NS4wLjAuMA.." target="_blank" rel="noopener noreferrer">Cyberark Community</a>.</p>
                 <h3>What You Can Do</h3>
                 <h4>Learn</h4>
                 <p>Expand your expertise in machine identity security with resources like:</p>
                 <ul>
-                    <li><b>Venafi Customer Support:</b> Access comprehensive support articles and step-by-step guidance.</li>
+                    <li><b>Cyberark Customer Support:</b> Access comprehensive support articles and step-by-step guidance.</li>
                     <li><b>Documentation:</b> Explore Trust Protection Platform and Control Plane documentation.</li>
-                    <li><b>Venafi Academy:</b> Broaden your knowledge with training available exclusively to community members.</li>
+                    <li><b>Cyberark Academy:</b> Broaden your knowledge with training available exclusively to community members.</li>
                 </ul>
                 <h4>Connect</h4>
                 <p>Network with peers, engage in discussions, and grow your connections through:</p>
                 <ul>
-                    <li><b>Corporate Events:</b> Attend events hosted by Venafi to stay up-to-date.</li>
+                    <li><b>Corporate Events:</b> Attend events hosted by Cyberark to stay up-to-date.</li>
                     <li><b>1:1 Industry Networking:</b> Build meaningful professional relationships.</li>
                     <li><b>Product Discussions:</b> Join conversations about products and solutions.</li>
                     <li><b>Community Introductions:</b> Meet and collaborate with fellow customers.</li>
@@ -900,8 +908,8 @@
                 </ul>
                 <h3>Other Ways to Engage</h3>
                 <p>The Warrior Community goes beyond product enhancement requests. Join forums, participate in contests, and gain insights from the Customer Success Corner. Whether you're submitting ideas, fixing bugs, or contributing to discussions, this is your hub for meaningful engagement.</p>
-                <p>Looking for real-time interaction? Join the Venafi Slack channel to connect directly with developers and other members of the community:</p>
-                <p><a href="https://join.slack.com/t/venafi-integrations/shared_invite/zt-i8fwc379-kDJlmzU8OiIQOJFSwiA~dg" target="_blank" rel="noopener noreferrer">Join Venafi Slack</a></p>
+                <p>Looking for real-time interaction? Join the Cyberark Slack channel to connect directly with developers and other members of the community:</p>
+                <p><a href="https://join.slack.com/t/venafi-integrations/shared_invite/zt-i8fwc379-kDJlmzU8OiIQOJFSwiA~dg" target="_blank" rel="noopener noreferrer">Join Cyberark Slack</a></p>
                 <h3>Why Join?</h3>
                 <p>As a Venafi Warrior, you become a leader, ideator, and discoverer in shaping the future of machine identity security. Be part of the conversation, contribute to innovation, and steer the direction of this dynamic field. If this resonates with you, join today and make your mark!</p>
                 <button id="button-use-case-User-Group-Community-Training" type="button">Complete This Use Case</button>
@@ -927,8 +935,8 @@
             <div id="Workshop-housekeeping" class="use-case">
                 <h1>Housekeeping & System Access</h1>
                 <h2>Preconfigured Environment</h2>
-                <p>You have been assigned a <strong>Venafi Tenant</strong>, which is already configured. During the lab, you’ll work on identifying and fixing issues within this environment.</p>
-                <p><strong>Important:</strong> Some labs require changes to be made on the <strong>Venafi Tenant</strong>, while others require modifications on the <strong>endpoints</strong>. Think carefully before making changes to ensure you're adjusting the correct component.</p>
+                <p>You have been assigned a <strong>Cyberark Tenant</strong>, which is already configured. During the lab, you’ll work on identifying and fixing issues within this environment.</p>
+                <p><strong>Important:</strong> Some labs require changes to be made on the <strong>Cyberark Tenant</strong>, while others require modifications on the <strong>endpoints</strong>. Think carefully before making changes to ensure you're adjusting the correct component.</p>
                 <h2>Network Scope</h2>
                 <p>The lab environment consists of both <strong>publicly accessible</strong> and <strong>internal systems</strong>.</p>
                 <h2>Internal System Access</h2>
@@ -963,7 +971,7 @@
                     <p>Please log in to the bastion host using the link provided under <strong>Additional Information</strong>.</p>
                     <p>Essential details are available on Canvas—some labs cannot be completed without this information.</p>
                     <p>To access the bastion host, you must first log in to the Guacamole web server.</p>
-                    <p>From the bastion host, you can open this document and the Venafi Cloud UI directly.</p>
+                    <p>From the bastion host, you can open this document and the Cyberark Cloud UI directly.</p>
                     <p>This setup makes it much easier to copy and paste data.</p>
                   </div> -->
 
@@ -1049,7 +1057,7 @@
                         <p>One option is to manually assign the certificates to an application. This simple, one-time action is perfectly valid and will solve the problem in the long term by ensuring the correct teams are notified if anything happens to their certificates. It also improves visibility and accountability around certificate ownership.</p>
                         <details>
                             <summary onclick="hintsUsed(10)">Hint 3</summary>
-                            <p>The alternative is to automatically assign certificates to applications based on port and IP mappings. You can do this by navigating to the application and reviewing its associated ports and IP addresses. To enable this method, you'll need to remove the certificates from the inventory and re-run the network discovery process. This approach reduces manual effort and helps maintain accurate, ongoing certificate-to-application mappings.</p>
+                            <p>The alternative is to automatically assign certificates to applications based on port and IP mappings. You can do this by navigating to the application and reviewing its associated ports and IP addresses. This approach reduces manual effort and helps maintain accurate, ongoing certificate-to-application mappings.</p>
                         </details>
                     </details>
                 </details>
@@ -1188,7 +1196,7 @@ QQLoFVPXLf+iRN7wQKcQAAAAAAECAwQF
 
                                                         <details>
                                                             <summary onclick="hintsUsed(10)">Hint 11</summary>
-                                                            <p>We still don't know on which system this certificate is located. We'll use Venafi to find it. Add to your Network Disocvery from Lab 1 port 5432.</p>
+                                                            <p>We still don't know on which system this certificate is located. We'll use Cyberark to find it. Add to your Network Disocvery from Lab 1 port 5432.</p>
 
                                                             <details>
                                                                 <summary onclick="hintsUsed(10)">Hint 12</summary>
@@ -1200,7 +1208,7 @@ QQLoFVPXLf+iRN7wQKcQAAAAAAECAwQF
         
                                                                     <details>
                                                                         <summary onclick="hintsUsed(10)">Hint 13</summary>
-                                                                        <p>The information is found on the payroll system. You can access the console/ssh via the bastion host: <a href="https://payroll.internal/console" target="_blank" rel="noopener noreferrer">https://payroll.internal/console</a></p>
+                                                                        <p>The information is found on the payroll system. You can access the console/ssh via the bastion host: <a href="https://payrollweb.internal/console" target="_blank" rel="noopener noreferrer">https://payrollweb.internal/console</a></p>
             
                                                                         <details>
                                                                             <summary onclick="hintsUsed(10)">Hint 14</summary>
@@ -1266,7 +1274,7 @@ kY4fk+odEmIaktCxhauCAAAAAAECAwQF
                                                                                                 <p>Certificate Path (including filename): <strong>/var/lib/postgresql/ssl/certs/db.crt</strong></p>
                                                                                                 <p>Private Key Path (including filename:) <strong>/var/lib/postgresql/ssl/private/db.key</strong></p>
                                                                                                 <p>Certificate Chain Path (including filename): <strong>/var/lib/postgresql/ssl/dbchain.crt</strong></p>
-                                                                                                <p>Service Name: <strong>postgress</strong></p>
+                                                                                                <p>Service Name: <strong>postgres</strong></p>
                                                                                                 <p>Push upon saving: enabled</p>
                                                                                                 <div class="image-wrapper smedium"><img src="./images/lab5-step5.png"></div>
                                                                                                 <p></p>
@@ -1361,10 +1369,10 @@ kY4fk+odEmIaktCxhauCAAAAAAECAwQF
                         </tr>
                         <tr>
                             <td>Unknown error</td>
-                            <td>Venafi encountered an error but could not identify it.</td>
+                            <td>Cyberark encountered an error but could not identify it.</td>
                             <td>Warning</td>
                             <td>
-                                When an unknown error occurs, Venafi automatically captures the details of the
+                                When an unknown error occurs, Cyberark automatically captures the details of the
                                 condition and submits it for future enhancement.<br>
                                 If you have additional questions, contact Support.
                             </td>
@@ -1413,7 +1421,7 @@ kY4fk+odEmIaktCxhauCAAAAAAECAwQF
                         </tr>
                         <tr>
                             <td>No certificate present</td>
-                            <td>The TLS target specified in the Venafi platform didn't present a certificate on a
+                            <td>The TLS target specified in the Cyberark platform didn't present a certificate on a
                                 specified port.</td>
                             <td>Warning</td>
                             <td>
@@ -1426,16 +1434,16 @@ kY4fk+odEmIaktCxhauCAAAAAAECAwQF
                         <tr>
                             <td>Unexpected certificate found</td>
                             <td>Certificate found on the TLS target contains a different fingerprint than the one that
-                                Venafi expected.</td>
+                                Cyberark expected.</td>
                             <td>Warning</td>
                             <td>Install the correct certificate on the endpoint.</td>
                         </tr>
                         <tr>
                             <td>Unknown error</td>
-                            <td>Venafi encountered an error but could not identify it.</td>
+                            <td>Cyberark encountered an error but could not identify it.</td>
                             <td>Warning</td>
                             <td>
-                                When an unknown error occurs, Venafi automatically captures the details of the condition
+                                When an unknown error occurs, Cyberark automatically captures the details of the condition
                                 and submits it for future enhancement.<br>
                                 If you have additional questions, contact <a href="https://support.venafi.com/" target="_blank" rel="noopener noreferrer">Support</a>.
                             </td>

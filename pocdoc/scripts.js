@@ -741,8 +741,8 @@ function generateFeedbackSection(useCaseId) {
             <span class="smiley good" onclick="selectSmiley('${useCaseId}', 'good')"></span>
             <span class="smiley very-good" onclick="selectSmiley('${useCaseId}', 'very-good')"></span>
         </div>
-        <textarea id="assistance-message-${useCaseId}" placeholder="Enter your feedback here..." rows="3"
-            style="width: 100%; margin-top: 10px;"></textarea>
+        <textarea id="assistance-message-${useCaseId}" placeholder="We're looking forward hearing from you..." rows="3"
+            style="width: 100%; margin-top: 10px; height: 150px;"></textarea>
         <button onclick="sendAssistanceMessage('${useCaseId}')">Send Feedback</button>
     `;
 

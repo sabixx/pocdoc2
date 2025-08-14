@@ -15,7 +15,8 @@
         "text": "Use the following link to download the root certificate for the lab ADCS certificate authority",
         "credentials": [
             {
-                "url": "http://demosite1-@@PROSPECT@@.mimlab.io/Venafi-TLSPC-ADCS-Root.pem"
+                "url": "http://demosite1.@@PROSPECT@@.mimlab.io/Venafi-TLSPC-ADCS-Root.pem"
+                
             }
         ]
     },
