@@ -7,7 +7,6 @@ docker stop pcodoc_activeusecases_withstandrdpassword && docker remove pcodoc_ac
 docker stop pcodoc_activeusecases_withcustompasswd && docker remove pcodoc_activeusecases_withcustompasswd 
 
 
-
 docker build -t pcodoc_activeusecases .
 
 docker stop pcodoc_activeusecases_withcustompasswd && docker remove pcodoc_activeusecases_withcustompasswd 

@@ -1,7 +1,7 @@
 {
     "welcome": {
         "temas_description": "Welcome Message",
-        "text": "TLS Protect Cloud login details",
+        "text": "Certificate Manager SaaS login details",
         "credentials": [
             {
                 "url": "@@TLSPCURL@@",
@@ -19,7 +19,7 @@
                 
             }
         ]
-    },
+    },    "feedback": {},
     "prepare-about-vsat": {
         "temas_description": "About Vsats",
         "text": "Link to the documentation section:",
@@ -53,7 +53,7 @@
     },
     "Dashboard": {
         "temas_description": "Dashboard1",
-        "text": "TLS Protect Cloud login details",
+        "text": "Certificate Manager SaaS login details",
         "credentials": [
             {
                 "url": "@@TLSPCURL@@",
@@ -67,7 +67,7 @@
     },
     "Internet-Discovery": {
         "temas_description": "Internet Discovery",
-        "text": "TLS Protect Cloud login details",
+        "text": "Certificate Manager SaaS login details",
         "credentials": [
             {
                 "url": "@@TLSPCURL@@",
@@ -82,7 +82,7 @@
     },
     "Dashboard2": {
         "temas_description": "Internet Discovery",
-        "text": "TLS Protect Cloud login details",
+        "text": "Certificate Manager SaaS login details",
         "credentials": [
             {
                 "url": "@@TLSPCURL@@",
@@ -93,7 +93,7 @@
     },
     "Certificate-Location": {
         "temas_description": "Internet Discovery",
-        "text": "TLS Protect Cloud login details",
+        "text": "Certificate Manager SaaS login details",
         "credentials": [
             {
                 "url": "@@TLSPCURL@@",
@@ -104,7 +104,7 @@
     },
     "Expiration-Notification": {
         "temas_description": "Internet Discovery",
-        "text": "TLS Protect Cloud login details",
+        "text": "Certificate Manager SaaS login details",
         "credentials": [
             {
                 "url": "@@TLSPCURL@@",
@@ -126,7 +126,7 @@
     },
     "Certificate-Validation": {
         "temas_description": "Internet Discovery",
-        "text": "TLS Protect Cloud login details",
+        "text": "Certificate Manager SaaS login details",
         "credentials": [
             {
                 "url": "@@TLSPCURL@@",
@@ -137,7 +137,7 @@
     },
     "Import-certificates-from-Microsoft-CA": {
         "temas_description": "Internet Discovery",
-        "text": "TLS Protect Cloud login details",
+        "text": "Certificate Manager SaaS login details",
         "credentials": [
             {
                 "url": "@@TLSPCURL@@",
@@ -148,7 +148,7 @@
     },
     "Request-a-New-Certificate-Self-Service": {
         "temas_description": "Internet Discovery",
-        "text": "TLS Protect Cloud login details",
+        "text": "Certificate Manager SaaS login details",
         "credentials": [
             {
                 "url": "@@TLSPCURL@@",
@@ -162,7 +162,7 @@
     },
     "Request-a-New-Certificate-with-Approval-Required": {
         "temas_description": "Request-a-New-Certificate-with-Approval-Required",
-        "text": "TLS Protect Cloud login details",
+        "text": "Certificate Manager SaaS login details",
         "credentials": [
             {
                 "url": "@@TLSPCURL@@",
@@ -173,7 +173,7 @@
     },
     "Auto-Renewal": {
         "temas_description": "Internet Discovery",
-        "text": "TLS Protect Cloud login details",
+        "text": "Certificate Manager SaaS login details",
         "credentials": [
             {
                 "url": "@@TLSPCURL@@",
@@ -273,7 +273,7 @@
     },
     "Apache-Automated-Installation": {
         "temas_description": "Apache Automated Installation",
-        "text": "TLS Protect Cloud login details",
+        "text": "Certificate Manager SaaS login details",
         "credentials": [
             {
                 "url": "@@TLSPCURL@@",
@@ -296,7 +296,7 @@
     },
     "Tomcat-Automated-Installation": {
         "temas_description": "Tomcat Automated Installation",
-        "text": "TLS Protect Cloud login details",
+        "text": "Certificate Manager SaaS login details",
         "credentials": [
             {
                 "url": "@@TLSPCURL@@",
@@ -319,7 +319,7 @@
     },
     "NetScaler-Automated-Installation": {
         "temas_description": "NetScaler Automated Installation",
-        "text": "TLS Protect Cloud login details",
+        "text": "Certificate Manager SaaS login details",
         "credentials": [
             {
                 "url": "@@TLSPCURL@@",
@@ -380,7 +380,7 @@
     },
     "Documentation": {
         "temas_description": "",
-        "text": "TLS Protect Cloud Documentation",
+        "text": "Certificate Manager SaaS Documentation",
         "credentials": [
             {
                 "url": "https://docs.venafi.cloud/vaas/about-vaas/"
@@ -398,7 +398,7 @@
     },
     "SaaS-Overall-System-Status": {
         "temas_description": "",
-        "text": "TLS Protect Cloud Status",
+        "text": "Certificate Manager SaaS Status",
         "credentials": [
             {
                 "url": "https://status.venafi.cloud/"
@@ -407,7 +407,7 @@
     },
     "Technical-Support": {
         "temas_description": "",
-        "text": "TLS Protect Cloud login details",
+        "text": "Certificate Manager SaaS login details",
         "credentials": [
             {
                 "url": "https://www.gartner.com/reviews/market/public-key-infrastructure-pki-and-certificate-lifecycle-management/vendor/venafi/product/venafi-tls-protect"
@@ -454,7 +454,7 @@
     },
     "Workshop-housekeeping": {
         "temas_description": "Workshop Housekeeping Information",
-        "text": "This section contains login details for TLS Protect Cloud and the Bastion Host used in the workshop.",
+        "text": "This section contains login details for Certificate Manager SaaS and the Bastion Host used in the workshop.",
         "credentials": [
             {
                 "url": "https://bastion-@@PROSPECT@@.mimlab.io",
