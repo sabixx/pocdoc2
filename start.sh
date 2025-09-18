@@ -112,7 +112,7 @@ chown www-data:www-data /var/log/php_errors.log
 # Start PHP-FPM
 php-fpm -D
 
-echo 'version 040'
+echo 'version 042'
 
 # Start Nginx
 nginx -g "daemon off;" &

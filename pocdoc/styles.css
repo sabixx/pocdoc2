@@ -425,3 +425,11 @@ ul {
 ul li {
     margin-bottom: 5px; /* Spacing between items */
 }
+
+#sidebar-version{
+  position: absolute; left: 14px; bottom: 10px;
+  font: 600 11px/1.2 Mulish, system-ui, sans-serif;
+  color: #6b7280;        /* muted gray */
+  opacity: .85;
+  user-select: none;
+}

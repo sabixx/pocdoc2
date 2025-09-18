@@ -25,10 +25,12 @@ docker exec -it pcodoc_activeusecases_withcustompasswd /bin/sh
 # POC use cases
 #-e ACTIVEUSECASES="welcome,feedback,Setup-and-Overview,prepare-about-vsat,prepare-vsat-firewall,prepare-vsat-system,Single-Sign-On,Dashboard,Internet-Discovery,Internal-Discovery,Dashboard2,Certificate-Location,Expiration-Notification,Reporting-and-Notification-Policies,Certificate-Validation,Import-certificates-from-Microsoft-CA,Request-a-New-Certificate-Self-Service,Request-a-New-Certificate-with-Approval-Required,Auto-Renewal,Windows-IIS-Automated-Installation,Apache-Automated-Installation,Tomcat-Automated-Installation,NetScaler-Automated-Installation,Full-automation-via-CLI-API-VCert,Default-Logging,Webhooks-Splunk,Reporting,Documentation,API-reference-documentation,SaaS-Overall-System-Status,Technical-Support,Eco-System-Marketplace,User-Group-Community-Training,Appendix" \
 
+# -e ACTIVEUSECASES="welcome,feedback,Setup-and-Overview,prepare-about-vsat,prepare-vsat-firewall,prepare-vsat-system,Single-Sign-On,Dashboard,Internet-Discovery,Internal-Discovery,Dashboard2,Certificate-Location,Expiration-Notification,Reporting-and-Notification-Policies,Certificate-Validation,Import-certificates-from-Microsoft-CA,Request-a-New-Certificate-Self-Service,Request-a-New-Certificate-with-Approval-Required,Auto-Renewal,Windows-IIS-Automated-Installation,Apache-Automated-Installation,Tomcat-Automated-Installation,NetScaler-Automated-Installation,Full-automation-via-CLI-API-VCert,Default-Logging,Webhooks-Splunk,Reporting,Documentation,API-reference-documentation,SaaS-Overall-System-Status,Technical-Support,Eco-System-Marketplace,User-Group-Community-Training,Appendix" \
 
 
-#workshop use cases -- NOT COMPETE
+#workshop use cases 
 #-e ACTIVEUSECASES="Workshop-welcome,feedback,Workshop-housekeeping,lab1-a-cisos-request,lab2-the-hidden-risks,lab3-MainframeMeltdown,lab4-MagicOfAutomation,lab5-financial-cert-expired,Appendix" \
+
 
 docker logs pcodoc_activeusecases_withcustompasswd -f
 

@@ -21,6 +21,7 @@
             <div id="logo-section">
                 <img src="./images/Venafi_CYBR_R_logo_1200x377.png" alt="Cyberark Logo">
             </div>
+
             <div id="use-case-menu">
                 <a href="#welcome" onclick="showContent('welcome')" id="link-welcome">Welcome</a>
                 <a href="#feedback" onclick="showContent('feedback')" id="link-feedback">Feedback</a>
@@ -86,6 +87,9 @@
             -->
 
             </div>
+
+            <div id="sidebar-version" aria-label="Build version">v042</div> <!-- Version Number, floating on sidebar bottom -->
+
         </div>
 
         <div id="main">
@@ -149,7 +153,6 @@
                 <ul>
                 <li>dl.venafi.cloud:443</li>
                 <li>registry.venafi.cloud:443</li>
-                <li>vsat-gw.venafi.cloud:9443</li>
                 <li>vsat-gw.venafi.cloud:443</li>
                 <li>vsat-login.venafi.cloud:443</li>
                 </ul>
@@ -161,7 +164,6 @@
                 <ul>
                 <li>dl.venafi.cloud:443</li>
                 <li>registry.venafi.cloud:443</li>
-                <li>vsat-gw.venafi.eu:9443</li>
                 <li>vsat-gw.venafi.eu:443</li>
                 <li>vsat-login.venafi.eu:443</li>
                 </ul>
@@ -461,16 +463,16 @@
                 <ol>
                     <li>Navigate to <b>Installations > Machines</b> and click on the IIS Server.</li>
                     <li>Click the <b>Discovery</b> tab, then click the <b>Discover Now</b> button.</li>
-                    <li>Go to <b>Machine Identities</b> to view the discovered certificates.</li>
+                    <li>Go to <b>Installations</b> to view the discovered certificates.</li>
                 </ol>
                 <p><b>Note:</b> The certificates and their bindings displayed are from your virtual lab IIS server. Details of the IIS Virtual Lab are documented below this test item.</p>
                 <h3>Test 2: Renewal</h3>
                 <ol>
-                    <li>Navigate to <b>Installations > Machines</b>, select the IIS Server, and go to <b>Machine Identities</b>.</li>
+                    <li>Navigate to <b>Installations > Machines</b>, select the IIS Server, and go to <b>Installations</b>.</li>
                     <li>Click on the <b>site1 machine identity</b> (certificate name: <i>.YOURNAMEsite1...</i>).</li>
                     <li>View the site1 certificate and click <b>Renew</b>.</li>
                     <li><b>Note:</b> Since this is the first time the certificate is being renewed, you will need to complete the wizard to assign the certificate to an application. This is required only once.</li>
-                    <li>Return to <b>Installations > Machines</b>, select the IIS Server, and go to <b>Machine Identities</b>. Notice that the status of <b>site1</b> is now <b>New</b>, indicating the certificate has been renewed and needs to be installed on the IIS server.</li>
+                    <li>Return to <b>Installations > Machines</b>, select the IIS Server, and go to <b>Installations</b>. Notice that the status of <b>site1</b> is now <b>New</b>, indicating the certificate has been renewed and needs to be installed on the IIS server.</li>
                     <li>Click the ellipses (three dots) next to the certificate and select <b>Provision</b>.</li>
                 </ol>
                 <h3>Test 3: New Request</h3>
@@ -701,7 +703,7 @@
             </div>
 
             <div id="Reporting" class="use-case">
-                <h2>Exteranl Reporting integration example</h2>
+                <h2>External Reporting integration example</h2>
                 <p>Certificate Manager SaaS provides a powerful API that seamlessly integrates with reporting tools such as Power BI, enabling you to generate insightful reports and visualize your data effectively. Your virtual lab system includes a Power BI server for testing and exploring this functionality.</p>
                 <h3>Accessing the Power BI Server</h3>
                 <ol>
