@@ -986,10 +986,9 @@
                 <p>It’s just another day at the office—until the <strong>CISO walks in</strong>. His tone is serious.</p>
                 <p><em>"I have a board meeting this afternoon. I need to address the latest outage that affected several of our internal systems."</em></p>
                 <p>He takes a deep breath before continuing.</p>
-                <p><em>"Could you get me a list of all the <strong>internal</strong> certificates our web servers use? I just need a list for now; we’ll worry about fixing any issues later. But I need to make sure this doesn’t happen again."</em></p>
-                <p>No pressure, right? Just a simple request—except, you’re not entirely sure <strong>where all the certificates are</strong> or <strong>how many are actually in use</strong>.</p>
-                <p><strong>Time to get to work.</strong></p>
-                
+                <p><em>“Could you get me a list of all the <strong>internal</strong> certificates our web servers use? Just an overview for now—we’ll deal with the issues afterward. But I need to make sure this doesn’t happen again.”</em></p>
+                <p>For a moment, the room feels like one of those scenes where an agent receives an impossible assignment. No explosion, no self-destructing tape—but the pressure is real.</p>
+                <p><strong>Your mission—should you choose to accept it—is to</strong> locate every internal certificate used by our web servers before the CISO’s board meeting. No disguises, no rappelling from ceilings—just you, your tools, and whatever you can uncover in time.</p>                
                 <details>
                     <summary onclick="hintsUsed(10)">Hint 1</summary>
                     <p>You need to create Network Discovery Job</p>
@@ -1039,7 +1038,8 @@
                 <p>He pauses for a moment before continuing.</p>
                 <p><em>"Imagine a scenario where a large number of systems unknowingly trust this certificate. Over time, these certificates and even the Root could expire without anyone noticing, leading to <strong>widespread and unpredictable failures</strong>. But that’s not even the worst-case scenario."</em></p>
                 <p>He looks around the table.</p>
-                <p><em>"What if <strong>anyone</strong>—even an attacker, a rogue insider—could obtain a certificate that is <strong>trusted across significant parts of our infrastructure</strong>? The damage would be enormous. We could face <strong>disruptions, compromises, and even catastrophic breaches</strong>."</em></p>
+                <p><em>"Think about any 'unbreakable' system you've seen in the movies,"</em> he says. <em>"A gigantic battle station with shields, defenses, the power to destroy stars… and then it all goes up in a spectacular explosion because of one small, overlooked exhaust port. One tiny flaw in the trust model."</em></p>
+                <p><em>"A malicious or uncontrolled root certificate is our <strong>exhaust port</strong>. If <strong>anyone</strong>—an attacker or a rogue insider—can obtain a certificate that’s trusted across significant parts of our infrastructure, the damage would be enormous. We’re talking about <strong>disruptions, compromises, and potentially catastrophic breaches</strong>."</em></p>
                 <p>He straightens up.</p>
                 <h2>"Now, Here’s What We’re Going to Do:"</h2>
                 <ol>
@@ -1076,18 +1076,22 @@
                 <p>Noticing you, he quickly wipes his face and sighs in frustration.</p>
                 <p><em>"I need to replace all the certificates on my systems? For what reason?"</em> he blurts out. <em>"Who cares if they are self-signed?"</em></p>
                 <p>Before you can respond, he throws his hands up in exasperation.</p>
-                <p><em>"Do you have any idea how long it takes to create this ‘CRS thing’?"</em> he continues. <em>"I’ve had to redo it so many times! Then I have to email it, wait 3-5 business days, and hope it gets issued correctly. I have better things to do!"</em></p>
+                <p><em>"Every time I open that interface I tell myself, ‘it’s a Unix system, I know this!’"</em> He lets out a short, bitter laugh.</p>
+                <p><em>"But this whole ‘CSR thing’… I’ve had to redo it so many times. Then I have to email it, wait 3–5 business days, and just hope it gets issued correctly. I have better things to do!"</em></p>
                 <p>He leans back in his chair, shaking his head.</p>
-                <p>Clearly, he’s not in the mood for a long-winded security lecture. But maybe, just maybe, you can <strong>show</strong> him a better way.</p>        
+                <p>Clearly, he’s not in the mood for a long-winded security lecture. But maybe, just maybe, you can <strong>show</strong> him a better way.</p>
+
                 <h2>Your Task</h2>
                 <ul>
                     <li>Help Iain to get a new <strong>MAINFRAME certificate</strong>.</li>
                     <li>Show him <strong>how easy it is</strong> to request a new certificate with <strong>automated, pre-generated requests</strong>.</li>
                     <li>Prove to him that certificate management <strong>doesn’t have to be a headache anymore</strong>.</li>
                 </ul>
-                <p><strong>Just issue the certificate for now.</strong> We’ll help Iain with the <strong>automated provisioning</strong> in the next lab.</p>
+
+                <p><strong>Just issue a certificate for now.</strong> We’ll help Iain with the <strong>automated provisioning</strong> in the next lab.</p>
                 <p>It’s time to turn his frustration into <strong>relief</strong>. Let’s get started.</p>
-                <p><i>You're done when you successfuly issued the certificate thru the UI.</i></p>
+                <p><i>You're done when you’ve successfully issued the certificate through the UI.</i></p>
+
                 <button id="button-use-case-lab3-MainframeMeltdown" type="button">Mark this lab complete</button>
             </div> 
             
@@ -1095,14 +1099,14 @@
                 <h1>Lab 4: The Magic of Automation</h1>
                 <div class="image-wrapper small"> <img src="./images/lab4AutomationMagic.webp"></div>
                 <p><strong>Iain is impressed.</strong> He leans back in his chair, shaking his head in disbelief.</p>
-                <p><em>"That was even faster than creating a new self-signed certificate. WOW."</em> He pauses for a moment before continuing. <em>"And you said it could even install it for me? I don’t have to do that manually?"</em></p>
-                <p><em>You know, the maingframe certs are painful, but there aren't that many. However, we have tons of certificats on nginx. Could we try with one of those?</em></p>
-                <p>You nod with a smile. <em>"Exactly. If you know where it needs to go, we can do it right away."</em></p>
-                <p><strong>"I know where it needs to go on the box…"</strong> Iain says, hesitating. <em>"But the credential is in our PAM solution."</em></p>
-                <p>He sighs. <em>"Too bad…"</em></p>
-                <p>You shake your head. <em>"No worries! This is a <strong>CyberArk product</strong> as well—they cooperate nicely. We can use the credential <strong>directly from the safe</strong> to authenticate and install the certificate."</em></p>
-                <p>You point Iain to the <strong>IDP title</strong> of the solution. <em>"Just log back in, go to <strong>Installations → Machines</strong>, click on <strong>New</strong>, and follow the instructions."</em></p>
-                
+                <p><em>“That was even faster than creating a new self-signed certificate. WOW.”</em> He pauses. <em>“And you said it could even install it for me? I don’t have to do that manually?”</em></p>
+                <p><em>“You know, the mainframe certs are painful, but there aren’t that many. NGINX though… we have tons of certificates on those. Could we try one of them?”</em></p>
+                <p>You nod with a smile. <em>“Exactly. If you know where it needs to go, we can do it right away.”</em></p>
+                <p><strong>“I know where it needs to go on the box…”</strong> Iain says, hesitating. <em>“But the credential is in our PAM solution.”</em></p>
+                <p>He sighs. <em>“Too bad…”</em></p>
+                <p>You shake your head. <em>“Not really. Think of it like having your own JARVIS — PAM already knows the credential. We just let the system fetch it safely from the vault and install the certificate automatically.”</em></p>
+                <p>You point Iain to the <strong>IDP title</strong> of the solution. <em>“Just log back in, go to <strong>Installations → Machines</strong>, click <strong>New</strong>, and follow the instructions.”</em></p>
+                <p>Iain chuckles. <em>“So the system basically suits up and does the heavy lifting for me? Not bad.”</em></p>            
                 <details>
                     <summary onclick="hintsUsed(10)">SSH Key</summary>
                     <p><i>Here's the SSH key we need for nginx. And yes, I definitely put it somewhere safe... I swear.</i></p>
@@ -1151,10 +1155,11 @@ QQLoFVPXLf+iRN7wQKcQAAAAAAECAwQF
                 <h1>Lab 5: Missing Paychecks & Mystery Transactions (the real lab starts here)</h1>
                 <div class="image-wrapper small"> <img src="./images/MissingPaychecks.webp"></div>
                 <p>Something feels off today. As you arrive at work, there’s a nagging feeling in the back of your mind. Your paycheck should have landed in your account days ago—but it’s nowhere to be seen.</p>
-                <p>Before heading to your boss’s office, you grab a coffee and run into Bob from Finance. Casually, you bring up the delay in your salary, hoping for a simple explanation. But Bob just shrugs. <em>“All payments were processed on time,”</em> he says. <em>“Might be an issue with your bank.”</em></p>
-                <p>That didn’t exactly put your mind at ease—even with what he said next. <em>"Yep, I just ran a very generous transaction thru the <strong>payroll system</strong> to Sarah. Let’s call it ‘strategic financial redistribution’—sounds fancier than ‘big expense,’ right?."</em></p>   
-                <p>You pause, coffee in hand. Before storming into your boss’s office, maybe it’s worth looking a little deeper. Could there be more to this than just a banking delay?</p>
-                <p><i>You will know when the Lab is completed sucessfully.</i></p> 
+                <p>On your way to your boss’s office, you grab a coffee and run into Max from Finance. Casually, you mention the delay in your salary, hoping for a simple explanation. But Max just shrugs. <em>“All payments were processed on time,”</em> he says. <em>“I know the system worked — I was just going through last month’s report with Jordan and Donnie. Nearly four hundred grand in so-called ‘business expenses.’ And right in the middle of it, a single dinner for twenty-six thousand. Jordan tries to sell me the story about pharma clients, champagne, imported steaks… the whole circus. Then Donnie chimes in proudly that he ‘only ordered the sides.’ So I’m asking if the sides cure cancer, and Donnie says, ‘Yes, that’s the problem — they cure cancer, that’s why they’re so expensive.’ I lose my mind and Donnie and Jordan are just laughing hysterically.”</em></p>
+                <p>That doesn’t exactly calm you. You know payroll and expenses are only loosely coupled; just because one went through doesn’t mean you can jump to conclusions about the other.</p>
+                <p>You pause, coffee in hand. Before storming into your boss’s office, maybe it’s worth taking a closer look. Could there be more to this than just a banking delay?</p>
+                <p>You log in to the bastion host to access the internal <a href="https://finance.internal">Finance</a> and <a href="https://payrollweb.internal">Payroll</a> systems. At first glance, everything looks normal. Still, your spidey sense tells you it might be worth digging a little deeper…</p>
+                <p><i>The Finance system will let you know when the lab has been completed successfully.</i></p>
                 <details>
                     <summary onclick="hintsUsed(10)">Hint 1</summary>
                     <p>What certificates did you find in Lab 1?</p>
