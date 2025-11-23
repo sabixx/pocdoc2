@@ -1,22 +1,18 @@
 
-
+cd /home/administrator/container_build/pocdoccontainer/
 docker stop pcodoc_activeusecases && docker remove pcodoc_activeusecases
-
-docker stop pcodoc_activeusecases_withstandrdpassword && docker remove pcodoc_activeusecases_withstandrdpassword 
-
-docker stop pcodoc_activeusecases_withcustompasswd && docker remove pcodoc_activeusecases_withcustompasswd 
-
-
 docker build -t pcodoc_activeusecases .
 
-docker stop pcodoc_activeusecases_withcustompasswd && docker remove pcodoc_activeusecases_withcustompasswd 
-
-docker run -d --name pcodoc_activeusecases_withcustompasswd -e TLSPC_APIKEY="005450c8-8aeb-41da-80fb-c9a821e098e7" -e PUBLICDOMAIN="doc-testing001.mimlab.io" -e PLAYBOOK_URL="https://raw.githubusercontent.com/sabixx/vcertplaybooks/refs/heads/main/TLSPC_US_POD_WORKSHOP_PUBLICCERT_NGINX.yaml" -e TLSPCURL="https://eval.mimdemo.io" -e PROSPECT="prospect55" \
+docker run -d --name pcodoc_activeusecases -e TLSPC_APIKEY="005450c8-8aeb-41da-80fb-c9a821e098e7" -e PUBLICDOMAIN="doc-testing001.mimlab.io" -e PLAYBOOK_URL="https://raw.githubusercontent.com/sabixx/vcertplaybooks/refs/heads/main/TLSPC_US_POD_WORKSHOP_PUBLICCERT_NGINX.yaml" -e TLSPCURL="https://eval.mimdemo.io" -e PROSPECT="prospect55" \
 -e ACTIVEUSECASES="Workshop-welcome,feedback,Workshop-housekeeping,lab1-a-cisos-request,lab2-the-hidden-risks,lab3-MainframeMeltdown,lab4-MagicOfAutomation,lab5-financial-cert-expired,welcome,feedback,Setup-and-Overview,prepare-about-vsat,prepare-vsat-firewall,prepare-vsat-system,Single-Sign-On,Dashboard,Internet-Discovery,Internal-Discovery,Dashboard2,Certificate-Location,Expiration-Notification,Reporting-and-Notification-Policies,Certificate-Validation,Import-certificates-from-Microsoft-CA,Request-a-New-Certificate-Self-Service,Request-a-New-Certificate-with-Approval-Required,Auto-Renewal,Windows-IIS-Automated-Installation,Apache-Automated-Installation,Tomcat-Automated-Installation,NetScaler-Automated-Installation,Full-automation-via-CLI-API-VCert,Default-Logging,Webhooks-Splunk,Reporting,Documentation,API-reference-documentation,SaaS-Overall-System-Status,Technical-Support,Eco-System-Marketplace,User-Group-Community-Training,Appendix" \
--e USER="jens.sabitzer_LABtest" -e WEBUSER="jens" -e WEBPASS="1234" -p 8084:80 -p 15443:443 pcodoc_activeusecases:latest
+-e USER="jens.sabitzer_LABtest" -e WEBUSER="jens" -e WEBPASS="1234" -p 8084:80 -p 9443:443 pcodoc_activeusecases:latest
 
-docker logs pcodoc_activeusecases_withcustompasswd -f 
-docker exec -it pcodoc_activeusecases_withcustompasswd /bin/sh
+
+
+docker logs pcodoc_activeusecases -f 
+
+
+docker exec -it pcodoc_activeusecases /bin/sh
 
 
 ### fox fopr bill                                                                                                   change this!!!!                                                                                                                                                        and this                                                                      
@@ -32,7 +28,7 @@ docker exec -it pcodoc_activeusecases_withcustompasswd /bin/sh
 #-e ACTIVEUSECASES="Workshop-welcome,feedback,Workshop-housekeeping,lab1-a-cisos-request,lab2-the-hidden-risks,lab3-MainframeMeltdown,lab4-MagicOfAutomation,lab5-financial-cert-expired,Appendix" \
 
 
-docker logs pcodoc_activeusecases_withcustompasswd -f
+docker logs pcodoc_activeusecases -f
 
 
 docker run -d --name pcodoc_activeusecases_withstandrdpassword  PROSPECT="EvalNew ActiveUseCases" -e ACTIVEUSECASES="welcome,feedback,Setup-and-Overview,prepare-about-vsat,prepare-vsat-firewall,prepare-vsat-system" -e USER="jens.sabitzer_default2" -p 8083:80 pcodoc_activeusecases:latest 
@@ -46,7 +42,7 @@ docker exec -it pcodoc_activeusecases /bin/sh
 
 
 
-docker exec -it pcodoc_activeusecases_withcustompasswd /bin/sh
+docker exec -it pcodoc_activeusecases /bin/sh
 
 
 docker stop pcodoc_activeusecases && docker remove pcodoc_activeusecases
@@ -56,6 +52,6 @@ docker build -t pcodoc_activeusecases .
 docker tag pcodoc_activeusecases:latest sabix/pcodoc:latest
 docker push sabix/pcodoc:latest
 
-docker stop pcodoc_activeusecases_withcustompasswd && docker remove pcodoc_activeusecases_withcustompasswd 
+docker stop pcodoc_activeusecases && docker remove pcodoc_activeusecases 
 
 

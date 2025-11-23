@@ -16,9 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if (isset($data['message'])) {
         $useCase = isset($data['use_case']) ? $data['use_case'] : 'Unknown Use Case';
-        $smiley = isset($data['smiley']) ? $data['smiley'] : '';
+        $rating = isset($data['rating']) ? (int)$data['rating'] : 0;
         $feedbackLabel = isset($data['feedback_label']) ? $data['feedback_label'] : '';
-
         // Path to the configuration file
         $configPath = '/var/www/html/config/config.json';
 
@@ -54,9 +53,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $formattedMessage .= "**Solution Architect:** " . $user . "\n\n";
         $formattedMessage .= "**Use Case:** " . $useCase . "\n\n";
 
-        // Include smiley and feedback label if available
-        if ($smiley !== '' || $feedbackLabel !== '') {
-            $formattedMessage .= "**Feedback Smiley:** " . $feedbackLabel . " " . $smiley . "\n\n";
+        if ($rating > 0 || $feedbackLabel !== '') {
+            // e.g. "Rating: Excellent 5/5"
+            $formattedMessage .= "**Rating:** "
+                . ($feedbackLabel !== '' ? $feedbackLabel . ' ' : '')
+                . ($rating > 0 ? $rating . "/5" : '')
+                . "\n\n";
         }
 
         $formattedMessage .= "**Message:**\n\n" . $userMessage;

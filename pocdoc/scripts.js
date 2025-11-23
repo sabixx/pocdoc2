@@ -11,7 +11,8 @@ const copyPasswordButton = document.getElementById('copy-password');
 let infoContent = {};
 let currentSection = null;
 let completedUseCases = {};
-let selectedSmileys = {};
+let selectedRatings = {}; // useCaseId -> 1..5
+
 
 // Fetch the JSON file and store it in the `infoContent` variable
 fetch('config/infoContent.json')
@@ -716,113 +717,129 @@ function onScroll() {
 function generateFeedbackSection(useCaseId) {
     if (!useCaseId) {
         console.error('No use case ID provided to generate feedback for.');
-        return null; // Explicitly return null to avoid undefined errors
+        return null;
     }
 
-    // Check if feedback section already exists
-    if (document.getElementById(`feedback-${useCaseId}`)) {
-        //console.log(`Feedback section for use case '${useCaseId}' already exists.`);
-        return document.getElementById(`feedback-${useCaseId}`); // Return the existing feedback section
+    const existing = document.getElementById(`feedback-${useCaseId}`);
+    if (existing) {
+        return existing;
     }
 
-    // Create the feedback section
     const feedbackDiv = document.createElement('div');
     feedbackDiv.id = `feedback-${useCaseId}`;
     feedbackDiv.className = 'feedback-section';
-    feedbackDiv.style.display = 'none'; // Initially hidden until "Complete" button is clicked
+    feedbackDiv.style.display = 'none';
 
-    // Populate the feedback section with HTML content
     feedbackDiv.innerHTML = `
-        <p>How did you like this use case?</p>
-        <div class="smilies">
-            <span class="smiley very-bad" onclick="selectSmiley('${useCaseId}', 'very-bad')"></span>
-            <span class="smiley bad" onclick="selectSmiley('${useCaseId}', 'bad')"></span>
-            <span class="smiley neutral" onclick="selectSmiley('${useCaseId}', 'neutral')"></span>
-            <span class="smiley good" onclick="selectSmiley('${useCaseId}', 'good')"></span>
-            <span class="smiley very-good" onclick="selectSmiley('${useCaseId}', 'very-good')"></span>
+        <div class="feedback-header-row">
+            <div class="feedback-title-block">
+                <span class="feedback-title">How did you like this use case?</span>
+                <span class="feedback-subtitle">
+                    Tap a star from 1 (poor) to 5 (amazing)
+                </span>
+            </div>
+            <span class="feedback-tag">Optional</span>
         </div>
-        <textarea id="assistance-message-${useCaseId}" placeholder="We're looking forward hearing from you..." rows="3"
-            style="width: 100%; margin-top: 10px; height: 150px;"></textarea>
-        <button onclick="sendAssistanceMessage('${useCaseId}')">Send Feedback</button>
+
+        <div class="stars" data-usecase="${useCaseId}">
+            <span class="star" data-value="1" onclick="selectRating('${useCaseId}', 1)"></span>
+            <span class="star" data-value="2" onclick="selectRating('${useCaseId}', 2)"></span>
+            <span class="star" data-value="3" onclick="selectRating('${useCaseId}', 3)"></span>
+            <span class="star" data-value="4" onclick="selectRating('${useCaseId}', 4)"></span>
+            <span class="star" data-value="5" onclick="selectRating('${useCaseId}', 5)"></span>
+        </div>
+
+        <label class="feedback-label" for="assistance-message-${useCaseId}">
+            Anything we should improve or highlight?
+        </label>
+        <textarea id="assistance-message-${useCaseId}"
+                  placeholder="We're looking forward hearing from you..."
+                  rows="3"
+                  style="width: 100%; margin-top: 6px; height: 150px;"></textarea>
+
+        <div class="feedback-actions">
+            <span class="feedback-footnote">
+                Your feedback goes directly to the product team.
+            </span>
+            <button class="feedback-submit-btn"
+                    onclick="sendAssistanceMessage('${useCaseId}')">
+                Send Feedback
+            </button>
+        </div>
     `;
 
-    // Ensure the use case section exists before appending
     const useCaseSection = document.getElementById(useCaseId);
     if (!useCaseSection) {
         console.error(`Use case section with ID '${useCaseId}' not found.`);
-        return null; // Return null if the use case section doesn't exist
+        return null;
     }
 
-    // Append the feedback section to the use case section
     useCaseSection.appendChild(feedbackDiv);
-    //console.log(`Feedback section for '${useCaseId}' successfully appended.`);
-
-    return feedbackDiv; // Return the newly created feedback section
+    return feedbackDiv;
 }
 
-// Function to handle smiley selection per use case
-function selectSmiley(useCaseId, smiley) {
-    selectedSmileys[useCaseId] = smiley;
 
-    // Remove 'selected' class from all smileys in the current feedback section
-    const smileyElements = document.querySelectorAll(`#feedback-${useCaseId} .smiley`);
-    smileyElements.forEach(element => {
-        element.classList.remove('selected');
+function selectRating(useCaseId, rating) {
+    const current = selectedRatings[useCaseId] || 0;
+
+    // Clicking the same star again clears the rating
+    const newRating = (current === rating) ? 0 : rating;
+    selectedRatings[useCaseId] = newRating;
+
+    const stars = document.querySelectorAll(`#feedback-${useCaseId} .star`);
+    stars.forEach(star => {
+        const value = parseInt(star.getAttribute('data-value'), 10);
+        if (newRating > 0 && value <= newRating) {
+            star.classList.add('selected');
+        } else {
+            star.classList.remove('selected');
+        }
     });
-
-    // Add 'selected' class to the clicked smiley
-    const selectedElement = document.querySelector(`#feedback-${useCaseId} .smiley.${smiley}`);
-    if (selectedElement) {
-        selectedElement.classList.add('selected');
-    }
 }
 
-// Modified `sendAssistanceMessage` function to include the feedback label and hide feedback section after submission
 function sendAssistanceMessage(useCaseId) {
-    const assistanceMessage = document.getElementById(`assistance-message-${useCaseId}`).value.trim();
-    const smiley = selectedSmileys[useCaseId] || '';
+    const assistanceMessage = document
+        .getElementById(`assistance-message-${useCaseId}`)
+        .value
+        .trim();
 
-    if (assistanceMessage === '' && smiley === '') {
-        alert('Please enter a message or select a smiley before sending.');
+    const rating = selectedRatings[useCaseId] || 0;
+
+    if (assistanceMessage === '' && rating === 0) {
+        alert('Please enter a message or select a rating before sending.');
         return;
     }
 
-    // Get the feedback label from the config
-    const feedbackLabel = feedbackLabels[smiley] || '';
+    // Optional: map rating -> label via config (e.g. "1":"Very bad", "5":"Excellent")
+    const feedbackLabel = feedbackLabels[String(rating)] || '';
 
-    // Prepare the message payload, including the selected smiley and label (if any)
     const feedbackPayload = {
         message: assistanceMessage,
         use_case: useCaseId,
-        smiley: smiley,
+        rating: rating,
         feedback_label: feedbackLabel
     };
 
     const baseUrl = window.location.origin;
 
-    // Send the feedback message
     fetch(`${baseUrl}/sendWebhook.php`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(feedbackPayload),
     })
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                // Hide the feedback section after successful submission
                 const feedbackDiv = document.getElementById(`feedback-${useCaseId}`);
                 if (feedbackDiv) {
                     feedbackDiv.style.display = 'none';
                 }
 
-                // Display a thank you message
                 const thankYouMessage = document.createElement('p');
                 thankYouMessage.className = 'thank-you-message';
-                thankYouMessage.textContent = 'Thank you for your feedback! Your response has been recorded, and every feedback is reviewed and provided to the corresponding teams.';
+                thankYouMessage.textContent =
+                    'Thank you for your feedback! Your response has been recorded, and every feedback is reviewed and provided to the corresponding teams.';
 
-                // Append the thank you message below the use case section
                 const useCaseSection = document.getElementById(useCaseId);
                 useCaseSection.appendChild(thankYouMessage);
             } else {
@@ -834,11 +851,10 @@ function sendAssistanceMessage(useCaseId) {
             alert('Error sending assistance message.');
         });
 
-    // Clear the textarea and reset selected smiley after sending
+    // Reset UI
     document.getElementById(`assistance-message-${useCaseId}`).value = '';
-    delete selectedSmileys[useCaseId];
-    const smileyElements = document.querySelectorAll(`#feedback-${useCaseId} .smiley`);
-    smileyElements.forEach(element => {
-        element.classList.remove('selected');
-    });
+    delete selectedRatings[useCaseId];
+
+    const stars = document.querySelectorAll(`#feedback-${useCaseId} .star`);
+    stars.forEach(star => star.classList.remove('selected'));
 }

@@ -23,13 +23,16 @@
             </div>
 
             <div id="use-case-menu">
+                <h3>Housekeeping</h3>
                 <a href="#welcome" onclick="showContent('welcome')" id="link-welcome">Welcome</a>
                 <a href="#feedback" onclick="showContent('feedback')" id="link-feedback">Feedback</a>
                 <a href="#Setup-and-Overview" onclick="showContent('Setup-and-Overview')" id="link-Setup-and-Overview">Setup and Overview</a>
+                
                 <h3>Prepare your Environment</h3>
                 <a href="#prepare-about-vsat" onclick="showContent('prepare-about-vsat')" id="link-prepare-about-vsat">About VSatellites</a>
                 <a href="#prepare-vsat-firewall" onclick="showContent('prepare-vsat-firewall')" id="link-prepare-vsat-firewall">VSatellite Firewall Rules</a>
                 <a href="#prepare-vsat-system" onclick="showContent('prepare-vsat-system')" id="link-prepare-vsat-system">VSatellite Installation</a>  
+                
                 <h3>Stop Outages - Step 1</h3>
                 <a href="#Single-Sign-On" onclick="showContent('Single-Sign-On')" id="link-Single-Sign-On">Single Sign-On</a>
                 <a href="#Dashboard" onclick="showContent('Dashboard')" id="link-Dashboard">Dashboard</a>
@@ -40,6 +43,7 @@
                 <a href="#Expiration-Notification" onclick="showContent('Expiration-Notification')" id="link-Expiration-Notification">Expiration Notification and Reporting (Self-Service)</a>
                 <a href="#Reporting-and-Notification-Policies" onclick="showContent('Reporting-and-Notification-Policies')" id="link-Reporting-and-Notification-Policies">Reporting and Notification Policies</a>
                 <a href="#Certificate-Validation" onclick="showContent('Certificate-Validation')" id="link-Certificate-Validation">Certificate Validation</a>
+
                 <h3>Automation - Step 2</h3>
                 <a href="#Import-certificates-from-Microsoft-CA" onclick="showContent('Import-certificates-from-Microsoft-CA')" id="link-Import-certificates-from-Microsoft-CA">Import certificates from Microsoft CA</a>
                 <a href="#Request-a-New-Certificate-Self-Service" onclick="showContent('Request-a-New-Certificate-Self-Service')" id="link-Request-a-New-Certificate-Self-Service">Request a New Certificate - Self Service</a>
@@ -50,10 +54,12 @@
                 <a href="#Tomcat-Automated-Installation" onclick="showContent('Tomcat-Automated-Installation')" id="link-Tomcat-Automated-Installation">Tomcat Automated Installation</a>
                 <a href="#NetScaler-Automated-Installation" onclick="showContent('NetScaler-Automated-Installation')" id="link-NetScaler-Automated-Installation">NetScaler Automated Installation</a>
                 <a href="#Full-automation-via-CLI-API-VCert" onclick="showContent('Full-automation-via-CLI-API-VCert')" id="link-Full-automation-via-CLI-API-VCert">Full automation via CLI/API - VCert</a>
+
                 <h3>Audit, Logging, Reporting</h3>
                 <a href="#Default-Logging" onclick="showContent('Default-Logging')" id="link-Default-Logging">Default Logging</a>
                 <a href="#Webhooks-Splunk" onclick="showContent('Webhooks-Splunk')" id="link-Webhooks-Splunk">Webhooks / Splunk</a>
                 <a href="#Reporting" onclick="showContent('Reporting')" id="link-Reporting">Reporting</a> 
+
                 <h3>Business, Project and Risk</h3>
                 <a href="#Documentation" onclick="showContent('Documentation')" id="link-Documentation">Documentation</a>
                 <a href="#API-reference-documentation" onclick="showContent('API-reference-documentation')" id="link-API-reference-documentation">API reference documentation</a>
@@ -61,9 +67,11 @@
                 <a href="#Technical-Support" onclick="showContent('Technical-Support')" id="link-Technical-Support">Technical Support</a>
                 <a href="#Eco-System-Marketplace" onclick="showContent('Eco-System-Marketplace')" id="link-Eco-System-Marketplace">Eco System / Marketplace</a>
                 <a href="#User-Group-Community-Training" onclick="showContent('User-Group-Community-Training')" id="link-User-Group-Community-Training">User Group / Community / Training</a>
+                
                 <h3>Workshop</h3>
                 <a href="#Workshop-welcome" onclick="showContent('Workshop-welcome')" id="link-Workshop-welcome">Welcome to the Lab</a>
                 <a href="#Workshop-housekeeping" onclick="showContent('Workshop-housekeeping')" id="link-Workshop-housekeeping">Housekeeping</a>
+                
                 <h3>LABs</h3>
                 <a href="#lab1-a-cisos-request" onclick="showContent('lab1-a-cisos-request')" id="link-lab1-a-cisos-request">Lab1: A CISO's Request</a>
                 <a href="#lab2-the-hidden-risks" onclick="showContent('lab2-the-hidden-risks')" id="link-lab2-the-hidden-risks">Lab2: The Hidden Risks</a>
@@ -103,7 +111,7 @@
                 <p>On the right, you will find a menu with additional information, including credentials for accessing the use cases.</p>
                 <p>Each use case includes an option for providing feedback. Please take advantage of this feature as we are eager to hear your thoughts. <string>All feedback is carefully reviewed and shared with the corresponding teams.</strong></p>
                 <p>We encourage you to use this feedback mechanism extensively. Your input is invaluable in helping us continue to deliver and improve the best products and services.</p>
-                <p>The login details for the demo tenant are available under the "Additional Information" (right side) section.</p>
+                <p>The login details for the demo tenant are available under the <span class="inline-info-button">Additional Information</span> (right side) section.</p>
                 <p>Please follow the sections in order, as some sections build upon the previous ones.</p>
                 <p><b>POV Environment:</b> This includes the SaaS tenant of Cyberark Certificate Manager (with optional Zero Touch PKI) and your virtual lab.</p>
                 <img class="medium" src="./images/povimage.png">
@@ -185,7 +193,7 @@
                 <p>If you want to test if the system is ready you can run: </p>
                 <p><code>curl -O https://dl.venafi.cloud/vsatctl</code></p>
                 <p><code>chmod +x vsatctl && sudo ./vsatctl preflight</code></p>
-                <p>Please find the full documentation link in the Canvas under Additional Information.</p>
+                <p>Please find the full documentation link in the Canvas under <span class="inline-info-button">Additional Information</span>.</p>
                 <p></p>
                 <button id="button-use-case-prepare-vsat-system" type="button">Complete This Use Case</button>
             </div>            
@@ -204,7 +212,7 @@
                 <h2>Dashboard</h2>
                 <p>When you signed up for Cyberark Certificate Manager SAAS, the platform automatically scanned and inventoried the TLS certificates associated with publicly accessible endpoints linked to your email domain. This automated discovery process provides immediate visibility into the certificates protecting your organization's public-facing internet presence, ensuring you have a starting point for comprehensive machine identity management.</p>
                 <p>To review the certificates that were automatically discovered, navigate to the <b>Dashboard</b> in the menu bar. The Dashboard presents an organized view of the identified certificates, including key details such as expiration dates, issuing authorities, and associated applications. This information is critical for identifying potential risks, such as expired or misconfigured certificates, and taking proactive action.</p>
-                <p>If you need assistance locating your login credentials, you can find this information in the "Additional Information" section of the canvas. This section is designed to provide quick access to essential resources, ensuring you can seamlessly log in and start exploring the capabilities of Certificate Manager SaaS.</p>
+                <p>If you need assistance locating your login credentials, you can find this information in the <span class="inline-info-button">Additional Information</span> section of the canvas. This section is designed to provide quick access to essential resources, ensuring you can seamlessly log in and start exploring the capabilities of Certificate Manager SaaS.</p>
                 <p>By leveraging the automated inventory and the insights provided on the Dashboard, you can begin taking control of your machine identities. Whether you need to manage existing certificates or address any gaps identified during the discovery process, Certificate Manager SaaS offers the tools and visibility needed to secure your organization effectively.</p>
                 <p><strong>Navigate to the Dashboard and have a look. Do you see any certificates expiring soon? Then come back we're guiding you thur the next steps.</strong></p>
                 <button id="button-use-case-Dashboard" type="button">Complete This Use Case</button>
@@ -511,7 +519,7 @@
 
             <div id="Apache-Automated-Installation" class="use-case">
                 <h2>Apache Automated Installation</h2>
-                <p>To perform an automated certificate installation on your Apache server, you will need the following details from your virtual lab information (available under <b>Additional Information</b>):</p>
+                <p>To perform an automated certificate installation on your Apache server, you will need the following details from your virtual lab information available under <span class="inline-info-button">Additional Information</span></p>
                 <ul>
                     <li><b>KeyStore Type</b></li>
                     <li><b>Certificate Path</b></li>
@@ -524,7 +532,7 @@
                     <li>Navigate to <b>Installations > Machines</b> and locate your virtual lab Apache server.</li>
                     <li>Select the machine where you want to install the certificate.</li>
                     <li>Click <b>Provision a Certificate</b>.</li>
-                    <li>Enter the required details for your Apache server (available under <b>Additional Information</b>):
+                    <li>Enter the required details for your Apache server available under <span class="inline-info-button">Additional Information</span>
                         <ul>
                             <li>KeyStore Type: <strong>PEM</strong></li>
                             <li>Certificate Path: <strong>/etc/ssl/certs/server.crt</strong><</li>
@@ -548,7 +556,7 @@
             <div id="Tomcat-Automated-Installation" class="use-case">
                 <h2>Tomcat Automated Installation</h2>
 
-                <p>To perform an automated certificate installation on your Tomcat server, you will need the following details from your virtual lab information (available under <b>Additional Information</b>):</p>
+                <p>To perform an automated certificate installation on your Tomcat server, you will need the following details from your virtual lab information available under <span class="inline-info-button">Additional Information</span></p>
                 <ul>
                     <li><b>Keystore Type</b></li>
                     <li><b>Keystore File Path</b></li>
@@ -561,7 +569,7 @@
                     <li>Navigate to <b>Installations > Machines</b> and locate your virtual lab Tomcat server.</li>
                     <li>Select the machine where you want to install the certificate.</li>
                     <li>Click <b>Provision a Certificate</b>.</li>
-                    <li>Enter the required details for your Tomcat server (available under <b>Additional Information</b>):
+                    <li>Enter the required details for your Tomcat server available under <span class="inline-info-button">Additional Information</span>
                         <ul>
                             <li>Keystore Type: <strong>JKS</strong></li>
                             <li>Keystore File Path: <strong>/opt/tomcat/tomcat_keystore.jks</strong></li>
@@ -584,7 +592,7 @@
 
             <div id="NetScaler-Automated-Installation" class="use-case">
                 <h2>NetScaler Automated Installation</h2>
-                <p>To perform an automated certificate installation on your NetScaler, you will need the following details from your virtual lab information (available under <b>Additional Information</b>):</p>
+                <p>To perform an automated certificate installation on your NetScaler, you will need the following details from your virtual lab information available under <span class="inline-info-button">Additional Information</span></p>
                 <ul>
                     <li><b>Certificate Name</b></li>
                     <li><b>Chain Bundle Name</b></li>
@@ -674,7 +682,7 @@
                 <p>Cyberark Certificate Manager SAAS supports webhooks to seamlessly integrate with external systems such as Splunk, Slack, ServiceNow, or Microsoft Teams. These integrations enable real-time notifications, allowing you to stay informed about critical events, including expiring certificates, to safeguard machine identities and minimize the risk of certificate-related outages.</p>
                 <h3>Accessing Splunk in Your Virtual Lab</h3>
                 <ol>
-                    <li>Log in to your virtual lab Splunk server. Refer to the login details provided under <b>Additional Information</b>.</li>
+                    <li>Log in to your virtual lab Splunk server. Refer to the login details provided under <span class="inline-info-button">Additional Information</span>.</li>
                     <li>On the Splunk dashboard, click <b>Search and Reporting</b> from the left-hand menu.</li>
                     <li>Select the desired reporting period using the filter on the right (e.g., <b>Last 30 days</b>).</li>
                     <li>Enter <b>*</b> in the search field to retrieve all available data for the selected period.</li>
@@ -735,7 +743,7 @@
                 <h2>Documentation</h2>
                 <p>The following test items focus on business and risk considerations rather than operational tasks. These discussions can take place at the beginning or end of the Proof of Value (POV) process.</p>
                 <h3>Comprehensive Online Documentation</h3>
-                <p>Cyberark Certificate Manager provides extensive online documentation to support users in understanding and utilizing the platform effectively. Access the documentation using the link provided under <b>Additional Information</b>.</p>
+                <p>Cyberark Certificate Manager provides extensive online documentation to support users in understanding and utilizing the platform effectively. Access the documentation using the link provided under <span class="inline-info-button">Additional Information</span>.</p>
                 <h3>Key Sections of the Documentation</h3>
                 <ul>
                     <li><b>Home:</b> Your starting point for all Cyberark Control Plane resources.</li>
@@ -765,7 +773,7 @@
 
             <div id="API-reference-documentation" class="use-case">
                 <h2>API Reference Documentation</h2>
-                <p>Cyberark Certificate Manager SAAS provides a comprehensive API reference that enables programmatic access to its features and functionality. This document includes sample code in various programming languages to help developers integrate Certificate Manager SaaS into their workflows effortlessly. For access, see the link provided under <b>Additional Information</b>.</p>
+                <p>Cyberark Certificate Manager SAAS provides a comprehensive API reference that enables programmatic access to its features and functionality. This document includes sample code in various programming languages to help developers integrate Certificate Manager SaaS into their workflows effortlessly. For access, see the link provided under <span class="inline-info-button">Additional Information</span>.</p>
                 <h3>Overview of the Certificate Manager SaaS REST API</h3>
                 <p>The Certificate Manager SaaS REST API mirrors the functionality available via the Web User Interface (UI), allowing you to programmatically perform any task that can be executed through the UI. By leveraging the API, you can automate operations to achieve greater consistency and scalability across your organization.</p>
                 <h3>Key Features of the REST API</h3>
@@ -943,23 +951,23 @@
                 <p>The lab environment consists of both <strong>publicly accessible</strong> and <strong>internal systems</strong>.</p>
                 <h2>Internal System Access</h2>
                 <p>Internal systems are accessible via a bastion host. You can find all URLs and access details by pressing the
-                    <span style="background-color: #00457a; color: white; padding: 5px 10px; font-size: 12px;">Additional Information</span>
+                    <span class="inline-info-button">Additional Information</span>
                     link at the top right.</p>                    
                 <p><strong>When a systems name ends with .internal, it is solely accessible via the Bastion Host.</strong></p>
                 <h2>Remote Terminal Access Simulation</h2>
                 <p>To simulate remote access, some systems provide <strong>console access via a reverse proxy</strong>. This is accessible via by adding /console to the URL path of the corresponding webpage. You will need this in Lab 3 for the first time.</p>
-                <p><strong>Authentication is required</strong>—you will need to enter a <strong>username and password</strong>. This information is also found under <span style="background-color: #00457a; color: white; padding: 5px 10px; font-size: 12px;">Additional Information</span></p>
+                <p><strong>Authentication is required</strong>—you will need to enter a <strong>username and password</strong>. This information is also found under <span class="inline-info-button">Additional Information</span>
                 <h2>Lab Progression & Expectations</h2>
                 <!--  <p>Early labs will <strong>explicitly guide you</strong> through the required steps.</p> -->
                 <p>More advanced labs <strong>assume prior experience</strong> and may not provide step-by-step instructions for accessing the console.</p>
                 <p>In some cases, accessing the console is <strong>necessary</strong> to diagnose issues, apply fixes, or find configuration options.</p>            
                 <p><strong>Please be aware that internal systems are solely accessible through the Bastion Host.
-                <p><strong>Access Credentials:</strong> Available under the <span style="background-color: #00457a; color: white; padding: 5px 10px; font-size: 12px;">Additional Information</span></p>
+                <p><strong>Access Credentials:</strong> Available under the <span class="inline-info-button">Additional Information</span>
                 </strong> </p>
                 <!--  <h2>Reference Materials</h2>  -->
                 <p><strong>High Level Network Diagram:</strong></p>
                 <!--  <ul>
-                    <li><strong>Access Credentials:</strong> Available under the <strong>"Additional Information"</strong> button in the top-right corner.</li>
+                    <li><strong>Access Credentials:</strong> Available under the <span class="inline-info-button">Additional Information</span> button in the top-right corner.</li>
                     <li>/li>
                 </ul> -->
                 <div class="image-wrapper medium">
@@ -968,7 +976,7 @@
                 
             <!--     </p><h2>What do I do next?</h2></p>
                 <p><strong>Click on Additional Informaiton</strong> Each Lab will contain details that can be necessary to complete them.</p>
-                <p><strong>Access Credentials:</strong> Available under the <strong>"Additional Information"</strong> button in the top-right corner.</p>
+                <p><strong>Access Credentials:</strong> Available under the <span class="inline-info-button">Additional Information</span> button in the top-right corner.</p>
                 <div>
                     <p>Please log in to the bastion host using the link provided under <strong>Additional Information</strong>.</p>
                     <p>Essential details are available on Canvas—some labs cannot be completed without this information.</p>
@@ -1109,8 +1117,10 @@
                 <p>Iain chuckles. <em>“So the system basically suits up and does the heavy lifting for me? Not bad.”</em></p>            
                 <details>
                     <summary onclick="hintsUsed(10)">SSH Key</summary>
-                    <p><i>Here's the SSH key we need for nginx. And yes, I definitely put it somewhere safe... I swear.</i></p>
+                    <p><i>Here's the SSH key we need for NGINX. Sorry — I thought it was in our PAM solution, where it really should be. And yes, I definitely stored it somewhere safe... I promise.</i></p>
                     <p><i>Really. Trust me...</i></p>
+                    <p>... That’s a story for another lab – for SSH Manager for Machines!!</p>
+
                     <pre><code>
 -----BEGIN OPENSSH PRIVATE KEY-----
 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW

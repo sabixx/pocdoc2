@@ -27,6 +27,12 @@ COPY nginx.conf /etc/nginx/nginx.conf
 # COPY default.conf /etc/nginx/conf.d/default.conf
 COPY default_ssl.conf /etc/nginx/conf.d/default.conf
 
+
+# Make sure the config dir exists and is writable by PHP (www-data)
+RUN mkdir -p /var/www/html/config \
+    && chown -R www-data:www-data /var/www/html/config \
+    && chmod 775 /var/www/html/config
+
 # Configure PHP-FPM error logging
 RUN echo "log_errors = On" >> /usr/local/etc/php/conf.d/php-custom.ini \
     && echo "error_log = /var/log/php_errors.log" >> /usr/local/etc/php/conf.d/php-custom.ini
