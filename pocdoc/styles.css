@@ -30,6 +30,10 @@ body {
     /* slightly softer, more “card-like” shadow */
     box-shadow: 6px 0 24px rgba(15, 23, 42, 0.10);
     position: relative;
+
+    display: flex;
+    flex-direction: column;
+
 }
 
 /* Logo area stays as-is, just spaced a bit more */
@@ -108,9 +112,9 @@ body {
 
 /* Version text in sidebar */
 #sidebar-version {
-    position: absolute;
-    left: 16px;
-    bottom: 10px;
+    position: static;              /* take it out of absolute positioning */
+    display: block;
+    margin: 24px 0 8px 16px;       /* some spacing from the last item + left indent */
     font: 600 11px/1.2 Mulish, system-ui, sans-serif;
     color: #9ca3af;
     opacity: 0.9;
