@@ -27,6 +27,7 @@
                 <a href="#welcome" onclick="showContent('welcome')" id="link-welcome">Welcome</a>
                 <a href="#feedback" onclick="showContent('feedback')" id="link-feedback">Feedback</a>
                 <a href="#Setup-and-Overview" onclick="showContent('Setup-and-Overview')" id="link-Setup-and-Overview">Setup and Overview</a>
+                <a href="#GatewayInternalAccess" onclick="showContent('GatewayInternalAccess')" id="link-GatewayInternalAccess">Gateway / Internal Access</a>
                 
                 <h3>Prepare your Environment</h3>
                 <a href="#prepare-about-vsat" onclick="showContent('prepare-about-vsat')" id="link-prepare-about-vsat">About VSatellites</a>
@@ -130,10 +131,25 @@
                     browser.
                     You can import the root certificate into your browser so that you will stop getting these messages.
                 </p>
-                <p>The root can be downloaded form the Additional Infromation panel.</p>
+                <p>The root can be downloaded from the Additional Infromation panel.</p>
                 <button id="button-use-case-Setup-and-Overview" type="button">Complete</button>
             </div>
 
+            <div id="GatewayInternalAccess" class="use-case">
+                <h2>Access to internal systems</h2>
+                <p>To access systems that are not exposed to the internet, you first need to log on to the Gateway.</p>
+                <p>In most networks, direct RDP and SSH access is blocked. The Gateway provides RDP and SSH access over an HTTPS connection.</p>
+                <p><strong>Pro tip:</strong> Once connected to the Gateway, you can open this documentation and Certificate Manager SaaS directly from there. This makes copy &amp; paste much easier.</p>
+                <p>Give it a try.</p>
+                <p>Link and credentials can be found under <span class="inline-info-button">Additional Information</span></p>
+                <p><img class="medium" src="./images/POCGateway.png"></p>   
+                <p>Once connected you see all available systems..</p>
+                <p><img class="smnall" src="./images/allconnections.png"></p> 
+                <p>Connect to the <strong>windowslab</strong></p>
+                <p>You're on a windos desktop, feel free to open this page from the windows lab system.</p>
+                <button id="button-use-case-GatewayInternalAccess" type="button">Complete</button>
+            </div>
+   
             <div id="prepare-about-vsat" class="use-case">
                 <h2>Flexible Deployment of VSatellites: Your Infrastructure, Your Choice</h2>
                 <p>Cyberark VSatellites are an innovative and essential component of Certificate Manager SaaS, Cyberark's cloud-native machine identity management service.</p>
@@ -147,7 +163,7 @@
                 <p><strong>Sensitive Data Encryption:</strong> Use a Data Encryption Key (DEK) to encrypt sensitive information.</p>
                 <p><strong>Internal CA Integration:</strong> Request certificates directly from your internal Certificate Authority (CA).</p>
                 <p><strong>Custom Connectors:</strong> Run tailored connectors to integrate with unique systems or workflows.</p>
-                <p><img class="medium src="./images/about-vsat.png"></p>
+                <p><img class="medium" src="./images/about-vsat.png"></p>
                 <button id="button-use-case-prepare-about-vsat" type="button">Complete</button>
             </div>
 
@@ -192,10 +208,10 @@
                 <p>If you want to test if the system is ready you can run: </p>
                 <p><code>curl -O https://dl.venafi.cloud/vsatctl</code></p>
                 <p><code>chmod +x vsatctl && sudo ./vsatctl preflight</code></p>
-                <p>Please find the full documentation link in the Canvas under <span class="inline-info-button">Additional Information</span>.</p>
+                <p>Please find the full documentation link in the Canvas under <span class="inline-info-button">Additional Information</span></p>
                 <p></p>
                 <button id="button-use-case-prepare-vsat-system" type="button">Complete This Use Case</button>
-            </div>            
+            </div>
 
             <div id="Single-Sign-On" class="use-case">
                 <h2>Single-Sign-On</h2>
@@ -681,7 +697,7 @@
                 <p>Cyberark Certificate Manager SAAS supports webhooks to seamlessly integrate with external systems such as Splunk, Slack, ServiceNow, or Microsoft Teams. These integrations enable real-time notifications, allowing you to stay informed about critical events, including expiring certificates, to safeguard machine identities and minimize the risk of certificate-related outages.</p>
                 <h3>Accessing Splunk in Your Virtual Lab</h3>
                 <ol>
-                    <li>Log in to your virtual lab Splunk server. Refer to the login details provided under <span class="inline-info-button">Additional Information</span>.</li>
+                    <li>Log in to your virtual lab Splunk server. Refer to the login details provided under <span class="inline-info-button">Additional Information</span></li>
                     <li>On the Splunk dashboard, click <b>Search and Reporting</b> from the left-hand menu.</li>
                     <li>Select the desired reporting period using the filter on the right (e.g., <b>Last 30 days</b>).</li>
                     <li>Enter <b>*</b> in the search field to retrieve all available data for the selected period.</li>
@@ -742,7 +758,7 @@
                 <h2>Documentation</h2>
                 <p>The following test items focus on business and risk considerations rather than operational tasks. These discussions can take place at the beginning or end of the Proof of Value (POV) process.</p>
                 <h3>Comprehensive Online Documentation</h3>
-                <p>Cyberark Certificate Manager provides extensive online documentation to support users in understanding and utilizing the platform effectively. Access the documentation using the link provided under <span class="inline-info-button">Additional Information</span>.</p>
+                <p>Cyberark Certificate Manager provides extensive online documentation to support users in understanding and utilizing the platform effectively. Access the documentation using the link provided under <span class="inline-info-button">Additional Information</span></p>
                 <h3>Key Sections of the Documentation</h3>
                 <ul>
                     <li><b>Home:</b> Your starting point for all Cyberark Control Plane resources.</li>
@@ -772,7 +788,7 @@
 
             <div id="API-reference-documentation" class="use-case">
                 <h2>API Reference Documentation</h2>
-                <p>Cyberark Certificate Manager SAAS provides a comprehensive API reference that enables programmatic access to its features and functionality. This document includes sample code in various programming languages to help developers integrate Certificate Manager SaaS into their workflows effortlessly. For access, see the link provided under <span class="inline-info-button">Additional Information</span>.</p>
+                <p>Cyberark Certificate Manager SAAS provides a comprehensive API reference that enables programmatic access to its features and functionality. This document includes sample code in various programming languages to help developers integrate Certificate Manager SaaS into their workflows effortlessly. For access, see the link provided under <span class="inline-info-button">Additional Information</span></p>
                 <h3>Overview of the Certificate Manager SaaS REST API</h3>
                 <p>The Certificate Manager SaaS REST API mirrors the functionality available via the Web User Interface (UI), allowing you to programmatically perform any task that can be executed through the UI. By leveraging the API, you can automate operations to achieve greater consistency and scalability across your organization.</p>
                 <h3>Key Features of the REST API</h3>

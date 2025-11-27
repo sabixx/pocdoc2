@@ -5,17 +5,24 @@ set -e
 
 ################## Public Cert ##################
 
-echo "PLAYBOOK_URL=$PLAYBOOK_URL"
-#echo "TLSPC_APIKEY=$TLSPC_APIKEY"
-echo "PUBLICDOMAIN=$PUBLICDOMAIN"
+# Optional hard switch to fully disable SSL, regardless of env vars
+DISABLE_SSL="${DISABLE_SSL:-false}"
 
-if [ -n "$PLAYBOOK_URL" ] && [ -n "$TLSPC_APIKEY" ] && [ -n "$PUBLICDOMAIN" ]; then
-    echo "All required environment variables (PLAYBOOK_URL, TLSPC_APIKEY, PUBLICDOMAIN) are set. Will get a public certifiate"
+SSL_CONF_FILE="/etc/nginx/conf.d/default_ssl.conf"
+
+if [ "$DISABLE_SSL" = "true" ]; then
+    echo "DISABLE_SSL=true → skipping public cert and removing SSL config."
+    rm -f "$SSL_CONF_FILE" || true
+
+elif [ -n "$PLAYBOOK_URL" ] && [ -n "$TLSPC_APIKEY" ] && [ -n "$PUBLICDOMAIN" ]; then
+    echo "All required environment variables (PLAYBOOK_URL, TLSPC_APIKEY, PUBLICDOMAIN) are set."
+    echo "Will try to get a public certificate for SSL on port 443."
 
     VCERT_URL="https://github.com/Venafi/vcert/releases/download/v5.7.1/vcert_v5.7.1_linux.zip"
-    export PLAYBOOK_URL="$PLAYBOOK_URL"
     DOWNLOAD_DIR="$HOME"
     TARGET_DIR="/usr/local/bin"
+
+    export PLAYBOOK_URL="$PLAYBOOK_URL"
 
     curl -L -o "$DOWNLOAD_DIR/vcert.zip" "$VCERT_URL"
     echo "Unzipping vcert to $DOWNLOAD_DIR..."
@@ -29,14 +36,26 @@ if [ -n "$PLAYBOOK_URL" ] && [ -n "$TLSPC_APIKEY" ] && [ -n "$PUBLICDOMAIN" ]; t
     echo "Downloading Playbook..."
     curl -L -o "$DOWNLOAD_DIR/playbook.yaml" "$PLAYBOOK_URL"
 
-    vcert run -f /root/playbook.yaml
+    # Make vcert failure non-fatal and fall back to HTTP only
+    set +e
+    vcert run -f "$DOWNLOAD_DIR/playbook.yaml"
+    VCERT_EXIT=$?
+    set -e
 
-    #set the config to use SSL
-    #mv /etc/nginx/conf.d/default_ssl.conf /etc/nginx/conf.d/default.conf
-
+    if [ "$VCERT_EXIT" -ne 0 ]; then
+        echo "vcert failed with exit code $VCERT_EXIT – falling back to HTTP only."
+        echo "Removing SSL config: $SSL_CONF_FILE"
+        rm -f "$SSL_CONF_FILE" || true
+    else
+        echo "Public certificate obtained successfully. Keeping SSL config for port 443."
+        # nothing else needed; default_ssl.conf will be loaded by nginx
+    fi
 
 else
-    echo "Error: One or more environment variables (PLAYBOOK_URL, TLSPC_APIKEY, PUBLICDOMAIN) are not set."
+    echo "One or more environment variables (PLAYBOOK_URL, TLSPC_APIKEY, PUBLICDOMAIN) are not set."
+    echo "Skipping public cert. HTTP on port 80 will still work; SSL config will be removed."
+
+    rm -f "$SSL_CONF_FILE" || true
 fi
 
 

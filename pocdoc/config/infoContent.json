@@ -19,7 +19,20 @@
                 
             }
         ]
-    },    "feedback": {},
+    },   
+    "GatewayInternalAccess": {
+        "temas_description": "Access to the internal system",
+        "text": "To gain access to internal systems you need to connec to the Gateway",
+        "credentials": [
+            {
+                "url": "http://gateway-@@PROSPECT@@.mimlab.io:9443/",
+                "username": "guacadmin",
+                "password": "@@PASSWORD@@"
+                
+            }
+        ]
+    },  
+    "feedback": {},
     "prepare-about-vsat": {
         "temas_description": "About Vsats",
         "text": "Link to the documentation section:",

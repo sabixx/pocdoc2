@@ -24,9 +24,8 @@ COPY ./pocdoc /var/www/html
 COPY ./test.php /var/www/html
 # Copy Nginx configuration files
 COPY nginx.conf /etc/nginx/nginx.conf
-# COPY default.conf /etc/nginx/conf.d/default.conf
-COPY default_ssl.conf /etc/nginx/conf.d/default.conf
-
+COPY default.conf /etc/nginx/conf.d/default.conf
+COPY default_ssl.conf /etc/nginx/conf.d/default_ssl.conf
 
 # Make sure the config dir exists and is writable by PHP (www-data)
 RUN mkdir -p /var/www/html/config \
