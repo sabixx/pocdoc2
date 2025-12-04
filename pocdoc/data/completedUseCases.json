@@ -1,39 +1,10 @@
 {
-    "Setup-and-Overview": false,
-    "Single-Sign-On": false,
-    "prepare-about-vsat": false,
-    "prepare-vsat-firewall": false,
-    "prepare-vsat-system": false,
-    "Dashboard": false,
-    "Internet-Discovery": false,
-    "Internal-Discovery": false,
-    "Dashboard2": false,
-    "Certificate-Location": false,
-    "Expiration-Notification": false,
-    "Reporting-and-Notification-Policies": false,
-    "Certificate-Validation": false,
-    "Import-certificates-from-Microsoft-CA": false,
-    "Request-a-New-Certificate-Self-Service": false,
-    "Request-a-New-Certificate-with-Approval-Required": false,
-    "Auto-Renewal": false,
-    "Windows-IIS-Automated-Installation": false,
-    "Apache-Automated-Installation": false,
-    "Tomcat-Automated-Installation": false,
-    "NetScaler-Automated-Installation": false,
-    "Full-automation-via-CLI-API-VCert": false,
-    "Default-Logging": false,
-    "Webhooks-Splunk": false,
-    "Reporting": false,
-    "Documentation": false,
-    "SaaS-Overall-System-Status": false,
-    "API-reference-documentation": false,
-    "Technical-Support": false,
-    "Eco-System-Marketplace": false,
-    "User-Group-Community-Training": false,
-    "Workshop-welcome": false,
-    "Workshop-housekeeping": false,
-    "lab1-a-cisos-request": false,
-    "lab2-the-hidden-risks": false,
-    "lab3-MarketingMeltdown": false,
-    "Appendix": false
+  "machine-identity/internet-discovery": {
+    "completed": true,
+    "completedAt": "2025-12-04T22:35:00.408Z"
+  },
+  "machine-identity/welcome": {
+    "completed": true,
+    "completedAt": "2025-12-04T23:00:39.428Z"
+  }
 }

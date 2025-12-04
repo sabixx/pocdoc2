@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POC Portal</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div id="container">
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div id="logo-section">
+                <div class="logo-placeholder">P</div>
+                <span class="logo-text">POC Portal</span>
+            </div>
+
+            <div id="use-case-menu">
+                <!-- Dynamically populated -->
+            </div>
+
+            <div id="sidebar-footer">
+                <a href="/config" class="config-link">
+                    <span class="material-icons">settings</span>
+                    Configuration
+                </a>
+                <a href="/logout" class="logout-link">
+                    <span class="material-icons">logout</span>
+                    Sign Out
+                </a>
+                <div id="sidebar-version">v2.0.0</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div id="main">
+            <div id="loading-state">
+                <div class="loading-spinner"></div>
+                <p>Loading use cases...</p>
+            </div>
+            
+            <div id="use-case-content" style="display: none;">
+                <!-- Dynamically populated -->
+            </div>
+
+            <div id="empty-state" style="display: none;">
+                <div class="empty-icon">📋</div>
+                <h2>No Use Cases Available</h2>
+                <p>Configure your active use cases in the <a href="/config">Configuration</a> page.</p>
+            </div>
+        </div>
+
+        <!-- Info Panel -->
+        <div id="info-panel">
+            <div id="info-panel-header">
+                <span>Details</span>
+                <span id="close-info-panel" class="material-icons">close</span>
+            </div>
+            <div id="info-panel-content">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+
+        <!-- Floating button -->
+        <button id="menu-button" onclick="toggleInfoPanel()">
+            Additional Information
+        </button>
+    </div>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,59 +1,37 @@
-# Use the official PHP-FPM image
-FROM php:8.3-fpm-alpine
+FROM node:20-alpine
 
-# Set environment variables
-ENV Prospect="EvalCompanyDemo"
-ENV USER="jens.sabitzer_default"
-ENV DEFAULT_HTACCESS='venafilab:$apr1$uj332HzM$rTn6EmoRtF0UJAkhL77xV0'
-ENV WEBUSER="venafilab"
-ENV WEBPASS="ChangeMe123!"
-ENV PUBLICDOMAIN="doc-fargate.mimlab.io"
-ENV TLSPCURL="https://ui.venafi.cloud"
-ENV DEFAULT_HTACCESS='ttyd_vencon:$apr1$U686jomW$FBjMMv6e7vcc.7VU1KLqo0'
+WORKDIR /app
 
+# Copy package files
+COPY package*.json ./
 
-# Install required packages for Nginx and utilities
-RUN apk add --no-cache nginx bash curl at ttyd certbot certbot-nginx apache2-utils libc6-compat \
-    && mkdir -p /run/nginx /var/www/html /etc/nginx/conf.d \
-    && chmod -R 777 /var/www/html \
-    && chown -R www-data:www-data /var/www/html
+# Install dependencies
+RUN npm ci --only=production
 
-# Copy application files to the container
-COPY ./pocdoc /var/www/html
+# Copy application files
+COPY ./pocdoc .
 
-COPY ./test.php /var/www/html
-# Copy Nginx configuration files
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY default.conf /etc/nginx/conf.d/default.conf
-COPY default_ssl.conf /etc/nginx/conf.d/default_ssl.conf
+# Create data directory
+RUN mkdir -p /app/data
 
-# Make sure the config dir exists and is writable by PHP (www-data)
-RUN mkdir -p /var/www/html/config \
-    && chown -R www-data:www-data /var/www/html/config \
-    && chmod 775 /var/www/html/config
+# Expose port
+EXPOSE 3000
 
-# Configure PHP-FPM error logging
-RUN echo "log_errors = On" >> /usr/local/etc/php/conf.d/php-custom.ini \
-    && echo "error_log = /var/log/php_errors.log" >> /usr/local/etc/php/conf.d/php-custom.ini
+# Environment variables with defaults
+ENV PORT=3000 \
+    NODE_ENV=production \
+    SESSION_SECRET=change-me-in-production \
+    PROSPECT=demo \
+    PARTNER= \
+    SAAS_NAME="Certificate Manager SaaS" \
+    POC_OR_DEMO=demo \
+    POC_INSIGHTS_URL= \
+    USE_CASE_REPO_URL= \
+    AUTH_ADMIN_USERNAME=admin \
+    AUTH_ADMIN_PASSWORD=admin \
+    AUTH_PROSPECT_PASSWORD=password \
+    TLSPC_URL=https://ui.venafi.cloud \
+    DEFAULT_PASSWORD=ChangeMe123!
 
-# Ensure PHP-FPM runs as root
-#RUN sed -i 's/^user = www-data/user = root/' /usr/local/etc/php-fpm.d/www.conf \
-#    && sed -i 's/^group = www-data/group = root/' /usr/local/etc/php-fpm.d/www.conf
-
-# PHP Configuration: Enable error logging and display errors
-RUN echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php.ini \
-    && echo "log_errors = On" >> /usr/local/etc/php/conf.d/docker-php.ini \
-    && echo "error_log = /var/log/php_errors.log" >> /usr/local/etc/php/conf.d/docker-php.ini
-
-# Ensure PHP error log file exists and is writable
-RUN touch /var/log/php_errors.log \
-    && chown www-data:www-data /var/log/php_errors.log
-
-# Expose HTTP and HTTPS ports
-EXPOSE 80 443
-
-# Start Nginx and PHP-FPM
-COPY start.sh /start.sh
-RUN chmod +x /start.sh
-
-ENTRYPOINT ["/start.sh"]
+# Start the application
+CMD ["node", "server.js"]

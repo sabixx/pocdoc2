@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  poc-portal:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - SESSION_SECRET=${SESSION_SECRET:-dev-secret-key}
+      - PROSPECT=${PROSPECT:-demo}
+      - PARTNER=${PARTNER:-}
+      - SAAS_NAME=${SAAS_NAME:-Certificate Manager SaaS}
+      - POC_START_DATE=${POC_START_DATE:-}
+      - POC_END_DATE=${POC_END_DATE:-}
+      - POC_OR_DEMO=${POC_OR_DEMO:-demo}
+      - POC_INSIGHTS_URL=${POC_INSIGHTS_URL:-}
+      - USE_CASE_REPO_URL=https://poc-documentation-usecases.s3.us-west-2.amazonaws.com
+      - AUTH_ADMIN_USERNAME=${AUTH_ADMIN_USERNAME:-admin}
+      - AUTH_ADMIN_PASSWORD=${AUTH_ADMIN_PASSWORD:-admin}
+      - AUTH_PROSPECT_PASSWORD=${AUTH_PROSPECT_PASSWORD:-password}
+      - TLSPC_URL=${TLSPC_URL:-https://ui.venafi.cloud}
+      - DEFAULT_PASSWORD=${DEFAULT_PASSWORD:-ChangeMe123!}
+
+    volumes:
+      # Persist configuration and completion data
+      - ./data:/app/data
+      # Mount use cases for development
+      - ./use-cases:/app/use-cases
+    restart: unless-stopped

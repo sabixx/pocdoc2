@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration - POC Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Mulish', system-ui, sans-serif;
+            background: #f5f7fb;
+            color: #111827;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            padding: 20px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .header-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .header-btn.primary {
+            background: linear-gradient(135deg, #ff6a3d, #ffb347);
+            color: white;
+        }
+
+        .header-btn.secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .header-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 32px;
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Panels */
+        .panel {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+        }
+
+        .panel-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .panel-header h2 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .panel-body {
+            padding: 24px;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            color: #0f172a;
+            background: #f9fafb;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #ff6a3d;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 106, 61, 0.1);
+        }
+
+        /* Use Case List */
+        .use-case-list {
+            max-height: calc(100vh - 300px);
+            overflow-y: auto;
+        }
+
+        .product-group {
+            margin-bottom: 24px;
+        }
+
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, rgba(255, 106, 61, 0.08), rgba(255, 179, 71, 0.08));
+            border-radius: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+
+        .product-header input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .product-header .product-name {
+            font-weight: 700;
+            color: #0f172a;
+            flex: 1;
+        }
+
+        .product-header .count {
+            font-size: 12px;
+            color: #6b7280;
+            background: white;
+            padding: 2px 8px;
+            border-radius: 999px;
+        }
+
+        .category-group {
+            margin-left: 16px;
+            margin-bottom: 16px;
+        }
+
+        .category-header {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #6b7280;
+            padding: 8px 12px;
+        }
+
+        .use-case-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            margin: 4px 0;
+            background: #f9fafb;
+            border-radius: 8px;
+            cursor: grab;
+            transition: all 0.15s;
+            border: 2px solid transparent;
+        }
+
+        .use-case-item:hover {
+            background: #f1f5f9;
+        }
+
+        .use-case-item.dragging {
+            opacity: 0.5;
+            cursor: grabbing;
+        }
+
+        .use-case-item.drag-over {
+            border-color: #ff6a3d;
+            background: rgba(255, 106, 61, 0.05);
+        }
+
+        .use-case-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .use-case-item .drag-handle {
+            color: #9ca3af;
+            cursor: grab;
+        }
+
+        .use-case-item .uc-info {
+            flex: 1;
+        }
+
+        .use-case-item .uc-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .use-case-item .uc-description {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 2px;
+            line-height: 1.4;
+        }
+
+        .use-case-item .uc-id {
+            font-size: 11px;
+            color: #6b7280;
+            font-family: monospace;
+        }
+
+        .use-case-item .uc-meta {
+            display: flex;
+            gap: 4px;
+        }
+
+        .use-case-item .uc-tag {
+            font-size: 10px;
+            padding: 2px 6px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            color: #6b7280;
+        }
+
+        /* Remote Updates */
+        .remote-panel {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .remote-panel h3 {
+            color: #0369a1;
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .remote-panel p {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 12px;
+        }
+
+        .progress-container {
+            margin-top: 12px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #ff6a3d, #ffb347);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        .download-all-btn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .download-all-btn:hover {
+            opacity: 0.9;
+        }
+
+        .download-all-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .update-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 12px;
+            background: white;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .update-item .info {
+            flex: 1;
+        }
+
+        .update-item .name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .update-item .version {
+            font-size: 11px;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+
+        .update-item .status {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .update-item .status.new {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .update-item .status.updated {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .no-updates {
+            text-align: center;
+            padding: 20px;
+            color: #059669;
+            font-size: 14px;
+        }
+
+        .remote-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 12px;
+            background: white;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+
+        .remote-item .info {
+            font-size: 13px;
+        }
+
+        .download-btn {
+            padding: 6px 12px;
+            background: #059669;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background: #047857;
+        }
+
+        /* Config String */
+        .config-string {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .config-string h3 {
+            color: #94a3b8;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+        }
+
+        .config-string pre {
+            color: #e2e8f0;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .config-string .copy-btn {
+            margin-top: 12px;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .config-string .copy-btn:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            padding: 14px 24px;
+            background: #0f172a;
+            color: white;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            background: #059669;
+        }
+
+        .toast.error {
+            background: #dc2626;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>POC Portal Configuration</h1>
+        <div class="header-actions">
+            <a href="/" class="header-btn secondary">
+                <span class="material-icons">arrow_back</span>
+                Back to Portal
+            </a>
+            <button class="header-btn primary" onclick="saveConfig()">
+                <span class="material-icons">save</span>
+                Save Configuration
+            </button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <!-- Settings Panel -->
+        <div class="panel">
+            <div class="panel-header">
+                <h2>POC Settings</h2>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="form-label">Prospect Name</label>
+                    <input type="text" class="form-input" id="prospect" placeholder="e.g., acme-corp">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Partner</label>
+                    <input type="text" class="form-input" id="partner" placeholder="e.g., partner-name">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">SaaS Name</label>
+                    <input type="text" class="form-input" id="saasName" placeholder="e.g., Certificate Manager">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">POC Start Date</label>
+                    <input type="date" class="form-input" id="pocStartDate">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">POC End Date</label>
+                    <input type="date" class="form-input" id="pocEndDate">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Mode</label>
+                    <select class="form-select" id="pocOrDemo">
+                        <option value="demo">Demo</option>
+                        <option value="poc">POC (sends telemetry)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Use Case Repository URL</label>
+                    <input type="text" class="form-input" id="useCaseRepoUrl" placeholder="e.g., https://your-bucket.s3.amazonaws.com/use-cases">
+                    <small style="color: #6b7280; font-size: 11px; margin-top: 4px; display: block;">Remote URL for downloading use cases</small>
+                </div>
+
+                <!-- Config String Output -->
+                <div class="config-string" id="configStringSection">
+                    <h3>Environment Configuration</h3>
+                    <pre id="configStringOutput">Loading...</pre>
+                    <button class="copy-btn" onclick="copyConfigString()">
+                        <span class="material-icons" style="font-size: 14px; vertical-align: middle;">content_copy</span>
+                        Copy to Clipboard
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Use Cases Panel -->
+        <div class="panel">
+            <div class="panel-header">
+                <h2>Active Use Cases</h2>
+                <div style="display: flex; gap: 8px;">
+                    <button class="header-btn secondary" onclick="selectAll()">Select All</button>
+                    <button class="header-btn secondary" onclick="selectNone()">Select None</button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <!-- Remote Repository Panel -->
+                <div class="remote-panel" id="remotePanel">
+                    <h3>
+                        <span class="material-icons">cloud_download</span>
+                        Use Case Repository
+                    </h3>
+                    <p>Scan for new or updated use cases, or download all from the repository.</p>
+                    
+                    <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+                        <button class="download-all-btn" id="quickScanBtn" onclick="quickScan()" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">
+                            <span class="material-icons" style="font-size: 18px;">search</span>
+                            Quick Scan
+                        </button>
+                        <button class="download-all-btn" id="downloadAllBtn" onclick="downloadAllUseCases()" style="background: linear-gradient(135deg, #059669, #10b981);">
+                            <span class="material-icons" style="font-size: 18px;">download</span>
+                            Download All
+                        </button>
+                    </div>
+
+                    <!-- Scan Results -->
+                    <div id="scanResultsContainer" style="display: none;">
+                        <div id="scanResults"></div>
+                    </div>
+
+                    <div class="progress-container" id="progressContainer" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill" id="progressBarFill" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-text" id="progressText">Preparing download...</div>
+                    </div>
+                </div>
+
+                <!-- Use Case List -->
+                <div class="use-case-list" id="useCaseList">
+                    <p style="color: #6b7280; text-align: center; padding: 40px;">Loading use cases...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        let allUseCases = [];
+        let remoteUpdates = { newUseCases: [], updated: [] };
+        let activeUseCases = new Set();
+        let useCaseOrder = {};
+
+        // ====================================================================
+        // Initialization
+        // ====================================================================
+
+        document.addEventListener('DOMContentLoaded', loadConfig);
+
+        async function loadConfig() {
+            try {
+                const response = await fetch('/api/config');
+                const data = await response.json();
+
+                // Populate form
+                document.getElementById('prospect').value = data.config.prospect || '';
+                document.getElementById('partner').value = data.config.partner || '';
+                document.getElementById('saasName').value = data.config.saasName || '';
+                document.getElementById('pocStartDate').value = data.config.pocStartDate || '';
+                document.getElementById('pocEndDate').value = data.config.pocEndDate || '';
+                document.getElementById('pocOrDemo').value = data.config.pocOrDemo || 'demo';
+                document.getElementById('useCaseRepoUrl').value = data.config.useCaseRepoUrl || '';
+
+                // Store data
+                allUseCases = data.useCases || [];            
+                remoteUpdates = data.remote || { newUseCases: [], updated: [] };
+                activeUseCases = new Set(data.config.activeUseCases || []);
+                useCaseOrder = data.config.useCaseOrder || {};
+
+                // Render                
+                renderUseCaseList();
+                updateConfigString();
+
+            } catch (error) {
+                console.error('Error loading config:', error);
+                showToast('Failed to load configuration', 'error');
+            }
+        }
+
+        // ====================================================================
+        // Rendering
+        // ====================================================================
+
+        function renderUseCaseList() {
+            const container = document.getElementById('useCaseList');
+
+            // Group by product, then category
+            const products = {};
+            allUseCases.forEach(uc => {
+                const product = uc.product || 'General';
+                const category = uc.category || 'Uncategorized';
+
+                if (!products[product]) products[product] = {};
+                if (!products[product][category]) products[product][category] = [];
+                products[product][category].push(uc);
+            });
+
+            let html = '';
+
+            for (const [product, categories] of Object.entries(products)) {
+                const productUseCases = Object.values(categories).flat();
+                const allSelected = productUseCases.every(uc => activeUseCases.has(uc.id));
+                const someSelected = productUseCases.some(uc => activeUseCases.has(uc.id));
+
+                html += `
+                    <div class="product-group" data-product="${product}">
+                        <div class="product-header" onclick="toggleProduct('${product}')">
+                            <input type="checkbox" 
+                                   ${allSelected ? 'checked' : ''} 
+                                   ${someSelected && !allSelected ? 'indeterminate' : ''}
+                                   onclick="event.stopPropagation(); toggleProduct('${product}', this.checked)">
+                            <span class="product-name">${product}</span>
+                            <span class="count">${productUseCases.length} use cases</span>
+                        </div>
+                `;
+
+                for (const [category, useCases] of Object.entries(categories)) {
+                    html += `
+                        <div class="category-group">
+                            <div class="category-header">${category}</div>
+                    `;
+
+                    useCases.forEach(uc => {
+                        const isActive = activeUseCases.has(uc.id);
+                        const description = uc.description ? `<div class="uc-description">${uc.description}</div>` : '';
+                        html += `
+                            <div class="use-case-item" 
+                                 data-id="${uc.id}"
+                                 draggable="true"
+                                 ondragstart="handleDragStart(event)"
+                                 ondragover="handleDragOver(event)"
+                                 ondrop="handleDrop(event)"
+                                 ondragend="handleDragEnd(event)">
+                                <span class="material-icons drag-handle">drag_indicator</span>
+                                <input type="checkbox" 
+                                       ${isActive ? 'checked' : ''}
+                                       onchange="toggleUseCase('${uc.id}', this.checked)">
+                                <div class="uc-info">
+                                    <div class="uc-name">${uc.name || uc.slug}</div>
+                                    ${description}
+                                </div>
+                                <div class="uc-meta">
+                                    ${uc.version ? `<span class="uc-tag">v${uc.version}</span>` : ''}
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    html += `</div>`;
+                }
+
+                html += `</div>`;
+            }
+
+            container.innerHTML = html || '<p style="color: #6b7280; text-align: center; padding: 40px;">No use cases found</p>';
+
+            // Fix indeterminate checkboxes
+            document.querySelectorAll('.product-header input[type="checkbox"]').forEach(cb => {
+                const product = cb.closest('.product-group').dataset.product;
+                const productUseCases = allUseCases.filter(uc => (uc.product || 'General') === product);
+                const selected = productUseCases.filter(uc => activeUseCases.has(uc.id)).length;
+                cb.indeterminate = selected > 0 && selected < productUseCases.length;
+            });
+        }
+
+        // ====================================================================
+        // Actions
+        // ====================================================================
+
+        function toggleUseCase(id, checked) {
+            if (checked) {
+                activeUseCases.add(id);
+            } else {
+                activeUseCases.delete(id);
+            }
+            renderUseCaseList();
+            updateConfigString();
+        }
+
+        function toggleProduct(product, checked) {
+            const productUseCases = allUseCases.filter(uc => (uc.product || 'General') === product);
+            
+            if (checked === undefined) {
+                // Toggle based on current state
+                const allSelected = productUseCases.every(uc => activeUseCases.has(uc.id));
+                checked = !allSelected;
+            }
+
+            productUseCases.forEach(uc => {
+                if (checked) {
+                    activeUseCases.add(uc.id);
+                } else {
+                    activeUseCases.delete(uc.id);
+                }
+            });
+
+            renderUseCaseList();
+            updateConfigString();
+        }
+
+        function selectAll() {
+            allUseCases.forEach(uc => activeUseCases.add(uc.id));
+            renderUseCaseList();
+            updateConfigString();
+        }
+
+        function selectNone() {
+            activeUseCases.clear();
+            renderUseCaseList();
+            updateConfigString();
+        }
+
+        // ====================================================================
+        // Drag and Drop
+        // ====================================================================
+
+        let draggedItem = null;
+
+        function handleDragStart(e) {
+            draggedItem = e.target.closest('.use-case-item');
+            draggedItem.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            
+            const item = e.target.closest('.use-case-item');
+            if (item && item !== draggedItem) {
+                item.classList.add('drag-over');
+            }
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            const targetItem = e.target.closest('.use-case-item');
+            
+            if (targetItem && targetItem !== draggedItem) {
+                const draggedId = draggedItem.dataset.id;
+                const targetId = targetItem.dataset.id;
+
+                // Update order
+                const allIds = Array.from(activeUseCases);
+                const draggedIndex = allIds.indexOf(draggedId);
+                const targetIndex = allIds.indexOf(targetId);
+
+                if (draggedIndex > -1) {
+                    allIds.splice(draggedIndex, 1);
+                    allIds.splice(targetIndex, 0, draggedId);
+                }
+
+                // Update order map
+                useCaseOrder = {};
+                allIds.forEach((id, idx) => {
+                    useCaseOrder[id] = idx;
+                });
+
+                // Visually reorder
+                targetItem.parentNode.insertBefore(draggedItem, 
+                    draggedIndex < targetIndex ? targetItem.nextSibling : targetItem);
+            }
+            
+            document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+        }
+
+        function handleDragEnd(e) {
+            draggedItem.classList.remove('dragging');
+            document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+            draggedItem = null;
+        }
+
+        // ====================================================================
+        // Remote Operations
+        // ====================================================================
+
+        async function quickScan() {
+            const repoUrl = document.getElementById('useCaseRepoUrl').value;
+            if (!repoUrl) {
+                showToast('Please enter a Use Case Repository URL first', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('quickScanBtn');
+            const resultsContainer = document.getElementById('scanResultsContainer');
+            const scanResults = document.getElementById('scanResults');
+
+            btn.disabled = true;
+            btn.innerHTML = '<span class="material-icons" style="font-size: 18px; animation: spin 1s linear infinite;">search</span> Scanning...';
+
+            try {
+                const response = await fetch('/api/remote-updates?repoUrl=' + encodeURIComponent(repoUrl));
+                if (!response.ok) {
+                    throw new Error('Failed to scan repository');
+                }
+
+                const data = await response.json();
+                const newCount = data.newUseCases?.length || 0;
+                const updatedCount = data.updated?.length || 0;
+                const totalInManifest = data.totalInManifest || 0;
+
+                let html = '<div style="margin-bottom: 12px; padding: 12px; background: white; border-radius: 8px; border: 1px solid #e5e7eb;">';
+                html += `<div style="font-size: 14px; font-weight: 600; margin-bottom: 8px;">📊 Scan Results</div>`;
+                html += `<div style="font-size: 13px; color: #6b7280;">Total in repository: <strong>${totalInManifest}</strong></div>`;
+                
+                if (newCount === 0 && updatedCount === 0) {
+                    html += `<div style="margin-top: 8px; color: #059669;"><span class="material-icons" style="font-size: 16px; vertical-align: middle;">check_circle</span> All use cases are up to date!</div>`;
+                } else {
+                    if (newCount > 0) {
+                        html += `<div style="margin-top: 8px; color: #166534;"><span class="material-icons" style="font-size: 16px; vertical-align: middle;">add_circle</span> ${newCount} new use case(s) available</div>`;
+                    }
+                    if (updatedCount > 0) {
+                        html += `<div style="margin-top: 4px; color: #92400e;"><span class="material-icons" style="font-size: 16px; vertical-align: middle;">update</span> ${updatedCount} update(s) available</div>`;
+                    }
+                }
+                html += '</div>';
+
+                // Show details if there are updates
+                if (newCount > 0 || updatedCount > 0) {
+                    data.newUseCases?.forEach(uc => {
+                        html += `
+                            <div class="update-item">
+                                <div class="info">
+                                    <div class="name">${uc.name || uc.id}</div>
+                                    <div class="version">v${uc.version || '1.0.0'}</div>
+                                </div>
+                                <span class="status new">NEW</span>
+                            </div>
+                        `;
+                    });
+
+                    data.updated?.forEach(uc => {
+                        html += `
+                            <div class="update-item">
+                                <div class="info">
+                                    <div class="name">${uc.name || uc.id}</div>
+                                    <div class="version">v${uc.localVersion} → v${uc.version}</div>
+                                </div>
+                                <span class="status updated">UPDATE</span>
+                            </div>
+                        `;
+                    });
+                }
+
+                scanResults.innerHTML = html;
+                resultsContainer.style.display = 'block';
+
+                if (newCount > 0 || updatedCount > 0) {
+                    showToast(`Found ${newCount + updatedCount} update(s) available`, 'success');
+                } else {
+                    showToast('All use cases are up to date', 'success');
+                }
+
+            } catch (error) {
+                console.error('Error scanning:', error);
+                showToast(error.message || 'Failed to scan repository', 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<span class="material-icons" style="font-size: 18px;">search</span> Quick Scan';
+            }
+        }
+
+        async function downloadAllUseCases() {
+            const repoUrl = document.getElementById('useCaseRepoUrl').value;
+            if (!repoUrl) {
+                showToast('Please enter a Use Case Repository URL first', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('downloadAllBtn');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressBarFill = document.getElementById('progressBarFill');
+            const progressText = document.getElementById('progressText');
+
+            btn.disabled = true;
+            progressContainer.style.display = 'block';
+            progressBarFill.style.width = '0%';
+            progressText.textContent = 'Fetching manifest...';
+
+            try {
+                // First, fetch the manifest
+                const response = await fetch('/api/download-all-use-cases', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ repoUrl })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Download failed');
+                }
+
+                // Use streaming to get progress updates
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let buffer = '';
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    buffer += decoder.decode(value, { stream: true });
+                    
+                    // Process complete JSON lines
+                    const lines = buffer.split('\n');
+                    buffer = lines.pop(); // Keep incomplete line in buffer
+
+                    for (const line of lines) {
+                        if (line.trim()) {
+                            try {
+                                const update = JSON.parse(line);
+                                if (update.progress !== undefined) {
+                                    progressBarFill.style.width = `${update.progress}%`;
+                                    progressText.textContent = update.message || `${update.progress}% complete`;
+                                }
+                                if (update.complete) {
+                                    progressBarFill.style.width = '100%';
+                                    progressText.textContent = `Downloaded ${update.downloaded} use cases`;
+                                    showToast(`Successfully downloaded ${update.downloaded} use cases`, 'success');
+                                    await loadConfig();
+                                }
+                                if (update.error) {
+                                    throw new Error(update.error);
+                                }
+                            } catch (e) {
+                                // Ignore JSON parse errors for partial lines
+                            }
+                        }
+                    }
+                }
+
+            } catch (error) {
+                console.error('Error downloading:', error);
+                showToast(error.message || 'Failed to download use cases', 'error');
+                progressText.textContent = 'Download failed';
+            } finally {
+                btn.disabled = false;
+                setTimeout(() => {
+                    progressContainer.style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        // ====================================================================
+        // Config String
+        // ====================================================================
+
+        function updateConfigString() {
+            const activeList = Array.from(activeUseCases).join(',');
+            document.getElementById('configStringOutput').textContent = `ACTIVE_USE_CASES=${activeList}`;
+        }
+
+        function copyConfigString() {
+            const text = document.getElementById('configStringOutput').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Copied to clipboard', 'success');
+            });
+        }
+
+        // Add event listeners for config string updates
+        ['prospect', 'partner', 'saasName', 'pocStartDate', 'pocEndDate', 'pocOrDemo', 'useCaseRepoUrl'].forEach(id => {
+            document.getElementById(id).addEventListener('input', updateConfigString);
+        });
+
+        // ====================================================================
+        // Save
+        // ====================================================================
+
+        async function saveConfig() {
+            try {
+                const response = await fetch('/api/config', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        prospect: document.getElementById('prospect').value,
+                        partner: document.getElementById('partner').value,
+                        saasName: document.getElementById('saasName').value,
+                        pocStartDate: document.getElementById('pocStartDate').value,
+                        pocEndDate: document.getElementById('pocEndDate').value,
+                        pocOrDemo: document.getElementById('pocOrDemo').value,
+                        useCaseRepoUrl: document.getElementById('useCaseRepoUrl').value,
+                        activeUseCases: Array.from(activeUseCases),
+                        useCaseOrder
+                    })
+                });
+
+                if (!response.ok) throw new Error('Save failed');
+
+                showToast('Configuration saved successfully', 'success');
+
+            } catch (error) {
+                console.error('Error saving config:', error);
+                showToast('Failed to save configuration', 'error');
+            }
+        }
+
+        // ====================================================================
+        // Toast
+        // ====================================================================
+
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast visible ${type}`;
+            
+            setTimeout(() => {
+                toast.classList.remove('visible');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
