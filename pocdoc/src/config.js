@@ -5,24 +5,66 @@ const path = require('path');
 const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, '../data');
 const CONFIG_FILE = path.join(DATA_DIR, 'config.json');
 
+// Calculate default dates
+function getDefaultStartDate() {
+    // 2 days from today
+    const date = new Date();
+    date.setDate(date.getDate() + 2);
+    return date.toISOString().split('T')[0];
+}
+
+function getDefaultEndDate(startDateStr) {
+    // 2 weeks after start date
+    const startDate = startDateStr ? new Date(startDateStr) : new Date();
+    if (isNaN(startDate.getTime())) {
+        // Invalid date, use 2 days + 2 weeks from now
+        const date = new Date();
+        date.setDate(date.getDate() + 2 + 14);
+        return date.toISOString().split('T')[0];
+    }
+    startDate.setDate(startDate.getDate() + 14);
+    return startDate.toISOString().split('T')[0];
+}
+
+// Get start date from env or default
+const defaultStartDate = process.env.POC_START_DATE || getDefaultStartDate();
+const defaultEndDate = process.env.POC_END_DATE || getDefaultEndDate(defaultStartDate);
+
 // Default configuration from environment variables
 const defaultConfig = {
+    // Customer info
     prospect: process.env.PROSPECT || 'demo',
     partner: process.env.PARTNER || '',
     saasName: process.env.SAAS_NAME || 'Certificate Manager SaaS',
-    pocStartDate: process.env.POC_START_DATE || new Date().toISOString().split('T')[0],
-    pocEndDate: process.env.POC_END_DATE || new Date(Date.now() + 30*24*60*60*1000).toISOString().split('T')[0],
+    
+    // POC dates
+    pocStartDate: defaultStartDate,
+    pocEndDate: defaultEndDate,
+    
+    // Mode
     pocOrDemo: process.env.POC_OR_DEMO || 'demo',
+    
+    // SA info (for POC registration)
+    saName: process.env.SA_NAME || '',
+    saEmail: process.env.SA_EMAIL || '',
+    
+    // Backend API
     pocInsightsUrl: process.env.POC_INSIGHTS_URL || '',
+    
+    // Use cases
     useCaseRepoUrl: process.env.USE_CASE_REPO_URL || '',
     useCaseLocalPath: process.env.USE_CASE_LOCAL_PATH || path.join(__dirname, '../use-cases'),
+    activeUseCases: process.env.ACTIVE_USE_CASES ? process.env.ACTIVE_USE_CASES.split(',').filter(Boolean) : [],
+    useCaseOrder: {},
+    
+    // Auth (not persisted to disk for security)
     authAdminUsername: process.env.AUTH_ADMIN_USERNAME || 'admin',
     authAdminPassword: process.env.AUTH_ADMIN_PASSWORD || 'admin',
     authProspectPassword: process.env.AUTH_PROSPECT_PASSWORD || 'password',
+    
+    // TLSPC config
     tlspcUrl: process.env.TLSPC_URL || 'https://ui.venafi.cloud',
-    password: process.env.DEFAULT_PASSWORD || 'ChangeMe123!',
-    activeUseCases: process.env.ACTIVE_USE_CASES ? process.env.ACTIVE_USE_CASES.split(',').filter(Boolean) : [],
-    useCaseOrder: {}
+    password: process.env.DEFAULT_PASSWORD || 'ChangeMe123!'
 };
 
 let currentConfig = { ...defaultConfig };
@@ -32,27 +74,73 @@ async function load() {
         if (fsSync.existsSync(CONFIG_FILE)) {
             const data = await fs.readFile(CONFIG_FILE, 'utf8');
             const diskConfig = JSON.parse(data);
-            currentConfig = { ...defaultConfig, ...diskConfig };
-            console.log('Loaded configuration from disk');
+            
+            // Merge: env vars override disk config for certain fields
+            currentConfig = { ...defaultConfig };
+            
+            // Fields that should come from disk (user-editable)
+            const diskOverrideFields = [
+                'activeUseCases', 
+                'useCaseOrder'
+            ];
+            
+            // Fields that env vars should always override
+            const envOverrideFields = [
+                'prospect', 'partner', 'saasName',
+                'pocStartDate', 'pocEndDate', 'pocOrDemo',
+                'saName', 'saEmail', 'pocInsightsUrl',
+                'useCaseRepoUrl', 'useCaseLocalPath'
+            ];
+            
+            // Apply disk config first
+            for (const key of Object.keys(diskConfig)) {
+                if (diskConfig[key] !== undefined && diskConfig[key] !== null && diskConfig[key] !== '') {
+                    currentConfig[key] = diskConfig[key];
+                }
+            }
+            
+            // Then override with env vars if set
+            for (const key of envOverrideFields) {
+                const envValue = defaultConfig[key];
+                // Only override if env var was actually set (not default)
+                if (process.env[toEnvVar(key)]) {
+                    currentConfig[key] = envValue;
+                }
+            }
+            
+            console.log('[Config] Loaded configuration from disk, merged with env vars');
         } else {
             currentConfig = { ...defaultConfig };
             await save();
-            console.log('Created default configuration');
+            console.log('[Config] Created default configuration');
         }
     } catch (error) {
-        console.error('Error loading config:', error);
+        console.error('[Config] Error loading config:', error);
         currentConfig = { ...defaultConfig };
     }
+    
     return currentConfig;
+}
+
+// Helper to convert camelCase to UPPER_SNAKE_CASE
+function toEnvVar(camelCase) {
+    return camelCase.replace(/([A-Z])/g, '_$1').toUpperCase();
 }
 
 async function save() {
     try {
         await fs.mkdir(path.dirname(CONFIG_FILE), { recursive: true });
-        await fs.writeFile(CONFIG_FILE, JSON.stringify(currentConfig, null, 2));
-        console.log('Configuration saved to disk');
+        
+        // Don't persist sensitive auth fields
+        const configToSave = { ...currentConfig };
+        delete configToSave.authAdminUsername;
+        delete configToSave.authAdminPassword;
+        delete configToSave.authProspectPassword;
+        
+        await fs.writeFile(CONFIG_FILE, JSON.stringify(configToSave, null, 2));
+        console.log('[Config] Configuration saved to disk');
     } catch (error) {
-        console.error('Error saving config:', error);
+        console.error('[Config] Error saving config:', error);
         throw error;
     }
 }
@@ -67,9 +155,10 @@ function set(key, value) {
 
 function update(updates) {
     const allowedFields = [
-        'prospect', 'partner', 'saasName', 
+        'prospect', 'partner', 'saasName',
         'pocStartDate', 'pocEndDate', 'pocOrDemo',
-        'useCaseRepoUrl', 'useCaseLocalPath', 'activeUseCases', 'useCaseOrder'
+        'useCaseRepoUrl', 'useCaseLocalPath', 
+        'activeUseCases', 'useCaseOrder'
     ];
     
     for (const field of allowedFields) {
@@ -97,13 +186,16 @@ function replaceVariables(text) {
         '@@TLSPCURL@@': currentConfig.tlspcUrl,
         '@@PASSWORD@@': currentConfig.password,
         '@@POC_START_DATE@@': currentConfig.pocStartDate,
-        '@@POC_END_DATE@@': currentConfig.pocEndDate
+        '@@POC_END_DATE@@': currentConfig.pocEndDate,
+        '@@SA_NAME@@': currentConfig.saName,
+        '@@SA_EMAIL@@': currentConfig.saEmail
     };
     
     let result = text;
     for (const [key, value] of Object.entries(replacements)) {
         result = result.replace(new RegExp(key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), value || '');
     }
+    
     return result;
 }
 

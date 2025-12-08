@@ -533,7 +533,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">SaaS Name</label>
+                    <label class="form-label">Product Name</label>
                     <input type="text" class="form-input" id="saasName" placeholder="e.g., Certificate Manager">
                 </div>
 
@@ -600,12 +600,7 @@
                             <span class="material-icons" style="font-size: 18px;">download</span>
                             Download All
                         </button>
-                    </div>
-
-                    <!-- Scan Results -->
-                    <div id="scanResultsContainer" style="display: none;">
-                        <div id="scanResults"></div>
-                    </div>
+                </div>
 
                     <div class="progress-container" id="progressContainer" style="display: none;">
                         <div class="progress-bar">
@@ -613,13 +608,51 @@
                         </div>
                         <div class="progress-text" id="progressText">Preparing download...</div>
                     </div>
+
+                    <div class="remote-panel" style="background: #1e293b; border-color: #334155; margin-top: 16px;">
+                        <h3 style="color: #94a3b8; cursor: pointer;" onclick="toggleLogs()">
+                            <span class="material-icons">terminal</span>
+                            Console Logs
+                            <span class="material-icons" id="logToggleIcon" style="font-size: 18px;">expand_more</span>
+                        </h3>
+                        <div id="logContainer" style="display: none;">
+                            <pre id="logOutput" style="
+                                background: #0f172a; 
+                                color: #e2e8f0; 
+                                padding: 12px; 
+                                border-radius: 6px; 
+                                font-size: 11px; 
+                                font-family: monospace;
+                                max-height: 200px; 
+                                overflow-y: auto;
+                                white-space: pre-wrap;
+                                word-break: break-all;
+                            ">Loading logs...</pre>
+                            <button onclick="refreshLogs()" style="
+                                margin-top: 8px;
+                                padding: 6px 12px;
+                                background: #334155;
+                                color: white;
+                                border: none;
+                                border-radius: 4px;
+                                font-size: 12px;
+                                cursor: pointer;
+                            ">Refresh Logs</button>
+                        </div>
+                    </div>                      
+
+                    <!-- Scan Results -->
+                    <div id="scanResultsContainer" style="display: none;">
+                        <div id="scanResults"></div>
+                    </div>
+                    
                 </div>
 
                 <!-- Use Case List -->
                 <div class="use-case-list" id="useCaseList">
                     <p style="color: #6b7280; text-align: center; padding: 40px;">Loading use cases...</p>
                 </div>
-            </div>
+            </div>        
         </div>
     </div>
 
@@ -751,6 +784,43 @@
                 const selected = productUseCases.filter(uc => activeUseCases.has(uc.id)).length;
                 cb.indeterminate = selected > 0 && selected < productUseCases.length;
             });
+        }
+
+
+        // ====================================================================
+        // Console Logs
+        // ====================================================================
+
+        function toggleLogs() {
+            const container = document.getElementById('logContainer');
+            const icon = document.getElementById('logToggleIcon');
+            if (container.style.display === 'none') {
+                container.style.display = 'block';
+                icon.textContent = 'expand_less';
+                refreshLogs();
+            } else {
+                container.style.display = 'none';
+                icon.textContent = 'expand_more';
+            }
+        }
+
+        async function refreshLogs() {
+            const output = document.getElementById('logOutput');
+            output.textContent = 'Loading...';
+            
+            try {
+                const response = await fetch('/api/logs?lines=2000');
+                if (response.ok) {
+                    const data = await response.json();
+                    output.textContent = data.logs || 'No logs available';
+                    // Auto-scroll to bottom
+                    output.scrollTop = output.scrollHeight;
+                } else {
+                    output.textContent = 'Failed to fetch logs: ' + response.status;
+                }
+            } catch (e) {
+                output.textContent = 'Error fetching logs: ' + e.message;
+            }
         }
 
         // ====================================================================
@@ -924,7 +994,7 @@
                             <div class="update-item">
                                 <div class="info">
                                     <div class="name">${uc.name || uc.id}</div>
-                                    <div class="version">v${uc.localVersion} → v${uc.version}</div>
+                                    <div class="version">v${uc.version} → v${uc.localVersion}</div>
                                 </div>
                                 <span class="status updated">UPDATE</span>
                             </div>

@@ -1,30 +1,93 @@
-version: '3.8'
-
 services:
   poc-portal:
     build: .
     ports:
       - "3000:3000"
     environment:
-      - NODE_ENV=development
-      - SESSION_SECRET=${SESSION_SECRET:-dev-secret-key}
+      # =======================================================================
+      # MODE CONFIGURATION
+      # =======================================================================
+      # "poc" = POC mode (registers with backend, sends heartbeat)
+      # "demo" = Demo mode (no backend communication)
+      - POC_OR_DEMO=${POC_OR_DEMO:-demo}
+      
+      # =======================================================================
+      # CUSTOMER CONFIGURATION
+      # =======================================================================
       - PROSPECT=${PROSPECT:-demo}
       - PARTNER=${PARTNER:-}
       - SAAS_NAME=${SAAS_NAME:-Certificate Manager SaaS}
       - POC_START_DATE=${POC_START_DATE:-}
       - POC_END_DATE=${POC_END_DATE:-}
-      - POC_OR_DEMO=${POC_OR_DEMO:-demo}
+      - TLSPCURL="https://ui.venafi.cloud"
+      - PASSWORD="newPassword123!"
+      
+      # =======================================================================
+      # SA CONFIGURATION (required for POC mode)
+      # =======================================================================
+      - SA_NAME=${SA_NAME:-}
+      - SA_EMAIL=${SA_EMAIL:-}
+      
+      # =======================================================================
+      # BACKEND API CONFIGURATION
+      # =======================================================================
+      # URL of the POC Portal backend API
       - POC_INSIGHTS_URL=${POC_INSIGHTS_URL:-}
-      - USE_CASE_REPO_URL=https://poc-documentation-usecases.s3.us-west-2.amazonaws.com
+      # API key for authentication with backend
+      - API_SHARED_SECRET=${API_SHARED_SECRET:-}
+      # Heartbeat interval in minutes (default: 1440 = 24 hours)
+      - HEARTBEAT_INTERVAL_MINUTES=${HEARTBEAT_INTERVAL_MINUTES:-1440}
+      
+      # =======================================================================
+      # USE CASE CONFIGURATION (Required)
+      # =======================================================================
+      # S3 bucket or repo URL for downloading use cases (REQUIRED)
+      - USE_CASE_REPO_URL=${USE_CASE_REPO_URL:-}
+      # Local path for use cases (inside container)
+      - USE_CASE_LOCAL_PATH=/app/use-cases
+      # Comma-separated list of active use case IDs
+      - ACTIVE_USE_CASES=${ACTIVE_USE_CASES:-}
+      
+      # =======================================================================
+      # AUTHENTICATION CONFIGURATION
+      # =======================================================================
       - AUTH_ADMIN_USERNAME=${AUTH_ADMIN_USERNAME:-admin}
       - AUTH_ADMIN_PASSWORD=${AUTH_ADMIN_PASSWORD:-admin}
       - AUTH_PROSPECT_PASSWORD=${AUTH_PROSPECT_PASSWORD:-password}
+      - SESSION_SECRET=${SESSION_SECRET:-change-me-in-production}
+      
+      # =======================================================================
+      # APPLICATION CONFIGURATION
+      # =======================================================================
+      - NODE_ENV=${NODE_ENV:-production}
+      - PORT=3000
       - TLSPC_URL=${TLSPC_URL:-https://ui.venafi.cloud}
       - DEFAULT_PASSWORD=${DEFAULT_PASSWORD:-ChangeMe123!}
-
-    volumes:
-      # Persist configuration and completion data
-      - ./data:/app/data
-      # Mount use cases for development
-      - ./use-cases:/app/use-cases
+      
     restart: unless-stopped
+
+
+# =============================================================================
+# EXAMPLE CONFIGURATIONS
+# =============================================================================
+#
+# Demo Mode (default):
+# --------------------
+#   POC_OR_DEMO=demo
+#   PROSPECT=Demo Customer
+#
+# POC Mode (full integration):
+# ----------------------------
+#   POC_OR_DEMO=poc
+#   PROSPECT=ACME Bank
+#   PARTNER=BigPartner GmbH
+#   SAAS_NAME=Certificate Manager SaaS
+#   POC_START_DATE=2025-12-04
+#   POC_END_DATE=2026-01-03
+#   SA_NAME=Jens Sabitzer
+#   SA_EMAIL=jens.sabitzer@cyberark.com
+#   POC_INSIGHTS_URL=http://172.17.32.15:8000
+#   API_SHARED_SECRET=supersecret-api-key
+#   USE_CASE_REPO_URL=https://poc-documentation-usecases.s3.us-west-2.amazonaws.com
+#
+# =============================================================================

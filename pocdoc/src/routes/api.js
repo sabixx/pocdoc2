@@ -1,9 +1,11 @@
 const express = require('express');
+
 const config = require('../config');
 const { requireAuth, requireAdmin } = require('../middleware/auth');
 const usecases = require('../services/usecases');
 const remote = require('../services/remote');
 const insights = require('../services/insights');
+const logger = require('../services/logger');
 
 const router = express.Router();
 
@@ -22,6 +24,7 @@ router.get('/config', requireAdmin, async (req, res) => {
         const { useCases, conflicts } = await usecases.getAll();
         const remoteUpdates = await remote.checkForUpdates();
         const cfg = config.get();
+        const pocState = insights.getState();
         
         res.json({
             config: {
@@ -38,7 +41,13 @@ router.get('/config', requireAdmin, async (req, res) => {
             },
             useCases,
             conflicts,
-            remote: remoteUpdates
+            remote: remoteUpdates,
+            // Include POC state for admin visibility
+            pocState: pocState ? {
+                poc_uid: pocState.poc_uid,
+                registered_at: pocState.registered_at,
+                last_heartbeat: pocState.last_heartbeat
+            } : null
         });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -48,8 +57,28 @@ router.get('/config', requireAdmin, async (req, res) => {
 // Update configuration (admin only)
 router.post('/config', requireAdmin, async (req, res) => {
     try {
+        const oldMode = config.get('pocOrDemo');
+        
         config.update(req.body);
         await config.save();
+        
+        const newMode = config.get('pocOrDemo');
+        
+        // Handle mode change
+        if (oldMode !== newMode) {
+            if (newMode === 'poc') {
+                // Switching to POC mode - register
+                console.log('[API] Mode changed to POC - registering...');
+                await insights.register();
+                insights.startHeartbeat();
+            } else {
+                // Switching to demo mode - deregister
+                console.log('[API] Mode changed to demo - deregistering...');
+                await insights.deregister();
+                insights.stopHeartbeat();
+            }
+        }
+        
         res.json({ status: 'success' });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -113,7 +142,11 @@ router.post('/use-cases/:productCategory/:slug/complete', requireAuth, async (re
         };
         
         await usecases.saveCompleted(completedUseCases);
-        await insights.send('usecase_completion', { useCaseId: id, completed });
+        
+        // Send to backend (async, don't wait)
+        insights.sendCompletion(id, completed).catch(err => {
+            console.error('[API] Failed to send completion to backend:', err.message);
+        });
         
         res.json({ status: 'success' });
     } catch (error) {
@@ -121,7 +154,7 @@ router.post('/use-cases/:productCategory/:slug/complete', requireAuth, async (re
     }
 });
 
-// Submit feedback
+// Submit feedback (rating and/or message)
 router.post('/use-cases/:productCategory/:slug/feedback', requireAuth, async (req, res) => {
     try {
         const { productCategory, slug } = req.params;
@@ -129,7 +162,18 @@ router.post('/use-cases/:productCategory/:slug/feedback', requireAuth, async (re
         const id = `${productCategory}/${slug}`;
         
         await usecases.saveFeedback(id, rating, message);
-        await insights.send('usecase_feedback', { useCaseId: id, rating, message });
+        
+        // Send to backend (async, don't wait)
+        if (rating) {
+            insights.sendRating(id, rating).catch(err => {
+                console.error('[API] Failed to send rating to backend:', err.message);
+            });
+        }
+        if (message) {
+            insights.sendFeedback(id, message).catch(err => {
+                console.error('[API] Failed to send feedback to backend:', err.message);
+            });
+        }
         
         res.json({ status: 'success' });
     } catch (error) {
@@ -200,6 +244,36 @@ router.get('/remote-updates', requireAdmin, async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+});
+
+// Force heartbeat (admin only, for testing)
+router.post('/force-heartbeat', requireAdmin, async (req, res) => {
+    try {
+        await insights.sendHeartbeat();
+        res.json({ status: 'success', message: 'Heartbeat sent' });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Get POC state (admin only)
+router.get('/poc-state', requireAdmin, async (req, res) => {
+    try {
+        await insights.loadState();
+        const state = insights.getState();
+        res.json(state || { registered: false });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Add this route
+router.get('/logs', requireAuth, (req, res) => {
+    if (req.session.role !== 'admin') {
+        return res.status(403).json({ error: 'Admin access required' });
+    }
+    const lines = parseInt(req.query.lines) || 50;
+    res.json({ logs: logger.getLogs(lines) });
 });
 
 module.exports = router;

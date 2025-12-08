@@ -32,7 +32,19 @@ async function loadFromDisk(productCategory, useCaseSlug) {
             return null;
         }
         
-        const ucConfig = YAML.parse(yamlContent);
+        // Parse YAML with error handling
+        let ucConfig;
+        try {
+            ucConfig = YAML.parse(yamlContent);
+        } catch (yamlError) {
+            console.error(`[UseCases] ✗ YAML parse error in ${productCategory}/${useCaseSlug}.yaml`);
+            console.error(`[UseCases]   Error: ${yamlError.message}`);
+            if (yamlError.linePos) {
+                console.error(`[UseCases]   Line: ${yamlError.linePos.start?.line || 'unknown'}`);
+            }
+            return null;
+        }
+        
         const processedMd = config.replaceVariables(mdContent);
         const processedConfig = JSON.parse(config.replaceVariables(JSON.stringify(ucConfig)));
         
@@ -45,7 +57,7 @@ async function loadFromDisk(productCategory, useCaseSlug) {
             ...processedConfig
         };
     } catch (error) {
-        console.error(`Error loading use case ${productCategory}/${useCaseSlug}:`, error);
+        console.error(`[UseCases] Error loading use case ${productCategory}/${useCaseSlug}:`, error.message);
         return null;
     }
 }

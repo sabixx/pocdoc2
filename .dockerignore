@@ -1,5 +1,6 @@
-
+pocdoc/data/
 pocdoc/node_modules/
 pocdoc/use-cases/
-pocdoc/data/
-pocdoc/.env
+*.log
+.env
+.git

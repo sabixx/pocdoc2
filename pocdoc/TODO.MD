@@ -221,3 +221,15 @@ also write all other configurations to a disk... if they exists at container sta
 
 
 
+
+
+
+
+
+# Issues
+
+ download does show a number of all files it downloaded not the number of use cases.
+
+ when downloading after clicking on scan the bar is at the bottom of the list of downloads, sbould be abve otherswisse it's no seen.
+
+ the secets is not visible, even the files have been downloaded...

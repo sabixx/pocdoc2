@@ -129,26 +129,32 @@ function renderUseCases() {
 function createUseCaseCard(uc) {
     const isComplete = completedUseCases[uc.id]?.completed;
     
+    // Handle customCompleteButton config
+    // null = hide button, string = custom text, undefined = default text
+    const hideCompleteButton = uc.customCompleteButton === null;
+    const completeButtonText = uc.customCompleteButton || 'Mark as Complete';
+    
     const card = document.createElement('div');
     card.className = 'use-case-card';
     card.id = uc.id;
     
-    card.innerHTML = `
-        <div class="use-case-content">
-            ${uc.html}
-        </div>
-        
+    // Build actions section only if button should be shown
+    const actionsHtml = hideCompleteButton ? '' : `
         <div class="use-case-actions">
             <button class="complete-button ${isComplete ? 'completed' : ''}" 
                     data-id="${uc.id}"
+                    data-custom-text="${completeButtonText}"
                     onclick="toggleComplete('${uc.id}')">
-                ${isComplete ? '✓ Completed' : 'Mark as Complete'}
+                ${isComplete ? '✓ Completed' : completeButtonText}
             </button>
         </div>
-        
+    `;
+    
+    // Hide feedback section entirely if button is hidden
+    const feedbackHtml = hideCompleteButton ? '' : `
         <div class="feedback-section ${isComplete ? 'visible' : ''}" id="feedback-${uc.id.replace('/', '-')}">
             <div class="feedback-header">
-                <span class="feedback-title"></span>
+                <span class="feedback-title">Did this help solve your problem? Did this help solve your problem?</span>
                 <span class="feedback-tag">Optional</span>
             </div>
             
@@ -160,12 +166,21 @@ function createUseCaseCard(uc) {
             
             <textarea class="feedback-textarea" 
                       id="feedback-text-${uc.id.replace('/', '-')}"
-                      placeholder="Share your thoughts..."></textarea>
+                      placeholder="Got ideas or thoughts? Share them! Our Product Management team reviews every submission and truly values your input."></textarea>
             
             <button class="feedback-submit" onclick="submitFeedback('${uc.id}')">
                 Send Feedback
             </button>
         </div>
+    `;
+    
+    card.innerHTML = `
+        <div class="use-case-content">
+            ${uc.html}
+        </div>
+        
+        ${actionsHtml}
+        ${feedbackHtml}
     `;
     
     return card;
@@ -213,8 +228,9 @@ async function toggleComplete(id) {
         // Update button
         const button = document.querySelector(`.complete-button[data-id="${id}"]`);
         if (button) {
+            const customText = button.dataset.customText || 'Mark as Complete';
             button.classList.toggle('completed', newState);
-            button.textContent = newState ? '✓ Completed' : 'Mark as Complete';
+            button.textContent = newState ? '✓ Completed' : customText;
         }
         
         // Update sidebar
@@ -318,54 +334,56 @@ function updateInfoPanel(id) {
     
     if (uc.credentials && uc.credentials.length > 0) {
         uc.credentials.forEach((cred, idx) => {
+            html += `<div style="margin-bottom: 16px; padding: 14px; background: #f9fafb; border-radius: 8px; border: 1px solid #e5e7eb;">`;
+            
             if (cred.text) {
                 const texts = Array.isArray(cred.text) ? cred.text : [cred.text];
                 texts.forEach(t => {
-                    html += `<p style="margin-bottom: 8px; color: #374151;">${t}</p>`;
+                    html += `<p style="margin: 0 0 12px 0; color: #374151; font-weight: 600; font-size: 14px;">${t}</p>`;
                 });
             }
             
             if (cred.url) {
                 html += `
-                    <div class="credential-block">
-                        <div class="label">URL</div>
-                        <div class="value">
-                            <a href="${cred.url}" target="_blank" class="value-text">${cred.url}</a>
-                            <button class="copy-button" onclick="copyToClipboard('${cred.url}')">
-                                <span class="material-icons">content_copy</span>
-                            </button>
-                        </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                        <span style="font-size: 11px; color: #6b7280; width: 70px;">URL</span>
+                        <a href="${cred.url}" target="_blank" style="font-size: 13px; color: #2563eb; flex: 1; word-break: break-all;">${cred.url}</a>
+                        <button class="copy-button" onclick="copyToClipboard('${cred.url}')" style="padding: 4px;">
+                            <span class="material-icons" style="font-size: 14px;">content_copy</span>
+                        </button>
                     </div>
                 `;
             }
             
             if (cred.username) {
                 html += `
-                    <div class="credential-block">
-                        <div class="label">Username</div>
-                        <div class="value">
-                            <span class="value-text">${cred.username}</span>
-                            <button class="copy-button" onclick="copyToClipboard('${cred.username}')">
-                                <span class="material-icons">content_copy</span>
-                            </button>
-                        </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                        <span style="font-size: 11px; color: #6b7280; width: 70px;">Username</span>
+                        <span style="font-size: 13px; color: #111827; flex: 1;">${cred.username}</span>
+                        <button class="copy-button" onclick="copyToClipboard('${cred.username}')" style="padding: 4px;">
+                            <span class="material-icons" style="font-size: 14px;">content_copy</span>
+                        </button>
                     </div>
                 `;
             }
             
             if (cred.password) {
+                const pwdId = `pwd-${idx}`;
                 html += `
-                    <div class="credential-block">
-                        <div class="label">Password</div>
-                        <div class="value">
-                            <span class="value-text">${cred.password}</span>
-                            <button class="copy-button" onclick="copyToClipboard('${cred.password}')">
-                                <span class="material-icons">content_copy</span>
-                            </button>
-                        </div>
+                    <div style="display: flex; align-items: center;">
+                        <span style="font-size: 11px; color: #6b7280; width: 70px;">Password</span>
+                        <span id="${pwdId}" style="font-size: 13px; color: #111827; flex: 1; font-family: monospace;">••••••••••</span>
+                        <button class="copy-button" onclick="togglePassword('${pwdId}', '${cred.password.replace(/'/g, "\\'")}')" style="padding: 4px;">
+                            <span class="material-icons" style="font-size: 14px;" id="${pwdId}-icon">visibility</span>
+                        </button>
+                        <button class="copy-button" onclick="copyToClipboard('${cred.password.replace(/'/g, "\\'")}')" style="padding: 4px;">
+                            <span class="material-icons" style="font-size: 14px;">content_copy</span>
+                        </button>
                     </div>
                 `;
             }
+            
+            html += `</div>`;
         });
     } else {
         html = '<p style="color: #6b7280;">No additional information available for this section.</p>';
@@ -374,13 +392,58 @@ function updateInfoPanel(id) {
     content.innerHTML = html;
 }
 
+function togglePassword(elementId, password) {
+    const span = document.getElementById(elementId);
+    const icon = document.getElementById(elementId + '-icon');
+    
+    if (span.textContent === '••••••••••') {
+        span.textContent = password;
+        icon.textContent = 'visibility_off';
+    } else {
+        span.textContent = '••••••••••';
+        icon.textContent = 'visibility';
+    }
+}
+
+
 function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(() => {
-        showCopyToast('Copied!');
-    }).catch(err => {
-        console.error('Failed to copy:', err);
-        showCopyToast('Failed to copy', true);
-    });
+    // Modern API (secure contexts only)
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+            showCopyToast('Copied!');
+        }).catch(err => {
+            console.error('Clipboard API failed:', err);
+            fallbackCopy(text);
+        });
+    } else {
+        // Fallback for non-secure contexts
+        fallbackCopy(text);
+    }
+}
+
+function fallbackCopy(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-9999px';
+    textArea.style.top = '-9999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+            showCopyToast('Copied!');
+        } else {
+            showCopyToast('Copy failed', true);
+        }
+    } catch (err) {
+        console.error('Fallback copy failed:', err);
+        showCopyToast('Copy failed', true);
+    }
+    
+    document.body.removeChild(textArea);
 }
 
 function showCopyToast(message, isError = false) {
