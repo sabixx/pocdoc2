@@ -234,12 +234,12 @@ async function loadUseCasesWithMetadata(activeUseCases, completedUseCases) {
  */
 async function register() {
     const cfg = config.get();
-    
-    if (cfg.pocOrDemo !== 'poc') {
+       
+    if ((cfg.pocOrDemo || '').toLowerCase() !== 'poc') {
         console.log('[Insights] Demo mode - skipping registration');
         return null;
     }
-    
+
     if (!cfg.pocInsightsUrl) {
         console.warn('[Insights] POC_INSIGHTS_URL not configured - skipping registration');
         return null;

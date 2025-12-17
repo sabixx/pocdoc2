@@ -1,3 +1,19 @@
+
+
+
+- find out why password is written to log file... should not be the case..
+
+- ACTIVE in REVIEW, COMPLETED don't show numbers unless clicked on them.... needs to be FIXED!
+
+- log less chatty for healtcheks... OK
+
+- REMOVE PASSWORD FROM LOG!!!!!!!!!!!
+
+- need some option to log in case there is no POC... *(yet)
+  do I need a comment field outside of the POCs?
+
+
+
 he attached project has all the use case data in the html file.. that makes is very difficult to be maintained.
 
 I want something where I can load use cases from directories.. different products might use different folders.
@@ -8,7 +24,7 @@ the rest of the logic should stay as it is, however there needs to be an option 
 
 the /config file should have an option to trigger to download the latest files in case a use case was created before deployment.
 
-on start it should still load a list of use cases...
+on start it should still load a list olsf use cases...
 any idea how we can avoid conflicts between same file names in different folders?
 
 shall we add something like mim:welcome or somthing in case a use case could be in multiple directories... I want to give the users the option to use filenames that allow to relate to the use cases
@@ -170,7 +186,10 @@ so... let's use forms... it should have some background image... we can define, 
 For the drag-and-drop ordering on the config page - should this persist to:
 
 
+Enable to change the SE name on the config page...
 
+
+change the logo of the logon screen
 
 
 A local config file (requires write access)

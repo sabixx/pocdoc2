@@ -1,6 +1,7 @@
 services:
-  poc-portal:
+  pocdocv2:
     build: .
+    image: pocdocv2
     ports:
       - "3000:3000"
     environment:
@@ -17,11 +18,11 @@ services:
       - PROSPECT=${PROSPECT:-demo}
       - PARTNER=${PARTNER:-}
       - SAAS_NAME=${SAAS_NAME:-Certificate Manager SaaS}
-      - POC_START_DATE=${POC_START_DATE:-}
-      - POC_END_DATE=${POC_END_DATE:-}
+      #- POC_START_DATE=${POC_START_DATE:-}
+      #- POC_END_DATE=${POC_END_DATE:-}
       - TLSPCURL="https://ui.venafi.cloud"
       - PASSWORD="newPassword123!"
-      
+
       # =======================================================================
       # SA CONFIGURATION (required for POC mode)
       # =======================================================================
@@ -32,7 +33,7 @@ services:
       # BACKEND API CONFIGURATION
       # =======================================================================
       # URL of the POC Portal backend API
-      - POC_INSIGHTS_URL=${POC_INSIGHTS_URL:-}
+      - POC_INSIGHTS_URL=${POC_INSIGHTS_URL:-https://pocinsights.mimlab.io:9443}
       # API key for authentication with backend
       - API_SHARED_SECRET=${API_SHARED_SECRET:-}
       # Heartbeat interval in minutes (default: 1440 = 24 hours)

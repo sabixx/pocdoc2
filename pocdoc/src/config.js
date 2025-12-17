@@ -6,23 +6,36 @@ const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, '../data');
 const CONFIG_FILE = path.join(DATA_DIR, 'config.json');
 
 // Calculate default dates
+function addWorkdays(date, workdays) {
+    // Add workdays, skipping weekends (Saturday=6, Sunday=0)
+    const result = new Date(date);
+    let added = 0;
+    while (added < workdays) {
+        result.setDate(result.getDate() + 1);
+        const dayOfWeek = result.getDay();
+        if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+            added++;
+        }
+    }
+    return result;
+}
+
 function getDefaultStartDate() {
-    // 2 days from today
-    const date = new Date();
-    date.setDate(date.getDate() + 2);
+    // 4 workdays from today
+    const date = addWorkdays(new Date(), 4);
     return date.toISOString().split('T')[0];
 }
 
 function getDefaultEndDate(startDateStr) {
-    // 2 weeks after start date
+    // 3 weeks after start date
     const startDate = startDateStr ? new Date(startDateStr) : new Date();
     if (isNaN(startDate.getTime())) {
-        // Invalid date, use 2 days + 2 weeks from now
-        const date = new Date();
-        date.setDate(date.getDate() + 2 + 14);
+        // Invalid date, use 4 workdays + 3 weeks from now
+        const date = addWorkdays(new Date(), 4);
+        date.setDate(date.getDate() + 21);
         return date.toISOString().split('T')[0];
     }
-    startDate.setDate(startDate.getDate() + 14);
+    startDate.setDate(startDate.getDate() + 21);
     return startDate.toISOString().split('T')[0];
 }
 
