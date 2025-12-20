@@ -26,17 +26,18 @@ function requireAdmin(req, res, next) {
 
 function authenticate(username, password) {
     const cfg = config.get();
-    
+    const usernameLower = username?.toLowerCase();
+
     // Check admin credentials
-    if (username === cfg.authAdminUsername && password === cfg.authAdminPassword) {
+    if (usernameLower === cfg.authAdminUsername?.toLowerCase() && password === cfg.authAdminPassword) {
         return { role: 'admin', username };
     }
-    
+
     // Check prospect credentials
-    if (username === cfg.prospect && password === cfg.authProspectPassword) {
+    if (usernameLower === cfg.prospect?.toLowerCase() && password === cfg.authProspectPassword) {
         return { role: 'prospect', username };
     }
-    
+
     return null;
 }
 

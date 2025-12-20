@@ -18,11 +18,11 @@ services:
       - PROSPECT=${PROSPECT:-demo}
       - PARTNER=${PARTNER:-}
       - SAAS_NAME=${SAAS_NAME:-Certificate Manager SaaS}
+      - VAAS_API_KEY=x
       #- POC_START_DATE=${POC_START_DATE:-}
       #- POC_END_DATE=${POC_END_DATE:-}
-      - TLSPCURL="https://ui.venafi.cloud"
       - PASSWORD="newPassword123!"
-
+      - TLSPC_URL=keycload.test.com
       # =======================================================================
       # SA CONFIGURATION (required for POC mode)
       # =======================================================================
@@ -58,11 +58,16 @@ services:
       - SESSION_SECRET=${SESSION_SECRET:-change-me-in-production}
       
       # =======================================================================
+      # TLSPC CONFIGURATION
+      # =======================================================================
+      # API key for TLSPC - used to auto-detect regional endpoint
+      - TLSPC_API_KEY=${TLSPC_API_KEY:-}
+
+      # =======================================================================
       # APPLICATION CONFIGURATION
       # =======================================================================
       - NODE_ENV=${NODE_ENV:-production}
       - PORT=3000
-      - TLSPC_URL=${TLSPC_URL:-https://ui.venafi.cloud}
       - DEFAULT_PASSWORD=${DEFAULT_PASSWORD:-ChangeMe123!}
       
     restart: unless-stopped

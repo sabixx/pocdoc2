@@ -53,10 +53,12 @@ ENV AUTH_ADMIN_USERNAME=admin \
     AUTH_PROSPECT_PASSWORD=password \
     SESSION_SECRET=change-me-in-production
 
+# TLSPC (API key used to auto-detect regional endpoint)
+ENV TLSPC_API_KEY=
+
 # Application
 ENV NODE_ENV=production \
     PORT=3000 \
-    TLSPC_URL=https://ui.venafi.cloud \
     DEFAULT_PASSWORD=ChangeMe123!
 
 # Start the application

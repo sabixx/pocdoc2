@@ -75,7 +75,7 @@ const defaultConfig = {
     authAdminPassword: process.env.AUTH_ADMIN_PASSWORD || 'admin',
     authProspectPassword: process.env.AUTH_PROSPECT_PASSWORD || 'password',
     
-    // TLSPC config
+    // TLSPC config - set via TLSPC_URL environment variable
     tlspcUrl: process.env.TLSPC_URL || 'https://ui.venafi.cloud',
     password: process.env.DEFAULT_PASSWORD || 'ChangeMe123!'
 };
@@ -189,9 +189,23 @@ function getDataPath() {
     return DATA_DIR;
 }
 
-function replaceVariables(text) {
+function escapeForJson(str) {
+    if (!str) return '';
+    // Escape characters that would break JSON syntax
+    return str
+        .replace(/\\/g, '\\\\')     // backslashes first
+        .replace(/"/g, '\\"')       // double quotes
+        .replace(/\n/g, '\\n')      // newlines
+        .replace(/\r/g, '\\r')      // carriage returns
+        .replace(/\t/g, '\\t');     // tabs
+}
+
+function replaceVariables(text, isJson = false) {
     if (!text) return text;
-    
+
+    // Auto-detect if text looks like JSON
+    const shouldEscapeJson = isJson || (text.startsWith('{') && text.endsWith('}'));
+
     const replacements = {
         '@@PROSPECT@@': currentConfig.prospect,
         '@@PARTNER@@': currentConfig.partner,
@@ -203,12 +217,13 @@ function replaceVariables(text) {
         '@@SA_NAME@@': currentConfig.saName,
         '@@SA_EMAIL@@': currentConfig.saEmail
     };
-    
+
     let result = text;
     for (const [key, value] of Object.entries(replacements)) {
-        result = result.replace(new RegExp(key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), value || '');
+        const safeValue = shouldEscapeJson ? escapeForJson(value) : (value || '');
+        result = result.replace(new RegExp(key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), safeValue);
     }
-    
+
     return result;
 }
 

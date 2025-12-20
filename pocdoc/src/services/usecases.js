@@ -46,7 +46,7 @@ async function loadFromDisk(productCategory, useCaseSlug) {
         }
         
         const processedMd = config.replaceVariables(mdContent);
-        const processedConfig = JSON.parse(config.replaceVariables(JSON.stringify(ucConfig)));
+        const processedConfig = JSON.parse(config.replaceVariables(JSON.stringify(ucConfig), true));
         
         return {
             id: `${productCategory}/${useCaseSlug}`,

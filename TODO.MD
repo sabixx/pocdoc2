@@ -3,14 +3,29 @@
 
 - find out why password is written to log file... should not be the case..
 
-- ACTIVE in REVIEW, COMPLETED don't show numbers unless clicked on them.... needs to be FIXED!
+- ACTIVE in REVIEW, COMPLETED don't show numbers unless clicked on them.... 
 
 - log less chatty for healtcheks... OK
 
 - REMOVE PASSWORD FROM LOG!!!!!!!!!!!
 
-- need some option to log in case there is no POC... *(yet)
+- MAKE USERNAME incasietive...
+
+
+
+- need some option to log a entry in case there is no POC... *(yet)
   do I need a comment field outside of the POCs?
+
+- let's add a complete new view for ER and the associated deals... Let's introduce a new Menu section, either POCs OR ER... 
+Under ERs 
+Make it in a way that the ER is shwon, the Customer timeline, the AEB. I want to see a list sorted by AEB (combinded all opps with this ER) and the checkbox of 
+
+I want to see the ERs for not closed POCs which have a blocker. 
+if multiple customers have it list them with their individual AEB.
+
+I want to see the ERs with the highest AEB combined and the TOP 3 POCs with ERs that are requested.
+
+need to make it possible to 
 
 
 

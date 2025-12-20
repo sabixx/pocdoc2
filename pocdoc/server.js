@@ -119,10 +119,13 @@ function printStartupBanner() {
     console.log(`  AUTH_PROSPECT_PASSWORD: ${process.env.AUTH_PROSPECT_PASSWORD ? '(set)' : '(using default)'}`);
     console.log('');
     
+    console.log('TLSPC CONFIGURATION:');
+    console.log(`  TLSPC_URL:            ${process.env.TLSPC_URL || 'https://ui.venafi.cloud (default)'}`);
+    console.log('');
+
     console.log('OTHER:');
     console.log(`  NODE_ENV:             ${process.env.NODE_ENV || 'development'}`);
     console.log(`  PORT:                 ${PORT}`);
-    console.log(`  TLSPC_URL:            ${process.env.TLSPC_URL || 'https://ui.venafi.cloud'}`);
     console.log('');
     
     // Warnings for missing required configuration
@@ -211,16 +214,16 @@ async function downloadUseCases() {
  */
 async function registerPoc() {
     const cfg = config.get();
-    
+
     if (cfg.pocOrDemo !== 'poc') {
         console.log('[Startup] Demo mode - skipping POC registration');
         return;
     }
-    
+
     console.log('[Startup] Registering POC with backend...');
-    
+
     const pocUid = await insights.register();
-    
+
     if (pocUid) {
         console.log(`[Startup] ✓ POC registered: ${pocUid}`);
     } else {
@@ -242,21 +245,24 @@ async function startup() {
     const cfg = config.get();
     console.log(`[Startup] ✓ Configuration loaded (mode: ${cfg.pocOrDemo})`);
     
-    // 3. Set up use-cases static route
+    // 3. Log TLSPC URL (set via TLSPC_URL env var)
+    console.log(`[Startup] ✓ TLSPC URL for @@TLSPCURL@@: ${config.get('tlspcUrl')}`);
+
+    // 4. Set up use-cases static route
     const useCasesPath = cfg.useCaseLocalPath || path.join(__dirname, 'use-cases');
     app.use('/use-cases', express.static(useCasesPath));
     console.log(`[Startup] ✓ Serving use-cases from: ${useCasesPath}`);
-    
-    // 4. Download use cases (if repo URL configured)
+
+    // 5. Download use cases (if repo URL configured)
     await downloadUseCases();
-    
-    // 5. Register POC (if in POC mode)
+
+    // 6. Register POC (if in POC mode)
     await registerPoc();
-    
-    // 6. Start heartbeat scheduler
+
+    // 7. Start heartbeat scheduler
     insights.startHeartbeat();
-    
-    // 7. Start HTTP server
+
+    // 8. Start HTTP server
     app.listen(PORT, () => {
         console.log('');
         console.log('='.repeat(70));

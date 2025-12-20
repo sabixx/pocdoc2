@@ -71,6 +71,19 @@ function isS3Url(url) {
     return parseS3Url(url) !== null;
 }
 
+// Convert S3 URL to HTTPS URL for HTTP fallback when SDK fails
+function s3UrlToHttps(url) {
+    const s3Info = parseS3Url(url);
+    if (!s3Info) return url; // Not an S3 URL, return as-is
+
+    // Convert s3://bucket/key to https://bucket.s3.region.amazonaws.com/key
+    const region = s3Info.region || 'us-west-2';
+    if (s3Info.key) {
+        return `https://${s3Info.bucket}.s3.${region}.amazonaws.com/${s3Info.key}`;
+    }
+    return `https://${s3Info.bucket}.s3.${region}.amazonaws.com`;
+}
+
 // Fetch content from S3 using SDK
 async function fetchFromS3(bucket, key, region = 'us-west-2') {
     const { GetObjectCommand } = require('@aws-sdk/client-s3');
@@ -202,11 +215,17 @@ async function fetchManifest(repoUrl) {
             // Fall through to HTTP method
         }
     }
-    
+
     // HTTP method (original behavior)
+    // Convert S3 URLs to HTTPS for HTTP fallback
+    const httpUrl = s3UrlToHttps(repoUrl);
+    if (httpUrl !== repoUrl) {
+        console.log(`Falling back to HTTP: ${httpUrl}`);
+    }
+
     // First try to fetch manifest.json
     try {
-        const manifestUrl = `${repoUrl}/manifest.json`;
+        const manifestUrl = `${httpUrl}/manifest.json`;
         const response = await fetch(manifestUrl);
         
         if (response.ok) {
@@ -218,10 +237,10 @@ async function fetchManifest(repoUrl) {
     } catch (e) {
         console.log('No manifest.json found via HTTP, trying S3 bucket listing...');
     }
-    
+
     // Fallback: try to parse S3 bucket listing
     try {
-        const response = await fetch(repoUrl);
+        const response = await fetch(httpUrl);
         if (response.ok) {
             const text = await response.text();
             if (text.includes('<ListBucketResult') || text.includes('<Contents>')) {
@@ -279,36 +298,47 @@ async function checkForUpdates(repoUrl) {
 
 async function downloadUseCase(repoUrl, productCategory, slug) {
     const s3Info = parseS3Url(repoUrl);
-    
+
     let mdContent, yamlContent;
-    
+    let useHttp = false;
+
     if (s3Info) {
-        // Use S3 SDK
-        const baseKey = s3Info.key ? `${s3Info.key}/` : '';
-        const mdKey = `${baseKey}${productCategory}/${slug}.md`;
-        const yamlKey = `${baseKey}${productCategory}/${slug}.yaml`;
-        
-        const [mdBuffer, yamlBuffer] = await Promise.all([
-            fetchFromS3(s3Info.bucket, mdKey, s3Info.region),
-            fetchFromS3(s3Info.bucket, yamlKey, s3Info.region)
-        ]);
-        
-        mdContent = mdBuffer.toString('utf-8');
-        yamlContent = yamlBuffer.toString('utf-8');
+        // Try S3 SDK first
+        try {
+            const baseKey = s3Info.key ? `${s3Info.key}/` : '';
+            const mdKey = `${baseKey}${productCategory}/${slug}.md`;
+            const yamlKey = `${baseKey}${productCategory}/${slug}.yaml`;
+
+            const [mdBuffer, yamlBuffer] = await Promise.all([
+                fetchFromS3(s3Info.bucket, mdKey, s3Info.region),
+                fetchFromS3(s3Info.bucket, yamlKey, s3Info.region)
+            ]);
+
+            mdContent = mdBuffer.toString('utf-8');
+            yamlContent = yamlBuffer.toString('utf-8');
+        } catch (e) {
+            console.log(`S3 SDK failed for ${productCategory}/${slug}, falling back to HTTP: ${e.message}`);
+            useHttp = true;
+        }
     } else {
-        // Use HTTP fetch
-        const mdUrl = `${repoUrl}/${productCategory}/${slug}.md`;
-        const yamlUrl = `${repoUrl}/${productCategory}/${slug}.yaml`;
-        
+        useHttp = true;
+    }
+
+    if (useHttp) {
+        // Use HTTP fetch (with S3 URL conversion if needed)
+        const httpUrl = s3UrlToHttps(repoUrl);
+        const mdUrl = `${httpUrl}/${productCategory}/${slug}.md`;
+        const yamlUrl = `${httpUrl}/${productCategory}/${slug}.yaml`;
+
         const [mdResponse, yamlResponse] = await Promise.all([
             fetch(mdUrl),
             fetch(yamlUrl)
         ]);
-        
+
         if (!mdResponse.ok || !yamlResponse.ok) {
             throw new Error(`Failed to download use case files for ${productCategory}/${slug}`);
         }
-        
+
         mdContent = await mdResponse.text();
         yamlContent = await yamlResponse.text();
     }
@@ -322,18 +352,28 @@ async function downloadUseCase(repoUrl, productCategory, slug) {
 async function downloadImage(repoUrl, imagePath) {
     const useCasesDir = usecases.getUseCasesDir();
     const localPath = path.join(useCasesDir, imagePath);
-    
+
     try {
         let buffer;
         const s3Info = parseS3Url(repoUrl);
-        
+        let useHttp = false;
+
         if (s3Info) {
-            // Use S3 SDK
-            const imageKey = s3Info.key ? `${s3Info.key}/${imagePath}` : imagePath;
-            buffer = await fetchFromS3(s3Info.bucket, imageKey, s3Info.region);
+            // Try S3 SDK first
+            try {
+                const imageKey = s3Info.key ? `${s3Info.key}/${imagePath}` : imagePath;
+                buffer = await fetchFromS3(s3Info.bucket, imageKey, s3Info.region);
+            } catch (e) {
+                useHttp = true;
+            }
         } else {
-            // Use HTTP fetch
-            const imageUrl = `${repoUrl}/${imagePath}`;
+            useHttp = true;
+        }
+
+        if (useHttp) {
+            // Use HTTP fetch (with S3 URL conversion if needed)
+            const httpUrl = s3UrlToHttps(repoUrl);
+            const imageUrl = `${httpUrl}/${imagePath}`;
             const response = await fetch(imageUrl);
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}`);
@@ -431,5 +471,6 @@ module.exports = {
     downloadAll,
     // Export for testing
     parseS3Url,
-    isS3Url
+    isS3Url,
+    s3UrlToHttps
 };

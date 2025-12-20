@@ -1,2 +1,0 @@
-export USE_CASE_REPO_URL=https://poc-documentation-usecases.s3.us-west-2.amazonaws.com
-npm start
