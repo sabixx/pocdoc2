@@ -120,7 +120,8 @@ function printStartupBanner() {
     console.log('');
     
     console.log('TLSPC CONFIGURATION:');
-    console.log(`  TLSPC_URL:            ${process.env.TLSPC_URL || 'https://ui.venafi.cloud (default)'}`);
+    console.log(`  TLSPC_API_KEY:        ${process.env.TLSPC_API_KEY ? '(set - will auto-discover URL)' : '(not set)'}`);
+    console.log(`  TLSPC_URL:            (discovered at startup)`);
     console.log('');
 
     console.log('OTHER:');
@@ -245,8 +246,11 @@ async function startup() {
     const cfg = config.get();
     console.log(`[Startup] ✓ Configuration loaded (mode: ${cfg.pocOrDemo})`);
     
-    // 3. Log TLSPC URL (set via TLSPC_URL env var)
-    console.log(`[Startup] ✓ TLSPC URL for @@TLSPCURL@@: ${config.get('tlspcUrl')}`);
+    // 3. Log TLSPC URL (discovered from API key or default)
+    console.log(`[Startup] ✓ TLSPC URL for @@TLSPCURL@@: ${config.get('tlspcUrl')}${config.get('tlspcApiUrl') ? ' (discovered)' : ' (default)'}`);
+    if (config.get('tlspcApiUrl')) {
+        console.log(`[Startup] ✓ TLSPC API URL: ${config.get('tlspcApiUrl')}`);
+    }
 
     // 4. Set up use-cases static route
     const useCasesPath = cfg.useCaseLocalPath || path.join(__dirname, 'use-cases');

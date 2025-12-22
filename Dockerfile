@@ -53,7 +53,7 @@ ENV AUTH_ADMIN_USERNAME=admin \
     AUTH_PROSPECT_PASSWORD=password \
     SESSION_SECRET=change-me-in-production
 
-# TLSPC (API key used to auto-detect regional endpoint)
+# TLSPC - API key auto-discovers regional endpoint (US, EU, AU, UK, SG, CA) and tenant URL
 ENV TLSPC_API_KEY=
 
 # Application

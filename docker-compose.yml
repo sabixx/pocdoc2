@@ -22,7 +22,6 @@ services:
       #- POC_START_DATE=${POC_START_DATE:-}
       #- POC_END_DATE=${POC_END_DATE:-}
       - PASSWORD="newPassword123!"
-      - TLSPC_URL=keycload.test.com
       # =======================================================================
       # SA CONFIGURATION (required for POC mode)
       # =======================================================================
@@ -60,7 +59,8 @@ services:
       # =======================================================================
       # TLSPC CONFIGURATION
       # =======================================================================
-      # API key for TLSPC - used to auto-detect regional endpoint
+      # API key for TLSPC - automatically discovers the correct regional endpoint
+      # (US, EU, AU, UK, SG, CA) and tenant URL from this key at startup
       - TLSPC_API_KEY=${TLSPC_API_KEY:-}
 
       # =======================================================================

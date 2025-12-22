@@ -369,14 +369,16 @@ function updateInfoPanel(id) {
             
             if (cred.password) {
                 const pwdId = `pwd-${idx}`;
+                // Base64 encode password to safely handle special characters
+                const encodedPwd = btoa(unescape(encodeURIComponent(cred.password)));
                 html += `
                     <div style="display: flex; align-items: center;">
                         <span style="font-size: 11px; color: #6b7280; width: 70px;">Password</span>
                         <span id="${pwdId}" style="font-size: 13px; color: #111827; flex: 1; font-family: monospace;">••••••••••</span>
-                        <button class="copy-button" onclick="togglePassword('${pwdId}', '${cred.password.replace(/'/g, "\\'")}')" style="padding: 4px;">
+                        <button class="copy-button" onclick="togglePasswordEncoded('${pwdId}', '${encodedPwd}')" style="padding: 4px;">
                             <span class="material-icons" style="font-size: 14px;" id="${pwdId}-icon">visibility</span>
                         </button>
-                        <button class="copy-button" onclick="copyToClipboard('${cred.password.replace(/'/g, "\\'")}')" style="padding: 4px;">
+                        <button class="copy-button" onclick="copyPasswordEncoded('${encodedPwd}')" style="padding: 4px;">
                             <span class="material-icons" style="font-size: 14px;">content_copy</span>
                         </button>
                     </div>
@@ -395,7 +397,7 @@ function updateInfoPanel(id) {
 function togglePassword(elementId, password) {
     const span = document.getElementById(elementId);
     const icon = document.getElementById(elementId + '-icon');
-    
+
     if (span.textContent === '••••••••••') {
         span.textContent = password;
         icon.textContent = 'visibility_off';
@@ -403,6 +405,23 @@ function togglePassword(elementId, password) {
         span.textContent = '••••••••••';
         icon.textContent = 'visibility';
     }
+}
+
+// Decode Base64 encoded password (handles Unicode)
+function decodePassword(encoded) {
+    return decodeURIComponent(escape(atob(encoded)));
+}
+
+// Toggle password visibility with Base64 encoded password
+function togglePasswordEncoded(elementId, encodedPassword) {
+    const password = decodePassword(encodedPassword);
+    togglePassword(elementId, password);
+}
+
+// Copy Base64 encoded password to clipboard
+function copyPasswordEncoded(encodedPassword) {
+    const password = decodePassword(encodedPassword);
+    copyToClipboard(password);
 }
 
 

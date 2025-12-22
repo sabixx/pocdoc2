@@ -1,6 +1,7 @@
 const fs = require('fs').promises;
 const fsSync = require('fs');
 const path = require('path');
+const { discoverTlspcUrl } = require('./services/tlspc-discovery');
 
 const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, '../data');
 const CONFIG_FILE = path.join(DATA_DIR, 'config.json');
@@ -75,8 +76,10 @@ const defaultConfig = {
     authAdminPassword: process.env.AUTH_ADMIN_PASSWORD || 'admin',
     authProspectPassword: process.env.AUTH_PROSPECT_PASSWORD || 'password',
     
-    // TLSPC config - set via TLSPC_URL environment variable
-    tlspcUrl: process.env.TLSPC_URL || 'https://ui.venafi.cloud',
+    // TLSPC config - discovered from TLSPC_API_KEY
+    tlspcApiKey: process.env.TLSPC_API_KEY || '',
+    tlspcUrl: 'https://ui.venafi.cloud', // Will be auto-discovered if TLSPC_API_KEY is set
+    tlspcApiUrl: '', // API base URL (discovered)
     password: process.env.DEFAULT_PASSWORD || 'ChangeMe123!'
 };
 
@@ -131,7 +134,23 @@ async function load() {
         console.error('[Config] Error loading config:', error);
         currentConfig = { ...defaultConfig };
     }
-    
+
+    // Discover TLSPC URL from API key if provided
+    if (currentConfig.tlspcApiKey) {
+        try {
+            const discovered = await discoverTlspcUrl(currentConfig.tlspcApiKey);
+            if (discovered) {
+                currentConfig.tlspcUrl = discovered.tenantUrl;
+                currentConfig.tlspcApiUrl = discovered.apiUrl;
+                console.log(`[Config] TLSPC URL discovered: ${currentConfig.tlspcUrl}`);
+            } else {
+                console.warn('[Config] TLSPC discovery failed - using default URL');
+            }
+        } catch (error) {
+            console.error('[Config] TLSPC discovery error:', error.message);
+        }
+    }
+
     return currentConfig;
 }
 
