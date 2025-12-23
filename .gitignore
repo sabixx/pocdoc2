@@ -4,3 +4,6 @@ pocdoc/use-cases/
 pocdoc/data/
 pocdoc/.env
 .env
+# secrets
+.env
+.env.*
