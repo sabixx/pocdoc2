@@ -132,7 +132,10 @@ function parseS3ObjectListing(objects) {
     
     for (const obj of objects) {
         const key = obj.Key;
-        
+
+        // Skip software folder
+        if (key.includes('software/')) continue;
+
         // Process .yaml files (each use case has .md and .yaml)
         if (key.endsWith('.yaml') && key.includes('/') && !key.includes('/images/')) {
             const parts = key.replace('.yaml', '').split('/');
@@ -166,7 +169,10 @@ function parseS3BucketListing(xmlText) {
     
     while ((match = keyRegex.exec(xmlText)) !== null) {
         const key = match[1];
-        
+
+        // Skip software folder
+        if (key.includes('software/')) continue;
+
         // Process .yaml files (each use case has .md and .yaml)
         if (key.endsWith('.yaml') && key.includes('/') && !key.includes('/images/')) {
             const parts = key.replace('.yaml', '').split('/');
@@ -255,38 +261,52 @@ async function fetchManifest(repoUrl) {
     throw new Error('Could not fetch manifest.json or parse S3 bucket listing from repository');
 }
 
+// Normalize version to comparable format (extracts major version number)
+// Handles: 1, "1", "1.0.0", "v1.0.0" -> 1
+function normalizeVersion(version) {
+    if (version === undefined || version === null) return 0;
+    const str = String(version).replace(/^v/i, '');
+    const major = parseInt(str.split('.')[0], 10);
+    return isNaN(major) ? 0 : major;
+}
+
 async function checkForUpdates(repoUrl) {
     const cfg = config.get();
     const url = repoUrl || cfg.useCaseRepoUrl;
-    
+
     if (!url) {
         return { newUseCases: [], updated: [], totalInManifest: 0 };
     }
-    
+
     try {
         const manifest = await fetchManifest(url);
         const { useCases: localUseCases } = await usecases.getAll();
         const remoteUseCases = manifest.useCases || [];
-        
+
         const newUseCases = [];
         const updated = [];
-        
+
         for (const remoteUc of remoteUseCases) {
             const localUc = localUseCases.find(l => l.id === remoteUc.id);
-            
+
             if (!localUc) {
                 newUseCases.push(remoteUc);
-            } else if (remoteUc.version && localUc.version && remoteUc.version !== localUc.version) {
-                updated.push({
-                    ...remoteUc,
-                    localVersion: localUc.version
-                });
+            } else {
+                const remoteVer = normalizeVersion(remoteUc.version);
+                const localVer = normalizeVersion(localUc.version);
+                // Only mark as update if remote version is actually newer
+                if (remoteVer > localVer) {
+                    updated.push({
+                        ...remoteUc,
+                        localVersion: localUc.version
+                    });
+                }
             }
         }
-        
-        return { 
-            newUseCases, 
-            updated, 
+
+        return {
+            newUseCases,
+            updated,
             totalInManifest: remoteUseCases.length,
             imageCount: manifest.images?.length || 0
         };
@@ -463,12 +483,22 @@ async function downloadAll(repoUrl, progressCallback) {
     };
 }
 
+// Generate pre-signed URL for S3 object (for software downloads)
+async function getPresignedUrl(bucket, key, region = 'us-west-2', expiresIn = 1800) {
+    const { GetObjectCommand } = require('@aws-sdk/client-s3');
+    const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
+    const client = getS3Client(region);
+    const command = new GetObjectCommand({ Bucket: bucket, Key: key });
+    return getSignedUrl(client, command, { expiresIn });
+}
+
 module.exports = {
     fetchManifest,
     checkForUpdates,
     downloadUseCase,
     downloadImage,
     downloadAll,
+    getPresignedUrl,
     // Export for testing
     parseS3Url,
     isS3Url,

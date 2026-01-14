@@ -17,6 +17,36 @@ function getFeedbackFile() {
     return path.join(config.getDataPath(), 'feedback.json');
 }
 
+// Replace /software/ links with pre-signed S3 URLs (30 min expiry)
+async function replaceSoftwareLinks(html) {
+    // Lazy load to avoid circular dependency (remote.js requires usecases.js)
+    const remote = require('./remote');
+    const cfg = config.get();
+    const s3Info = remote.parseS3Url(cfg.useCaseRepoUrl);
+    if (!s3Info) return html;
+
+    // Match href="/software/..." in anchor tags
+    const regex = /href="\/software\/([^"]+)"/g;
+    const matches = [...html.matchAll(regex)];
+
+    for (const match of matches) {
+        const filename = decodeURIComponent(match[1]);
+        const key = `software/${filename}`;
+        try {
+            const presignedUrl = await remote.getPresignedUrl(
+                s3Info.bucket,
+                key,
+                s3Info.region,
+                1800  // 30 minutes
+            );
+            html = html.replace(match[0], `href="${presignedUrl}"`);
+        } catch (err) {
+            console.error(`[UseCases] Failed to generate pre-signed URL for ${key}:`, err.message);
+        }
+    }
+    return html;
+}
+
 async function loadFromDisk(productCategory, useCaseSlug) {
     const useCasesDir = getUseCasesDir();
     const mdPath = path.join(useCasesDir, productCategory, `${useCaseSlug}.md`);
@@ -48,12 +78,14 @@ async function loadFromDisk(productCategory, useCaseSlug) {
         const processedMd = config.replaceVariables(mdContent);
         const processedConfig = JSON.parse(config.replaceVariables(JSON.stringify(ucConfig), true));
         
+        const html = await replaceSoftwareLinks(marked(processedMd));
+
         return {
             id: `${productCategory}/${useCaseSlug}`,
             productCategory,
             slug: useCaseSlug,
             content: processedMd,
-            html: marked(processedMd),
+            html,
             ...processedConfig
         };
     } catch (error) {

@@ -76,7 +76,7 @@ function printStartupBanner() {
     
     console.log('');
     console.log(divider);
-    console.log('  POC Portal - Starting Up');
+    console.log('  POC Portal - Starting Up v3.0.3');
     console.log(divider);
     console.log('');
     

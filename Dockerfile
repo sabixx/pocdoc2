@@ -8,7 +8,7 @@ COPY ./pocdoc/package*.json ./
 # Install dependencies
 RUN npm install --omit=dev
 RUN npm install js-yaml
-RUN npm install @aws-sdk/client-s3
+RUN npm install @aws-sdk/client-s3 @aws-sdk/s3-request-presigner
 
 # Copy application files from pocdoc folder
 COPY ./pocdoc .
